@@ -1,4 +1,4 @@
-package org.garen.test.util.date;
+package org.garen.mc.test.util.date;
 
 import org.garen.mc.util.date.DateUtil;
 import org.junit.Test;
