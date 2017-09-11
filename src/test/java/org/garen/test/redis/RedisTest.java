@@ -1,7 +1,7 @@
 package org.garen.test.redis;
 
 
-import org.garen.operation.redis.RedisService;
+import org.garen.mc.redis.RedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

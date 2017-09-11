@@ -22,7 +22,7 @@ spring:
       username: guest
       password: guest
 server:
-  port: 9090
+  port: 9093
   tomcat:
     max-threads: 1024
     uri-encoding: utf-8

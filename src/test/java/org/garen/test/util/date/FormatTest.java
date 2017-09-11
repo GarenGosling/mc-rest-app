@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.text.ParseException;
 
-import static org.garen.operation.util.date.Format.formatDate;
-import static org.garen.operation.util.date.Format.formatTime;
+import static org.garen.mc.util.date.Format.formatDate;
+import static org.garen.mc.util.date.Format.formatTime;
 
 /**
  * Test Format

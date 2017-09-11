@@ -20,7 +20,7 @@ schemes:
 # Describe your paths here
 paths:
   /role:
-    # This is a HTTP operation
+    # This is a HTTP mc
     get:
       summary: 获取角色
       description: |

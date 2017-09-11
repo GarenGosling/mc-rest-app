@@ -16,8 +16,8 @@ repositories {
 }
 
 jar {
-    baseName = 'operation'
-    version = '0.0.1-SNAPSHOT'
+    baseName = 'mc'
+    version = '1.0'
 }
 
 sourceCompatibility = 1.8

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.garen.operation.mybatis.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="org.garen.operation.mybatis.domain.User">
+<mapper namespace="org.garen.mc.mybatis.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="org.garen.mc.mybatis.domain.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
@@ -82,7 +82,7 @@
     id, name, real_name, org_id, org_name, fullname, fullpath, phone, email, id_number, 
     emp_no, picture, json, post_id, post_name, sales_dept_id, sales_dept_name
   </sql>
-  <select id="selectByExample" parameterType="org.garen.operation.mybatis.domain.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -114,13 +114,13 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="org.garen.operation.mybatis.domain.UserExample">
+  <delete id="deleteByExample" parameterType="org.garen.mc.mybatis.domain.UserExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.garen.operation.mybatis.domain.User">
+  <insert id="insert" parameterType="org.garen.mc.mybatis.domain.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -137,7 +137,7 @@
       #{postId,jdbcType=VARCHAR}, #{postName,jdbcType=VARCHAR}, #{salesDeptId,jdbcType=VARCHAR}, 
       #{salesDeptName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.garen.operation.mybatis.domain.User">
+  <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -243,7 +243,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.garen.operation.mybatis.domain.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="org.garen.mc.mybatis.domain.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -331,7 +331,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.garen.operation.mybatis.domain.User">
+  <update id="updateByPrimaryKeySelective" parameterType="org.garen.mc.mybatis.domain.User">
     update user
     <set>
       <if test="name != null">
@@ -385,7 +385,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.garen.operation.mybatis.domain.User">
+  <update id="updateByPrimaryKey" parameterType="org.garen.mc.mybatis.domain.User">
     update user
     set name = #{name,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
