@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Service
 public class BoardManager extends BaseManage<Integer>{
-
+    private static final String GET_HOT_SUCCESS = "查询热门成功";
     @Override
     public <T, Q> CommonsService<T, Q, Integer> getService() {
         return null;
@@ -24,5 +24,11 @@ public class BoardManager extends BaseManage<Integer>{
         boards.add(new Board());
         return new SuccessModel().message(GET_ALL_SUCCESS).data(boards);
 
+    }
+
+    public SuccessModel getHotBoards() {
+        List<Board> boards=new ArrayList<>();
+        boards.add(new Board());
+        return new SuccessModel().message(GET_HOT_SUCCESS).data(boards);
     }
 }

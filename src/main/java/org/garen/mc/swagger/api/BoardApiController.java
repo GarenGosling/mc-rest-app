@@ -32,4 +32,10 @@ public class BoardApiController implements BoardApi {
         return new ResponseEntity<SuccessModel>(boardManager.getAll(),HttpStatus.OK);
     }
 
+    public ResponseEntity<SuccessModel> getHotBoards() {
+        // do some magic!
+        return new ResponseEntity<SuccessModel>(boardManager.getHotBoards(),HttpStatus.OK);
+    }
+
+
 }

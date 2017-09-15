@@ -35,5 +35,12 @@ public interface BoardApi {
     @RequestMapping(value = "/board/all",
         method = RequestMethod.GET)
     ResponseEntity<SuccessModel> getBoards();
+    @ApiOperation(value = "获取首页热门板块列表", notes = "获取首页热门板块列表 ", response = SuccessModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
+    @RequestMapping(value = "/board/hot",
+            method = RequestMethod.GET)
+    ResponseEntity<SuccessModel> getHotBoards();
 }

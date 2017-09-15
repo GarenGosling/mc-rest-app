@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @Api(value = "carousel", description = "the carousel API")
 public interface CarouselApi {
 
-    @ApiOperation(value = "获取轮播图列表", notes = "获取板块列表 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "获取轮播图列表", notes = "获取轮播图列表 ", response = SuccessModel.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
