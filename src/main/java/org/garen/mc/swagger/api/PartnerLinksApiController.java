@@ -3,7 +3,7 @@ package org.garen.mc.swagger.api;
 
 import io.swagger.annotations.*;
 
-import org.garen.mc.swagger.model.SuccessModel;
+import org.garen.mc.swagger.model.PartnerLinks;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,16 +18,16 @@ import java.util.List;
 
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T00:06:49.255Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T00:55:07.765Z")
 
 @Controller
 public class PartnerLinksApiController implements PartnerLinksApi {
 
 
 
-    public ResponseEntity<SuccessModel> getpartnerLinks() {
+    public ResponseEntity<List<PartnerLinks>> getpartnerLinks() {
         // do some magic!
-        return new ResponseEntity<SuccessModel>(HttpStatus.OK);
+        return new ResponseEntity<List<PartnerLinks>>(HttpStatus.OK);
     }
 
 }
