@@ -1,11 +1,12 @@
 package org.garen.mc.mybatis.mapper;
 
+import java.io.Serializable;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.garen.mc.mybatis.domain.PartnerLinks;
 import org.garen.mc.mybatis.domain.PartnerLinksExample;
 
-public interface PartnerLinksMapper {
+public interface PartnerLinksMapper <T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK> {
     long countByExample(PartnerLinksExample example);
 
     int deleteByExample(PartnerLinksExample example);

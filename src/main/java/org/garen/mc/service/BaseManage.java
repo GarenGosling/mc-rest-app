@@ -27,6 +27,14 @@ public abstract class BaseManage<PK extends Serializable> {
 
     protected Logger LOGGER = LoggerFactory.getLogger(getClass());
 
+
+    protected static final String GET_ALL_SUCCESS = "查询全部成功";
+
+
+
+
+
+
     private static String DB_NAME = "mysql";//ResourceBundleUtil.getConfigValue("db.name");
 
     /**

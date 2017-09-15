@@ -6,34 +6,27 @@
 package org.garen.mc.swagger.api;
 
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.garen.mc.swagger.model.ErrorModel;
-import org.garen.mc.swagger.model.PartnerLinks;
+import org.garen.mc.swagger.model.SuccessModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
-import javax.validation.constraints.*;
-import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T00:55:07.765Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T06:44:56.262Z")
 
 @Api(value = "partnerLinks", description = "the partnerLinks API")
 public interface PartnerLinksApi {
 
-    @ApiOperation(value = "获取合作链接列表", notes = "获取合作链接列表 ", response = PartnerLinks.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "获取合作链接列表", notes = "获取合作链接列表 ", response = SuccessModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = PartnerLinks.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLinks",
         method = RequestMethod.GET)
-    ResponseEntity<List<PartnerLinks>> getpartnerLinks();
+    ResponseEntity<SuccessModel> getpartnerLinks();
 
 }
