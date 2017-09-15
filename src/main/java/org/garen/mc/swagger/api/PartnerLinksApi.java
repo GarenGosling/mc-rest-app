@@ -6,16 +6,23 @@
 package org.garen.mc.swagger.api;
 
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.SuccessModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T06:44:56.262Z")
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-15T08:07:42.491Z")
 
 @Api(value = "partnerLinks", description = "the partnerLinks API")
 public interface PartnerLinksApi {
@@ -25,7 +32,7 @@ public interface PartnerLinksApi {
         @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
-    @RequestMapping(value = "/partnerLinks",
+    @RequestMapping(value = "/partnerLinks/all",
         method = RequestMethod.GET)
     ResponseEntity<SuccessModel> getpartnerLinks();
 
