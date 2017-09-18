@@ -1,4 +1,4 @@
-package org.garen.mc.mybatis.domain.Demo;
+package org.garen.mc.mybatis.domain.demo;
 
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.util.JsonMapper;
