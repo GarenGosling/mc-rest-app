@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PartnerLinksExample {
+public class PartnerLinkExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class PartnerLinksExample {
 
     private Integer offset;
 
-    public PartnerLinksExample() {
+    public PartnerLinkExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

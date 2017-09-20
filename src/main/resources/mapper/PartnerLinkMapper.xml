@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.garen.mc.mybatis.mapper.PartnerLinksMapper">
-  <resultMap id="BaseResultMap" type="org.garen.mc.mybatis.domain.PartnerLinks">
+<mapper namespace="org.garen.mc.mybatis.mapper.PartnerLinkMapper">
+  <resultMap id="BaseResultMap" type="org.garen.mc.mybatis.domain.PartnerLink">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -72,13 +72,13 @@
   <sql id="Base_Column_List">
     id, code, name, url_md5, description, create_time, update_time, status
   </sql>
-  <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinksExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinkExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from partner_links
+    from partner_link
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,35 +97,35 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from partner_links
+    from partner_link
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from partner_links
+    delete from partner_link
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinksExample">
-    delete from partner_links
+  <delete id="deleteByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinkExample">
+    delete from partner_link
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.garen.mc.mybatis.domain.PartnerLinks">
+  <insert id="insert" parameterType="org.garen.mc.mybatis.domain.PartnerLink">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into partner_links (code, name, url_md5, 
+    insert into partner_link (code, name, url_md5, 
       description, create_time, update_time, 
       status)
     values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{urlMd5,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.PartnerLinks">
+  <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.PartnerLink">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into partner_links
+    insert into partner_link
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
         code,
@@ -173,14 +173,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinksExample" resultType="java.lang.Long">
-    select count(*) from partner_links
+  <select id="countByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinkExample" resultType="java.lang.Long">
+    select count(*) from partner_link
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update partner_links
+    update partner_link
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -212,7 +212,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update partner_links
+    update partner_link
     set id = #{record.id,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
@@ -225,8 +225,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.garen.mc.mybatis.domain.PartnerLinks">
-    update partner_links
+  <update id="updateByPrimaryKeySelective" parameterType="org.garen.mc.mybatis.domain.PartnerLink">
+    update partner_link
     <set>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -252,8 +252,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.garen.mc.mybatis.domain.PartnerLinks">
-    update partner_links
+  <update id="updateByPrimaryKey" parameterType="org.garen.mc.mybatis.domain.PartnerLink">
+    update partner_link
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       url_md5 = #{urlMd5,jdbcType=VARCHAR},

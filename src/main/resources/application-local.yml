@@ -4,11 +4,17 @@ mybatis:
   type-handlers-package: org.apache.ibatis.type.LocalDateTypeHandler
 
 spring:
+#  datasource:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://172.24.133.35:3306/puhui_operation?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+#      username: puhui_operation
+#      password: puhui_operation
+#      type: com.zaxxer.hikari.HikariDataSource
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.24.133.35:3306/puhui_operation?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-      username: puhui_operation
-      password: puhui_operation
+      url: jdbc:mysql://120.27.22.41:3306/mc?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: mc
+      password: 7716y7Igvazgg7WM5pXc
       type: com.zaxxer.hikari.HikariDataSource
   redis:
       database: 0

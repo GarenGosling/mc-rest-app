@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * @author 
  */
-public class PartnerLinks implements Serializable {
+public class PartnerLink implements Serializable {
     /**
      * 编号
      */
