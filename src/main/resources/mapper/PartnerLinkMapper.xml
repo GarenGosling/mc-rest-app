@@ -5,7 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="url_md5" jdbcType="VARCHAR" property="urlMd5" />
+    <result column="img_md5" jdbcType="VARCHAR" property="imgMd5" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, code, name, url_md5, description, create_time, update_time, status
+    id, code, name, img_md5, url, description, create_time, update_time, status
   </sql>
   <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.PartnerLinkExample" resultMap="BaseResultMap">
     select
@@ -114,12 +115,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into partner_link (code, name, url_md5, 
-      description, create_time, update_time, 
-      status)
-    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{urlMd5,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER})
+    insert into partner_link (code, name, img_md5, 
+      url, description, create_time, 
+      update_time, status)
+    values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{imgMd5,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.PartnerLink">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -133,8 +134,11 @@
       <if test="name != null">
         name,
       </if>
-      <if test="urlMd5 != null">
-        url_md5,
+      <if test="imgMd5 != null">
+        img_md5,
+      </if>
+      <if test="url != null">
+        url,
       </if>
       <if test="description != null">
         description,
@@ -156,8 +160,11 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="urlMd5 != null">
-        #{urlMd5,jdbcType=VARCHAR},
+      <if test="imgMd5 != null">
+        #{imgMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
       </if>
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
@@ -191,8 +198,11 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.urlMd5 != null">
-        url_md5 = #{record.urlMd5,jdbcType=VARCHAR},
+      <if test="record.imgMd5 != null">
+        img_md5 = #{record.imgMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
       </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
@@ -216,7 +226,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      url_md5 = #{record.urlMd5,jdbcType=VARCHAR},
+      img_md5 = #{record.imgMd5,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -234,8 +245,11 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="urlMd5 != null">
-        url_md5 = #{urlMd5,jdbcType=VARCHAR},
+      <if test="imgMd5 != null">
+        img_md5 = #{imgMd5,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
@@ -256,7 +270,8 @@
     update partner_link
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
-      url_md5 = #{urlMd5,jdbcType=VARCHAR},
+      img_md5 = #{imgMd5,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},

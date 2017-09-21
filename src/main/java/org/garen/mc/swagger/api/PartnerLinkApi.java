@@ -12,18 +12,14 @@ import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.PartnerLink;
 import org.garen.mc.swagger.model.SuccessModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import javax.validation.constraints.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-18T23:23:41.235Z")
 
 @Api(value = "partnerLink", description = "the partnerLink API")
@@ -111,5 +107,14 @@ public interface PartnerLinkApi {
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<SuccessModel> updatePartnerLink(@ApiParam(value = "合作链接") @Valid @RequestBody PartnerLink partnerLink);
+
+    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = SuccessModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/partnerLink/status",
+            method = RequestMethod.GET)
+    ResponseEntity<SuccessModel> getByStatus( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status);
 
 }

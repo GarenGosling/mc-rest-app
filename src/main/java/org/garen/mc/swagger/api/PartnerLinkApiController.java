@@ -11,17 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-
-import javax.validation.constraints.*;
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-18T23:23:41.235Z")
 
 @Controller
@@ -69,6 +64,11 @@ public class PartnerLinkApiController implements PartnerLinkApi {
 
     public ResponseEntity<SuccessModel> updatePartnerLink(@ApiParam(value = "合作链接"  )  @Valid @RequestBody PartnerLink partnerLink) {
         SuccessModel successModel=partnerLinkManager.updatePartnerLink(partnerLink);
+        return new ResponseEntity<SuccessModel>(successModel,HttpStatus.OK);
+    }
+
+    public ResponseEntity<SuccessModel> getByStatus( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status) {
+        SuccessModel successModel=partnerLinkManager.getByStatus(status);
         return new ResponseEntity<SuccessModel>(successModel,HttpStatus.OK);
     }
 

@@ -25,6 +25,7 @@ public class PartnerLinkManager extends BaseManage<Integer>{
     private static final String UPDATE_SUCCESS = "修改合作链接成功，修改数量： ";
     private static final String CODE_FIND_SUCCESS = "按照编码查询成功";
     private static final String NAME_FIND_SUCCESS = "按照名称查询成功";
+    private static final String STATUS_FIND_SUCCESS = "按照状态查询成功";
     private static final String GET_SUCCESS = "ID查询成功";
     private static final String GET_PAGE_SUCCESS = "分页查询全部成功";
     private static final Integer START = 0;
@@ -56,7 +57,6 @@ public class PartnerLinkManager extends BaseManage<Integer>{
     }
     /*
     保存
-    说明：能够传递的参数应该只有name和urlMd5
      */
     public SuccessModel savePartnerLink(org.garen.mc.swagger.model.PartnerLink partnerLink) {
         //验证
@@ -66,12 +66,10 @@ public class PartnerLinkManager extends BaseManage<Integer>{
         //去掉无用或者不应该传递的参数
         partnerLink.setId(null);
         partnerLink.setCode(null);
-        partnerLink.setStatus(null);
         //类型转换
         org.garen.mc.mybatis.domain.PartnerLink partnerLink1=tranfer(partnerLink);
 
         //处理业务
-        partnerLink1.setStatus(1);
         partnerLink1.setCode(CodeGenerateUtils.getRandomCode());
         partnerLink1.setCreateTime(new Date());
         int i=create(partnerLink1);
@@ -79,7 +77,6 @@ public class PartnerLinkManager extends BaseManage<Integer>{
     }
     /*
     修改
-    说明：能修改的参数只有名字和urlMd5
      */
     public SuccessModel updatePartnerLink(org.garen.mc.swagger.model.PartnerLink partnerLink) {
         //验证
@@ -88,7 +85,6 @@ public class PartnerLinkManager extends BaseManage<Integer>{
             return  successModel;
         //去掉无用参数
         partnerLink.setCode(null);
-        partnerLink.setStatus(null);
         //类型转换
         PartnerLink partnerLink1=tranfer(partnerLink);
         //处理业务
@@ -140,6 +136,17 @@ public class PartnerLinkManager extends BaseManage<Integer>{
         return new SuccessModel().message(GET_PAGE_SUCCESS).data(map);
     }
 
+    public SuccessModel getByStatus(Integer status) {
+        SuccessModel successModel=partnerLinkValidate.getByStatusValidate(status);
+        if(successModel!=null)
+            return successModel;
+        PartnerLinkExample example=new PartnerLinkExample();
+        PartnerLinkExample.Criteria criteria=example.createCriteria();
+        criteria.andStatusEqualTo(status);
+        List<PartnerLink> partnerLinks=getService().findBy(example);
+        return new SuccessModel().data(partnerLinks).message(STATUS_FIND_SUCCESS);
+    }
+
     public SuccessModel getPartnerLink(Integer id) {
         SuccessModel successModel=partnerLinkValidate.idValidate(id);
         if(successModel!=null)
@@ -157,6 +164,7 @@ public class PartnerLinkManager extends BaseManage<Integer>{
         TransferUtil.transfer(partnerLink1,partnerLink);
         return  partnerLink1;
     }
+
 
 
 }

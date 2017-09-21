@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * PartnerLink
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-18T23:23:41.235Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-21T03:51:15.003Z")
 
 public class PartnerLink   {
   @JsonProperty("id")
@@ -23,8 +23,11 @@ public class PartnerLink   {
   @JsonProperty("name")
   private String name = null;
 
-  @JsonProperty("urlMd5")
-  private String urlMd5 = null;
+  @JsonProperty("url")
+  private String url = null;
+
+  @JsonProperty("imgMd5")
+  private String imgMd5 = null;
 
   @JsonProperty("description")
   private String description = null;
@@ -92,24 +95,44 @@ public class PartnerLink   {
     this.name = name;
   }
 
-  public PartnerLink urlMd5(String urlMd5) {
-    this.urlMd5 = urlMd5;
+  public PartnerLink url(String url) {
+    this.url = url;
     return this;
   }
 
    /**
-   * 链接的MD5值
-   * @return urlMd5
+   * 链接
+   * @return url
   **/
-  @ApiModelProperty(value = "链接的MD5值")
+  @ApiModelProperty(value = "链接")
 
  @Size(max=50)
-  public String getUrlMd5() {
-    return urlMd5;
+  public String getUrl() {
+    return url;
   }
 
-  public void setUrlMd5(String urlMd5) {
-    this.urlMd5 = urlMd5;
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public PartnerLink imgMd5(String imgMd5) {
+    this.imgMd5 = imgMd5;
+    return this;
+  }
+
+   /**
+   * 图片MD5值
+   * @return imgMd5
+  **/
+  @ApiModelProperty(value = "图片MD5值")
+
+ @Size(max=50)
+  public String getImgMd5() {
+    return imgMd5;
+  }
+
+  public void setImgMd5(String imgMd5) {
+    this.imgMd5 = imgMd5;
   }
 
   public PartnerLink description(String description) {
@@ -138,10 +161,10 @@ public class PartnerLink   {
   }
 
    /**
-   * 0表示不现实首页，1表示显示首页
+   * 0表示不显示首页，1表示显示首页
    * @return status
   **/
-  @ApiModelProperty(value = "0表示不现实首页，1表示显示首页")
+  @ApiModelProperty(value = "0表示不显示首页，1表示显示首页")
 
 
   public Integer getStatus() {
@@ -165,14 +188,15 @@ public class PartnerLink   {
     return Objects.equals(this.id, partnerLink.id) &&
         Objects.equals(this.code, partnerLink.code) &&
         Objects.equals(this.name, partnerLink.name) &&
-        Objects.equals(this.urlMd5, partnerLink.urlMd5) &&
+        Objects.equals(this.url, partnerLink.url) &&
+        Objects.equals(this.imgMd5, partnerLink.imgMd5) &&
         Objects.equals(this.description, partnerLink.description) &&
         Objects.equals(this.status, partnerLink.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, code, name, urlMd5, description, status);
+    return Objects.hash(id, code, name, url, imgMd5, description, status);
   }
 
   @Override
@@ -183,7 +207,8 @@ public class PartnerLink   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    urlMd5: ").append(toIndentedString(urlMd5)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    imgMd5: ").append(toIndentedString(imgMd5)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");

@@ -17,8 +17,12 @@ public class PartnerLinkValidate extends BaseValidate {
             return validateFailResponse();
         if(StringUtils.isBlank(partnerLink.getName()))
             return  validateFailResponse("名称");
-        if(StringUtils.isBlank(partnerLink.getUrlMd5()))
+        if(StringUtils.isBlank(partnerLink.getUrl()))
             return  validateFailResponse("链接");
+        if(StringUtils.isBlank(partnerLink.getImgMd5()))
+            return  validateFailResponse("图片");
+        if(partnerLink.getStatus()==null)
+            return  validateFailResponse("状态");
         return  null;
     }
 
@@ -33,7 +37,7 @@ public class PartnerLinkValidate extends BaseValidate {
             return  validateFailResponse("修改的参数");
         if(partnerLink.getId()==null||partnerLink.getId()==0)
             return  validateFailResponse("id");
-        if(StringUtils.isBlank(partnerLink.getName())||StringUtils.isBlank(partnerLink.getUrlMd5()))
+        if(StringUtils.isBlank(partnerLink.getName())||StringUtils.isBlank(partnerLink.getUrl())||StringUtils.isBlank(partnerLink.getImgMd5())||partnerLink.getStatus()==null)
             return validateFailResponse("修改的参数");
         return  null;
     }
@@ -46,6 +50,12 @@ public class PartnerLinkValidate extends BaseValidate {
 
     public SuccessModel getByNameValidate(String name) {
         if(StringUtils.isBlank(name))
+            return  validateFailResponse("查询参数为空");
+        return  null;
+    }
+
+    public SuccessModel getByStatusValidate(Integer status) {
+        if(status==null)
             return  validateFailResponse("查询参数为空");
         return  null;
     }

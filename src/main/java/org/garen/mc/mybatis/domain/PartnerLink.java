@@ -23,9 +23,14 @@ public class PartnerLink implements Serializable {
     private String name;
 
     /**
-     * 合作商家url的md5
+     * 图片md5值
      */
-    private String urlMd5;
+    private String imgMd5;
+
+    /**
+     * 合作链接ur
+     */
+    private String url;
 
     /**
      * 描述
@@ -73,12 +78,20 @@ public class PartnerLink implements Serializable {
         this.name = name;
     }
 
-    public String getUrlMd5() {
-        return urlMd5;
+    public String getImgMd5() {
+        return imgMd5;
     }
 
-    public void setUrlMd5(String urlMd5) {
-        this.urlMd5 = urlMd5;
+    public void setImgMd5(String imgMd5) {
+        this.imgMd5 = imgMd5;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getDescription() {

@@ -1,6 +1,5 @@
 package org.garen.mc.mybatis.service;
 
-import org.garen.mc.mybatis.mapper.CommonMapper;
 import org.garen.mc.mybatis.mapper.PartnerLinkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,9 @@ import java.io.Serializable;
 @Service
 public class PartnerLinkService<T,Q,PK extends Serializable> extends CommonsService<T, Q,PK> {
     @Autowired
-    private PartnerLinkMapper partnerLinkMapper;
+    private PartnerLinkMapper<T, Q, PK> partnerLinkMapper;
     @Override
-    public CommonMapper<T, Q, PK> getMapper() {
+    public PartnerLinkMapper<T, Q, PK> getMapper() {
         return partnerLinkMapper;
     }
 }

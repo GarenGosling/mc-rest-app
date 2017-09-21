@@ -325,73 +325,143 @@ public class PartnerLinkExample {
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5IsNull() {
-            addCriterion("url_md5 is null");
+        public Criteria andImgMd5IsNull() {
+            addCriterion("img_md5 is null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5IsNotNull() {
-            addCriterion("url_md5 is not null");
+        public Criteria andImgMd5IsNotNull() {
+            addCriterion("img_md5 is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5EqualTo(String value) {
-            addCriterion("url_md5 =", value, "urlMd5");
+        public Criteria andImgMd5EqualTo(String value) {
+            addCriterion("img_md5 =", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5NotEqualTo(String value) {
-            addCriterion("url_md5 <>", value, "urlMd5");
+        public Criteria andImgMd5NotEqualTo(String value) {
+            addCriterion("img_md5 <>", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5GreaterThan(String value) {
-            addCriterion("url_md5 >", value, "urlMd5");
+        public Criteria andImgMd5GreaterThan(String value) {
+            addCriterion("img_md5 >", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5GreaterThanOrEqualTo(String value) {
-            addCriterion("url_md5 >=", value, "urlMd5");
+        public Criteria andImgMd5GreaterThanOrEqualTo(String value) {
+            addCriterion("img_md5 >=", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5LessThan(String value) {
-            addCriterion("url_md5 <", value, "urlMd5");
+        public Criteria andImgMd5LessThan(String value) {
+            addCriterion("img_md5 <", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5LessThanOrEqualTo(String value) {
-            addCriterion("url_md5 <=", value, "urlMd5");
+        public Criteria andImgMd5LessThanOrEqualTo(String value) {
+            addCriterion("img_md5 <=", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5Like(String value) {
-            addCriterion("url_md5 like", value, "urlMd5");
+        public Criteria andImgMd5Like(String value) {
+            addCriterion("img_md5 like", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5NotLike(String value) {
-            addCriterion("url_md5 not like", value, "urlMd5");
+        public Criteria andImgMd5NotLike(String value) {
+            addCriterion("img_md5 not like", value, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5In(List<String> values) {
-            addCriterion("url_md5 in", values, "urlMd5");
+        public Criteria andImgMd5In(List<String> values) {
+            addCriterion("img_md5 in", values, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5NotIn(List<String> values) {
-            addCriterion("url_md5 not in", values, "urlMd5");
+        public Criteria andImgMd5NotIn(List<String> values) {
+            addCriterion("img_md5 not in", values, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5Between(String value1, String value2) {
-            addCriterion("url_md5 between", value1, value2, "urlMd5");
+        public Criteria andImgMd5Between(String value1, String value2) {
+            addCriterion("img_md5 between", value1, value2, "imgMd5");
             return (Criteria) this;
         }
 
-        public Criteria andUrlMd5NotBetween(String value1, String value2) {
-            addCriterion("url_md5 not between", value1, value2, "urlMd5");
+        public Criteria andImgMd5NotBetween(String value1, String value2) {
+            addCriterion("img_md5 not between", value1, value2, "imgMd5");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIsNull() {
+            addCriterion("url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIsNotNull() {
+            addCriterion("url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlEqualTo(String value) {
+            addCriterion("url =", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotEqualTo(String value) {
+            addCriterion("url <>", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThan(String value) {
+            addCriterion("url >", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("url >=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThan(String value) {
+            addCriterion("url <", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThanOrEqualTo(String value) {
+            addCriterion("url <=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLike(String value) {
+            addCriterion("url like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotLike(String value) {
+            addCriterion("url not like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIn(List<String> values) {
+            addCriterion("url in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotIn(List<String> values) {
+            addCriterion("url not in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlBetween(String value1, String value2) {
+            addCriterion("url between", value1, value2, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotBetween(String value1, String value2) {
+            addCriterion("url not between", value1, value2, "url");
             return (Criteria) this;
         }
 

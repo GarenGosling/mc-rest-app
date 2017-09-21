@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.garen.mc.mybatis.domain.PartnerLink;
 import org.garen.mc.mybatis.domain.PartnerLinkExample;
 
-public interface PartnerLinkMapper <T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK>{
+public interface PartnerLinkMapper<T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK> {
     long countByExample(PartnerLinkExample example);
 
     int deleteByExample(PartnerLinkExample example);
