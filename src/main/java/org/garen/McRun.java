@@ -1,4 +1,4 @@
-package org.garen.mc;
+package org.garen;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

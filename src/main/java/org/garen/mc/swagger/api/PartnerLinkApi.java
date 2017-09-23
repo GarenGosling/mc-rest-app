@@ -10,7 +10,7 @@ package org.garen.mc.swagger.api;
 import io.swagger.annotations.*;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.PartnerLink;
-import org.garen.mc.swagger.model.SuccessModel;
+import org.garen.mc.swagger.model.ResponseModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,96 +25,96 @@ import javax.validation.constraints.Size;
 @Api(value = "partnerLink", description = "the partnerLink API")
 public interface PartnerLinkApi {
 
-    @ApiOperation(value = "删除合作链接", notes = "删除合作链接 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "删除合作链接", notes = "删除合作链接 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink",
         method = RequestMethod.DELETE)
-    ResponseEntity<SuccessModel> deletePartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id);
+    ResponseEntity<ResponseModel> deletePartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink/all",
         method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getAll();
+    ResponseEntity<ResponseModel> getAll();
 
 
-    @ApiOperation(value = "通过编码查询", notes = "通过编码查询 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "通过编码查询", notes = "通过编码查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink/code",
         method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getByCode(@ApiParam(value = "合作链接编码") @RequestParam(value = "code", required = false) String code);
+    ResponseEntity<ResponseModel> getByCode(@ApiParam(value = "合作链接编码") @RequestParam(value = "code", required = false) String code);
 
 
-    @ApiOperation(value = "通过名称查询", notes = "通过名称查询 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "通过名称查询", notes = "通过名称查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink/name",
         method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getByName(@ApiParam(value = "合作链接名称") @RequestParam(value = "name", required = false) String name);
+    ResponseEntity<ResponseModel> getByName(@ApiParam(value = "合作链接名称") @RequestParam(value = "name", required = false) String name);
 
 
-    @ApiOperation(value = "分页查询合作链接", notes = "分页查询合作链接 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "分页查询合作链接", notes = "分页查询合作链接 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink/page",
         method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "合作链接名称") @RequestParam(value = "name", required = false) String name);
+    ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "合作链接名称") @RequestParam(value = "name", required = false) String name);
 
 
-    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink",
         method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getPartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id);
+    ResponseEntity<ResponseModel> getPartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id);
 
 
-    @ApiOperation(value = "新增合作链接", notes = "新增合作链接 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "新增合作链接", notes = "新增合作链接 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<SuccessModel> savePartnerLink(@ApiParam(value = "合作链接") @Valid @RequestBody PartnerLink partnerLink);
+    ResponseEntity<ResponseModel> savePartnerLink(@ApiParam(value = "合作链接") @Valid @RequestBody PartnerLink partnerLink);
 
 
-    @ApiOperation(value = "修改合作链接", notes = "修改合作链接 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "修改合作链接", notes = "修改合作链接 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/partnerLink",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<SuccessModel> updatePartnerLink(@ApiParam(value = "合作链接") @Valid @RequestBody PartnerLink partnerLink);
+    ResponseEntity<ResponseModel> updatePartnerLink(@ApiParam(value = "合作链接") @Valid @RequestBody PartnerLink partnerLink);
 
-    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = SuccessModel.class, tags={  })
+    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful response", response = SuccessModel.class),
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
     @RequestMapping(value = "/partnerLink/status",
             method = RequestMethod.GET)
-    ResponseEntity<SuccessModel> getByStatus( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status);
+    ResponseEntity<ResponseModel> getByStatus( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status);
 
 }
