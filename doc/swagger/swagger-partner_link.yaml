@@ -39,7 +39,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -63,7 +63,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -83,7 +83,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -103,7 +103,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -133,7 +133,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -148,12 +148,12 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
-      
+
   /partnerLink/code:
     get:
       summary: 通过编码查询
@@ -169,7 +169,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -189,7 +189,7 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
@@ -211,12 +211,12 @@ paths:
         '200':
           description: Successful response
           schema:
-            $ref: '#/definitions/successModel'
+            $ref: '#/definitions/responseModel'
         default:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
-    
+
 definitions:
   partnerLink:
     type: object
@@ -238,7 +238,7 @@ definitions:
         type: string
         maxLength: 50
         description: 链接
-      imgMd5:
+      md5:
         type: string
         maxLength: 50
         description: 图片MD5值
@@ -251,7 +251,7 @@ definitions:
         format: int32
         maxLength: 1
         description: 0表示不显示首页，1表示显示首页
-  successModel:
+  responseModel:
     type: object
     required:
       - code
