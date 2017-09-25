@@ -14,47 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class PartnerLinkValid extends BaseValid {
 
-    /**
-     * ID查询、删除文件类型，验证参数
-     *
-     * @param id
-     * @return
-     */
-    public String idValid(Integer id){
-        if(id == null)
-            return emptyMsg("id");
-        return null;
-    }
+
 
     /**
-     * 编码查询文件类型，验证参数
-     *
-     * @param code
+     * 保存验证参数
+     * @param partnerLink
      * @return
      */
-    public String codeValid(String code){
-        if(StringUtils.isBlank(code))
-            return emptyMsg("code");
-        return null;
-    }
-
-    /**
-     * 名称查询文件类型，验证参数
-     *
-     * @param name
-     * @return
-     */
-    public String nameValid(String name){
-        if(StringUtils.isBlank(name))
-            return emptyMsg("name");
-        return null;
-    }
-    public String statusValid(Integer status) {
-        if(status==null)
-            return  emptyMsg("status");
-        return  null;
-    }
-
     public String savePartnerLinkValid(PartnerLink partnerLink) {
         if(partnerLink==null)
             return paramNullMsg();
@@ -69,6 +35,11 @@ public class PartnerLinkValid extends BaseValid {
         return  null;
     }
 
+    /**
+     * 修改验证参数
+     * @param partnerLink
+     * @return
+     */
     public String updatePartnerLinkValid(PartnerLink partnerLink) {
         if(partnerLink==null)
             return paramNullMsg();

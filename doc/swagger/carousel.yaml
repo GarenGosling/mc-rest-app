@@ -1,0 +1,249 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: 首页轮播图接口
+
+#host: 127.0.0.1:7443
+#basePath: /v1
+#schemes:
+#  - https
+#produces:
+#  - application/json
+#consumes:
+#  - application/json
+
+# Describe your paths here
+paths:
+  /carousel:
+    post:
+      summary: 新增首页轮播图
+      description: |
+        新增首页轮播图
+      operationId: saveCarousel
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: carousel
+          description: 首页轮播图
+          schema:
+            $ref: '#/definitions/carousel'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      summary: 修改首页轮播图
+      description: |
+        修改首页轮播图
+      operationId: updateCarousel
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: carousel
+          description: 首页轮播图
+          schema:
+            $ref: '#/definitions/carousel'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      summary: 删除首页轮播图
+      description: |
+        删除首页轮播图
+      operationId: deleteCarousel
+      parameters:
+        - in: query
+          name: id
+          description: ID
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    get:
+      summary: ID查询
+      description: |
+        ID查询
+      operationId: getCarousel
+      parameters:
+        - in: query
+          name: id
+          description: ID
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /carousel/all:
+    get:
+      summary: 查询全部
+      description: |
+        查询全部
+      operationId: getAll
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /carousel/page:
+    get:
+      summary: 分页查询首页轮播图
+      description: |
+        分页查询首页轮播图
+      operationId: getByPage
+      parameters:
+        - name: start
+          in: query
+          description: 分页开始索引
+          type: integer
+          format: int32
+        - name: length
+          in: query
+          description: 每页数量
+          type: integer
+          format: int32
+        - name: description
+          in: query
+          description: 首页轮播图描述信息
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /carousel/description:
+    get:
+      summary: 通过描述查询
+      description: |
+        通过描述查询
+      operationId: getByDescription
+      parameters:
+        - name: description
+          in: query
+          description: 首页轮播图描述信息
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /carousel/status:
+    get:
+      summary: 通过状态查询
+      description: |
+        通过状态查询
+      operationId: getByStatus
+      parameters:
+        - name: status
+          in: query
+          type: integer
+          format: int32
+          maxLength: 1
+          description: 0表示不显示首页，1表示显示首页
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  carousel:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        maxLength: 11
+        description: ID
+      md5:
+        type: string
+        maxLength: 50
+        description: 图片md5值
+      description:
+        type: string
+        maxLength: 50
+        description: 轮播图描述信息
+      status:
+        type: integer
+        format: int32
+        maxLength: 1
+        description: 轮播图状态信息，1显示首页，0不显示首页
+  responseModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      data:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /garen.org/oss/1.0.0
+schemes:
+ - https
+ - http
