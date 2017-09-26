@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-25T07:24:22.118Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-26T09:15:17.936Z")
 
 @Api(value = "carousel", description = "the carousel API")
 public interface CarouselApi {
@@ -48,6 +48,9 @@ public interface CarouselApi {
         method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getAll();
 
+
+
+
     @ApiOperation(value = "通过描述查询", notes = "通过描述查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
@@ -68,14 +71,14 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "首页轮播图描述信息") @RequestParam(value = "description", required = false) String description);
 
 
-    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过状态和位置查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
-    @RequestMapping(value = "/carousel/status",
+    @RequestMapping(value = "/carousel/statusAndPlace",
         method = RequestMethod.GET)
-    ResponseEntity<ResponseModel> getByStatus(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status);
+    ResponseEntity<ResponseModel> getByStatusAndPlace(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status, @Size(max = 2) @ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) Integer place);
 
 
     @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })

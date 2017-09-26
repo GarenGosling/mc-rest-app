@@ -82,4 +82,15 @@ public class BaseValid {
         return  null;
     }
 
+    /**
+     * 位置验证参数
+     * @param place
+     * @return
+     */
+    public String placeValid(Integer place) {
+        if(place==null)
+            return  emptyMsg("place");
+        return  null;
+    }
+
 }

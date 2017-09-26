@@ -37,6 +37,16 @@ public class Carousel implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 轮播图所在的位置
+     */
+    private Integer place;
+
+    /**
+     * 轮播图的顺序
+     */
+    private Integer orderBy;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -85,5 +95,21 @@ public class Carousel implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getPlace() {
+        return place;
+    }
+
+    public void setPlace(Integer place) {
+        this.place = place;
+    }
+
+    public Integer getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(Integer orderBy) {
+        this.orderBy = orderBy;
     }
 }

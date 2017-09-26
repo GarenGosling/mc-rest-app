@@ -85,19 +85,25 @@ public class CarouselApiController extends BaseModel implements CarouselApi {
         return new ResponseEntity<ResponseModel>(successModel("分页查询",map),HttpStatus.OK);
     }
 
+
+
     /**
-     * 状态查询
+     * 状态和位置查询
      * @param status
      * @return
      */
-    public ResponseEntity<ResponseModel> getByStatus( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status) {
+    public ResponseEntity<ResponseModel> getByStatusAndPlace( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status,
+                                                              @Size(max=2)@ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) Integer place) {
         //验证
         String msg=carouselValid.statusValid(status);
         if(StringUtils.isNotBlank(msg))
             return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
+        String msg2=carouselValid.placeValid(place);
+        if(StringUtils.isNotBlank(msg2))
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg2),HttpStatus.OK);
         //业务
-        List<org.garen.mc.mybatis.domain.Carousel> carousels=carouselManage.getByStatus(status);
-        return new ResponseEntity<ResponseModel>(successModel("状态查询",carousels),HttpStatus.OK);
+        List<org.garen.mc.mybatis.domain.Carousel> carousels=carouselManage.getByStatusAndPlace(status,place);
+        return new ResponseEntity<ResponseModel>(successModel("状态和位置查询",carousels),HttpStatus.OK);
     }
 
     /**

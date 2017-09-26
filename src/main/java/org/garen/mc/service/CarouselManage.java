@@ -100,16 +100,19 @@ public class CarouselManage extends BaseManage<Integer> {
     }
 
     /**
-     * 状态查询
+     * 状态和位置查询
      * @param status
      * @return
      */
-    public List<Carousel> getByStatus(Integer status) {
+    public List<Carousel> getByStatusAndPlace(Integer status, Integer place) {
         CarouselExample example = new CarouselExample();
         CarouselExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo(status);
+        criteria.andPlaceEqualTo(place);
+        example.setOrderByClause("order_by,id desc");
         return findListBy(example);
     }
+
 
     /**
      * id查询
@@ -156,4 +159,6 @@ public class CarouselManage extends BaseManage<Integer> {
         TransferUtil.transfer(carousel1,carousel);
         return  carousel1;
     }
+
+
 }

@@ -25,6 +25,10 @@ public class CarouselValid extends  BaseValid {
             return  emptyMsg("图片");
         if(carousel.getStatus()==null)
             return  emptyMsg("状态");
+        if(carousel.getStatus()==null)
+            return  emptyMsg("位置");
+        if(carousel.getOrderBy()==null)
+            return  emptyMsg("排序");
         return  null;
     }
 
@@ -42,6 +46,10 @@ public class CarouselValid extends  BaseValid {
             return  emptyMsg("图片");
         if(carousel.getStatus()==null)
             return  emptyMsg("状态");
+        if(carousel.getStatus()==null)
+            return  emptyMsg("位置");
+        if(carousel.getOrderBy()==null)
+            return  emptyMsg("排序");
         return  null;
     }
 }

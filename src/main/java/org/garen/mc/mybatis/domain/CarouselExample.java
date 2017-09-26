@@ -504,6 +504,126 @@ public class CarouselExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andPlaceIsNull() {
+            addCriterion("place is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIsNotNull() {
+            addCriterion("place is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceEqualTo(Integer value) {
+            addCriterion("place =", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceNotEqualTo(Integer value) {
+            addCriterion("place <>", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceGreaterThan(Integer value) {
+            addCriterion("place >", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("place >=", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceLessThan(Integer value) {
+            addCriterion("place <", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceLessThanOrEqualTo(Integer value) {
+            addCriterion("place <=", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIn(List<Integer> values) {
+            addCriterion("place in", values, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceNotIn(List<Integer> values) {
+            addCriterion("place not in", values, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceBetween(Integer value1, Integer value2) {
+            addCriterion("place between", value1, value2, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceNotBetween(Integer value1, Integer value2) {
+            addCriterion("place not between", value1, value2, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByIsNull() {
+            addCriterion("order_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByIsNotNull() {
+            addCriterion("order_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByEqualTo(Integer value) {
+            addCriterion("order_by =", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByNotEqualTo(Integer value) {
+            addCriterion("order_by <>", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByGreaterThan(Integer value) {
+            addCriterion("order_by >", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByGreaterThanOrEqualTo(Integer value) {
+            addCriterion("order_by >=", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByLessThan(Integer value) {
+            addCriterion("order_by <", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByLessThanOrEqualTo(Integer value) {
+            addCriterion("order_by <=", value, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByIn(List<Integer> values) {
+            addCriterion("order_by in", values, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByNotIn(List<Integer> values) {
+            addCriterion("order_by not in", values, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByBetween(Integer value1, Integer value2) {
+            addCriterion("order_by between", value1, value2, "orderBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderByNotBetween(Integer value1, Integer value2) {
+            addCriterion("order_by not between", value1, value2, "orderBy");
+            return (Criteria) this;
+        }
     }
 
     /**

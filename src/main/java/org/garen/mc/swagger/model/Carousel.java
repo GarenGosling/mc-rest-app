@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * Carousel
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-25T07:24:22.118Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-26T09:15:17.936Z")
 
 public class Carousel   {
   @JsonProperty("id")
@@ -25,6 +25,12 @@ public class Carousel   {
 
   @JsonProperty("status")
   private Integer status = null;
+
+  @JsonProperty("place")
+  private Integer place = null;
+
+  @JsonProperty("orderBy")
+  private Integer orderBy = null;
 
   public Carousel id(Integer id) {
     this.id = id;
@@ -106,6 +112,46 @@ public class Carousel   {
     this.status = status;
   }
 
+  public Carousel place(Integer place) {
+    this.place = place;
+    return this;
+  }
+
+   /**
+   * 轮播图的位置
+   * @return place
+  **/
+  @ApiModelProperty(value = "轮播图的位置")
+
+
+  public Integer getPlace() {
+    return place;
+  }
+
+  public void setPlace(Integer place) {
+    this.place = place;
+  }
+
+  public Carousel orderBy(Integer orderBy) {
+    this.orderBy = orderBy;
+    return this;
+  }
+
+   /**
+   * 轮播图排序字段
+   * @return orderBy
+  **/
+  @ApiModelProperty(value = "轮播图排序字段")
+
+
+  public Integer getOrderBy() {
+    return orderBy;
+  }
+
+  public void setOrderBy(Integer orderBy) {
+    this.orderBy = orderBy;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -119,12 +165,14 @@ public class Carousel   {
     return Objects.equals(this.id, carousel.id) &&
         Objects.equals(this.md5, carousel.md5) &&
         Objects.equals(this.description, carousel.description) &&
-        Objects.equals(this.status, carousel.status);
+        Objects.equals(this.status, carousel.status) &&
+        Objects.equals(this.place, carousel.place) &&
+        Objects.equals(this.orderBy, carousel.orderBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, md5, description, status);
+    return Objects.hash(id, md5, description, status, place, orderBy);
   }
 
   @Override
@@ -136,6 +184,8 @@ public class Carousel   {
     sb.append("    md5: ").append(toIndentedString(md5)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    place: ").append(toIndentedString(place)).append("\n");
+    sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }
