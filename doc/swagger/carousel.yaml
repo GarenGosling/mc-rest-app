@@ -188,9 +188,8 @@ paths:
           description: 0表示不显示首页，1表示显示首页
         - name: place
           in: query
-          type: integer
-          format: int32
-          maxLength: 2
+          type: string
+          maxLength: 50
           description: 位置编号
       responses:
         '200':
@@ -224,14 +223,13 @@ definitions:
         maxLength: 1
         description: 轮播图状态信息，1显示首页，0不显示首页
       place:
-        type: integer
-        format: int32
-        maxLength: 2
+        type: string
+        maxLength: 50
         description: 轮播图的位置
       orderBy:
         type: integer
         format: int32
-        maxLength: 2
+        maxLength: 11
         description: 轮播图排序字段
   responseModel:
     type: object

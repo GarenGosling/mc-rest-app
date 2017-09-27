@@ -93,7 +93,7 @@ public class CarouselApiController extends BaseModel implements CarouselApi {
      * @return
      */
     public ResponseEntity<ResponseModel> getByStatusAndPlace( @Size(max=1)@ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status,
-                                                              @Size(max=2)@ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) Integer place) {
+                                                              @Size(max=50)@ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) String place) {
         //验证
         String msg=carouselValid.statusValid(status);
         if(StringUtils.isNotBlank(msg))

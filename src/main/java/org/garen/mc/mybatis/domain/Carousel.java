@@ -40,7 +40,7 @@ public class Carousel implements Serializable {
     /**
      * 轮播图所在的位置
      */
-    private Integer place;
+    private String place;
 
     /**
      * 轮播图的顺序
@@ -97,11 +97,11 @@ public class Carousel implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Integer getPlace() {
+    public String getPlace() {
         return place;
     }
 
-    public void setPlace(Integer place) {
+    public void setPlace(String place) {
         this.place = place;
     }
 

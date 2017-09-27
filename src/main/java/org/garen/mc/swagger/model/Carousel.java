@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * Carousel
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-26T09:15:17.936Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-27T06:55:57.026Z")
 
 public class Carousel   {
   @JsonProperty("id")
@@ -27,7 +27,7 @@ public class Carousel   {
   private Integer status = null;
 
   @JsonProperty("place")
-  private Integer place = null;
+  private String place = null;
 
   @JsonProperty("orderBy")
   private Integer orderBy = null;
@@ -112,7 +112,7 @@ public class Carousel   {
     this.status = status;
   }
 
-  public Carousel place(Integer place) {
+  public Carousel place(String place) {
     this.place = place;
     return this;
   }
@@ -123,12 +123,12 @@ public class Carousel   {
   **/
   @ApiModelProperty(value = "轮播图的位置")
 
-
-  public Integer getPlace() {
+ @Size(max=50)
+  public String getPlace() {
     return place;
   }
 
-  public void setPlace(Integer place) {
+  public void setPlace(String place) {
     this.place = place;
   }
 

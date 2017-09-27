@@ -104,7 +104,7 @@ public class CarouselManage extends BaseManage<Integer> {
      * @param status
      * @return
      */
-    public List<Carousel> getByStatusAndPlace(Integer status, Integer place) {
+    public List<Carousel> getByStatusAndPlace(Integer status, String place) {
         CarouselExample example = new CarouselExample();
         CarouselExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo(status);

@@ -8,7 +8,7 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="place" jdbcType="INTEGER" property="place" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
     <result column="order_by" jdbcType="INTEGER" property="orderBy" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -118,7 +118,7 @@
       create_time, update_time, place, 
       order_by)
     values (#{md5,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{place,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, 
       #{orderBy,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.Carousel">
@@ -166,7 +166,7 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="place != null">
-        #{place,jdbcType=INTEGER},
+        #{place,jdbcType=VARCHAR},
       </if>
       <if test="orderBy != null">
         #{orderBy,jdbcType=INTEGER},
@@ -201,7 +201,7 @@
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.place != null">
-        place = #{record.place,jdbcType=INTEGER},
+        place = #{record.place,jdbcType=VARCHAR},
       </if>
       <if test="record.orderBy != null">
         order_by = #{record.orderBy,jdbcType=INTEGER},
@@ -219,7 +219,7 @@
       status = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      place = #{record.place,jdbcType=INTEGER},
+      place = #{record.place,jdbcType=VARCHAR},
       order_by = #{record.orderBy,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -244,7 +244,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="place != null">
-        place = #{place,jdbcType=INTEGER},
+        place = #{place,jdbcType=VARCHAR},
       </if>
       <if test="orderBy != null">
         order_by = #{orderBy,jdbcType=INTEGER},
@@ -259,7 +259,7 @@
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      place = #{place,jdbcType=INTEGER},
+      place = #{place,jdbcType=VARCHAR},
       order_by = #{orderBy,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

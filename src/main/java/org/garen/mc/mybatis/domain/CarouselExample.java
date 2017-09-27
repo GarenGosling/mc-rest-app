@@ -515,52 +515,62 @@ public class CarouselExample {
             return (Criteria) this;
         }
 
-        public Criteria andPlaceEqualTo(Integer value) {
+        public Criteria andPlaceEqualTo(String value) {
             addCriterion("place =", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceNotEqualTo(Integer value) {
+        public Criteria andPlaceNotEqualTo(String value) {
             addCriterion("place <>", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceGreaterThan(Integer value) {
+        public Criteria andPlaceGreaterThan(String value) {
             addCriterion("place >", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPlaceGreaterThanOrEqualTo(String value) {
             addCriterion("place >=", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceLessThan(Integer value) {
+        public Criteria andPlaceLessThan(String value) {
             addCriterion("place <", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceLessThanOrEqualTo(Integer value) {
+        public Criteria andPlaceLessThanOrEqualTo(String value) {
             addCriterion("place <=", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceIn(List<Integer> values) {
+        public Criteria andPlaceLike(String value) {
+            addCriterion("place like", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceNotLike(String value) {
+            addCriterion("place not like", value, "place");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlaceIn(List<String> values) {
             addCriterion("place in", values, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceNotIn(List<Integer> values) {
+        public Criteria andPlaceNotIn(List<String> values) {
             addCriterion("place not in", values, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceBetween(Integer value1, Integer value2) {
+        public Criteria andPlaceBetween(String value1, String value2) {
             addCriterion("place between", value1, value2, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceNotBetween(Integer value1, Integer value2) {
+        public Criteria andPlaceNotBetween(String value1, String value2) {
             addCriterion("place not between", value1, value2, "place");
             return (Criteria) this;
         }

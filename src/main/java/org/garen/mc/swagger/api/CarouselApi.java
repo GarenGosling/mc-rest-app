@@ -5,8 +5,6 @@
  */
 package org.garen.mc.swagger.api;
 
-
-
 import io.swagger.annotations.*;
 import org.garen.mc.swagger.model.Carousel;
 import org.garen.mc.swagger.model.ErrorModel;
@@ -24,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-26T09:15:17.936Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-27T06:55:57.026Z")
 
 @Api(value = "carousel", description = "the carousel API")
 public interface CarouselApi {
@@ -47,8 +45,6 @@ public interface CarouselApi {
     @RequestMapping(value = "/carousel/all",
         method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getAll();
-
-
 
 
     @ApiOperation(value = "通过描述查询", notes = "通过描述查询 ", response = ResponseModel.class, tags={  })
@@ -78,7 +74,7 @@ public interface CarouselApi {
     
     @RequestMapping(value = "/carousel/statusAndPlace",
         method = RequestMethod.GET)
-    ResponseEntity<ResponseModel> getByStatusAndPlace(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status, @Size(max = 2) @ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) Integer place);
+    ResponseEntity<ResponseModel> getByStatusAndPlace(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status, @Size(max = 50) @ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) String place);
 
 
     @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })

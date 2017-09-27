@@ -87,8 +87,8 @@ public class BaseValid {
      * @param place
      * @return
      */
-    public String placeValid(Integer place) {
-        if(place==null)
+    public String placeValid(String place) {
+        if(StringUtils.isBlank(place))
             return  emptyMsg("place");
         return  null;
     }
