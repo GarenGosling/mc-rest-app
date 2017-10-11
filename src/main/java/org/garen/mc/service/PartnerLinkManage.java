@@ -130,7 +130,7 @@ public class PartnerLinkManage extends BaseManage<Integer>{
         //构造查询sql
         String sql = "select count(*) count from partner_link where 1=1 ";
         if(StringUtils.isNotBlank(name)){
-            sql += " AND name like '%"+ EsapiUtil.sql(name) +"%'";
+            sql += " AND name like '%"+ EsapiUtil.sql(name.trim()) +"%'";
         }
         //查询
         int count=getService().countBySQL(sql);

@@ -1,0 +1,318 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: 菜单接口
+
+#host: 127.0.0.1:7443
+#basePath: /v1
+#schemes:
+#  - https
+#produces:
+#  - application/json
+#consumes:
+#  - application/json
+
+# Describe your paths here
+paths:
+  /menu:
+    post:
+      summary: 新增菜单
+      description: |
+        新增菜单
+      operationId: saveMenu
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: menu
+          description: 菜单
+          schema:
+            $ref: '#/definitions/menu'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      summary: 修改菜单
+      description: |
+        修改菜单
+      operationId: updateMenu
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: menu
+          description: 菜单
+          schema:
+            $ref: '#/definitions/menu'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      summary: 删除菜单
+      description: |
+        删除菜单
+      operationId: deleteMenu
+      parameters:
+        - in: query
+          name: id
+          description: 菜单ID
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    get:
+      summary: ID查询
+      description: |
+        ID查询
+      operationId: getMenu
+      parameters:
+        - in: query
+          name: id
+          description: 菜单ID
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/page:
+    get:
+      summary: 分页查询菜单
+      description: |
+        分页查询菜单
+      operationId: getByPage
+      parameters:
+        - name: start
+          in: query
+          description: 分页开始索引
+          type: integer
+          format: int32
+        - name: length
+          in: query
+          description: 每页数量
+          type: integer
+          format: int32
+        - name: name
+          in: query
+          description: 菜单名称
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/all:
+    get:
+      summary: 查询全部
+      description: |
+        查询全部
+      operationId: getAll
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+      
+  /menu/code:
+    get:
+      summary: 通过编码查询
+      description: |
+        通过编码查询
+      operationId: getByCode
+      parameters:
+        - name: code
+          in: query
+          description: 菜单编码
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/parentCode:
+    get:
+      summary: 通过父菜单编码查询
+      description: |
+        通过父菜单编码查询
+      operationId: getByparentCode
+      parameters:
+        - name: parentCode
+          in: query
+          description: 父菜单编码
+          type: string
+        - name: status
+          in: query
+          type: integer
+          format: int32
+          maxLength: 2
+          description: 0表示显示，1表示不显示
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/name:
+    get:
+      summary: 通过名称查询
+      description: |
+        通过名称查询
+      operationId: getByName
+      parameters:
+        - name: name
+          in: query
+          description: 菜单名称
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/level:
+    get:
+      summary: 通过菜单等级查询
+      description: |
+        通过菜单等级查询
+      operationId: getByLevel
+      parameters:
+        - name: level
+          in: query
+          type: integer
+          format: int32
+          maxLength: 1
+          description: 暂时有三级菜单：1,2,3
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  menu:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        maxLength: 11
+        description: ID
+      code:
+        type: string
+        maxLength: 64
+        description: 编码
+      name:
+        type: string
+        maxLength: 20
+        description: 名字
+      url:
+        type: string
+        maxLength: 50
+        description: 链接
+      description:
+        type: string
+        maxLength: 255
+        description: 描述信息
+      status:
+        type: integer
+        format: int32
+        maxLength: 1
+        description: 0表示不显示首页，1表示显示首页
+      orderBy:
+        type: integer
+        format: int32
+        maxLength: 11
+        description: 菜单显示顺序
+      level:
+        type: integer
+        format: int32
+        maxLength: 1
+        description: 菜单等级，暂时有三级菜单
+      parentCode:
+        type: string
+        maxLength: 64
+        description: 父菜单编码
+  responseModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      data:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /garen.org/oss/1.0.0
+schemes:
+ - https
+ - http
