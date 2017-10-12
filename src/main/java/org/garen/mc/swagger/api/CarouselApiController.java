@@ -118,7 +118,7 @@ public class CarouselApiController extends BaseModel implements CarouselApi {
             return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
         //业务
         org.garen.mc.mybatis.domain.Carousel carousel=carouselManage.getById(id);
-        return new ResponseEntity<ResponseModel>(HttpStatus.OK);
+        return new ResponseEntity<ResponseModel>(successModel("id查询",carousel),HttpStatus.OK);
     }
 
     /**

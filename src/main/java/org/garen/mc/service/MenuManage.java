@@ -112,6 +112,7 @@ public class MenuManage extends BaseManage<Integer> {
         criteria.andParentCodeEqualTo(EsapiUtil.sql(pCode));
         if (status != null)
             criteria.andStatusEqualTo(status);
+        menuExample.setOrderByClause("order_by asc");
         //查询
         return getService().findBy(menuExample);
     }
