@@ -11,11 +11,11 @@ import javax.validation.constraints.*;
 /**
  * PartnerLink
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-23T11:59:07.868Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T02:54:43.490Z")
 
 public class PartnerLink   {
   @JsonProperty("id")
-  private Integer id = null;
+  private Long id = null;
 
   @JsonProperty("code")
   private String code = null;
@@ -35,7 +35,7 @@ public class PartnerLink   {
   @JsonProperty("status")
   private Integer status = null;
 
-  public PartnerLink id(Integer id) {
+  public PartnerLink id(Long id) {
     this.id = id;
     return this;
   }
@@ -47,11 +47,11 @@ public class PartnerLink   {
   @ApiModelProperty(value = "ID")
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

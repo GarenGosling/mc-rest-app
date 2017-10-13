@@ -21,11 +21,11 @@ import java.util.*;
  * @since v1.0
  */
 @Service
-public class PartnerLinkManage extends BaseManage<Integer>{
+public class PartnerLinkManage extends BaseManage<Long>{
     @Autowired
-    private PartnerLinkService<PartnerLink,PartnerLinkExample,Integer> partnerLinkService;
+    private PartnerLinkService<PartnerLink,PartnerLinkExample,Long> partnerLinkService;
     @Override
-    public PartnerLinkService<PartnerLink, PartnerLinkExample, Integer> getService() {
+    public PartnerLinkService<PartnerLink, PartnerLinkExample, Long> getService() {
         return partnerLinkService;
     }
 
@@ -34,7 +34,7 @@ public class PartnerLinkManage extends BaseManage<Integer>{
      * @param id
      * @return
      */
-    public int deletePartnerLink(Integer id) {
+    public int deletePartnerLink(Long id) {
         //删除
         return removeById(id);
     }
@@ -160,7 +160,7 @@ public class PartnerLinkManage extends BaseManage<Integer>{
      * @param id
      * @return
      */
-    public PartnerLink getPartnerLink(Integer id) {
+    public PartnerLink getPartnerLink(Long id) {
         //查询
         return findById(id);
     }

@@ -41,7 +41,7 @@ public class BaseValid {
      * @param id
      * @return
      */
-    public String idValid(Integer id){
+    public String idValid(Long id){
         if(id == null)
             return emptyMsg("id");
         return null;

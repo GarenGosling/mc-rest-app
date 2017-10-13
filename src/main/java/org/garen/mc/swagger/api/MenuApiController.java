@@ -36,7 +36,7 @@ public class MenuApiController extends BaseModel implements MenuApi {
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> deleteMenu(@ApiParam(value = "菜单ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> deleteMenu(@ApiParam(value = "菜单ID") @RequestParam(value = "id", required = false) Long id) {
         //id为空验证
         String msg = menuValid.idValid(id);
         if (StringUtils.isNotBlank(msg))
@@ -145,7 +145,7 @@ public class MenuApiController extends BaseModel implements MenuApi {
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> getMenu(@ApiParam(value = "菜单ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> getMenu(@ApiParam(value = "菜单ID") @RequestParam(value = "id", required = false) Long id) {
         //id为空验证
         String msg = menuValid.idValid(id);
         if (StringUtils.isNotBlank(msg))

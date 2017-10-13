@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-27 14:52:27
+Date: 2017-10-13 11:05:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `carousel`;
 CREATE TABLE `carousel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `md5` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '轮播图图片url的md5值',
   `description` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '描述',
   `status` int(1) NOT NULL COMMENT '状态',
@@ -29,4 +29,4 @@ CREATE TABLE `carousel` (
   `place` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '轮播图所在的位置',
   `order_by` int(11) NOT NULL COMMENT '轮播图的顺序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='轮播图';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='轮播图';

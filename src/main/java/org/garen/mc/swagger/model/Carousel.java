@@ -11,11 +11,11 @@ import javax.validation.constraints.*;
 /**
  * Carousel
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-27T06:55:57.026Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T02:48:16.853Z")
 
 public class Carousel   {
   @JsonProperty("id")
-  private Integer id = null;
+  private Long id = null;
 
   @JsonProperty("md5")
   private String md5 = null;
@@ -32,7 +32,7 @@ public class Carousel   {
   @JsonProperty("orderBy")
   private Integer orderBy = null;
 
-  public Carousel id(Integer id) {
+  public Carousel id(Long id) {
     this.id = id;
     return this;
   }
@@ -44,11 +44,11 @@ public class Carousel   {
   @ApiModelProperty(value = "ID")
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

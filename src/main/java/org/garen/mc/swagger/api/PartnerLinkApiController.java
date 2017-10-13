@@ -36,7 +36,7 @@ public class PartnerLinkApiController extends BaseModel implements PartnerLinkAp
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> deletePartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> deletePartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Long id) {
         //id为空验证
         String msg =  partnerLinkValid.idValid(id);
         if(StringUtils.isNotBlank(msg))
@@ -106,7 +106,7 @@ public class PartnerLinkApiController extends BaseModel implements PartnerLinkAp
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> getPartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> getPartnerLink(@ApiParam(value = "合作链接ID") @RequestParam(value = "id", required = false) Long id) {
         //id为空验证
         String msg =  partnerLinkValid.idValid(id);
         if(StringUtils.isNotBlank(msg))

@@ -26,12 +26,12 @@ import java.util.Map;
  * @since v1.0
  */
 @Service
-public class MenuManage extends BaseManage<Integer> {
+public class MenuManage extends BaseManage<Long> {
     @Autowired
-    private MenuService<Menu, MenuExample, Integer> menuService;
+    private MenuService<Menu, MenuExample, Long> menuService;
 
     @Override
-    public MenuService<Menu, MenuExample, Integer> getService() {
+    public MenuService<Menu, MenuExample, Long> getService() {
         return menuService;
     }
 
@@ -41,7 +41,7 @@ public class MenuManage extends BaseManage<Integer> {
      * @param id
      * @return
      */
-    public int deletePartnerLink(Integer id) {
+    public int deletePartnerLink(Long id) {
         return removeById(id);
     }
 
@@ -157,7 +157,7 @@ public class MenuManage extends BaseManage<Integer> {
      * @param id
      * @return
      */
-    public Menu getMenu(Integer id) {
+    public Menu getMenu(Long id) {
         return findById(id);
     }
 

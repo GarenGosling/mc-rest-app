@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-23 19:57:35
+Date: 2017-10-13 11:05:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `partner_link`;
 CREATE TABLE `partner_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `code` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '编码',
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '合作商家',
   `md5` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '图片md5值',

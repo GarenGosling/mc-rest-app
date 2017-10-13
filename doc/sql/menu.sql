@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-11 15:57:57
+Date: 2017-10-13 11:05:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `code` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '编码',
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '菜单名',
   `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '菜单链接',

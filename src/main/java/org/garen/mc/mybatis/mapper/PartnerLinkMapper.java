@@ -11,7 +11,7 @@ public interface PartnerLinkMapper<T,Q,PK extends Serializable> extends CommonMa
 
     int deleteByExample(PartnerLinkExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(PartnerLink record);
 
@@ -19,7 +19,7 @@ public interface PartnerLinkMapper<T,Q,PK extends Serializable> extends CommonMa
 
     List<PartnerLink> selectByExample(PartnerLinkExample example);
 
-    PartnerLink selectByPrimaryKey(Integer id);
+    PartnerLink selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") PartnerLink record, @Param("example") PartnerLinkExample example);
 

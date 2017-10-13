@@ -39,7 +39,7 @@ public class CarouselApiController extends BaseModel implements CarouselApi {
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> deleteCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> deleteCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id) {
         //验证
         String msg=carouselValid.idValid(id);
         if(StringUtils.isNotBlank(msg))
@@ -111,7 +111,7 @@ public class CarouselApiController extends BaseModel implements CarouselApi {
      * @param id
      * @return
      */
-    public ResponseEntity<ResponseModel> getCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Integer id) {
+    public ResponseEntity<ResponseModel> getCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id) {
         //验证
         String msg=carouselValid.idValid(id);
         if(StringUtils.isNotBlank(msg))

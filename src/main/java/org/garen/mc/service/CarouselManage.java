@@ -26,11 +26,11 @@ import java.util.Map;
  * @since v1.0
  */
 @Service
-public class CarouselManage extends BaseManage<Integer> {
+public class CarouselManage extends BaseManage<Long> {
     @Autowired
-    private CarouselService<Carousel,CarouselExample,Integer> carouselService;
+    private CarouselService<Carousel,CarouselExample,Long> carouselService;
     @Override
-    public CarouselService<Carousel,CarouselExample,Integer> getService() {
+    public CarouselService<Carousel,CarouselExample,Long> getService() {
         return carouselService;
     }
 
@@ -39,7 +39,7 @@ public class CarouselManage extends BaseManage<Integer> {
      * @param id
      * @return
      */
-    public int deleteCarousel(Integer id) {
+    public int deleteCarousel(Long id) {
         return removeById(id);
     }
 
@@ -119,7 +119,7 @@ public class CarouselManage extends BaseManage<Integer> {
      * @param id
      * @return
      */
-    public Carousel getById(Integer id) {
+    public Carousel getById(Long id) {
         return findById(id);
     }
 

@@ -5,6 +5,7 @@
  */
 package org.garen.mc.swagger.api;
 
+
 import io.swagger.annotations.*;
 import org.garen.mc.swagger.model.Carousel;
 import org.garen.mc.swagger.model.ErrorModel;
@@ -22,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-09-27T06:55:57.026Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T02:48:16.853Z")
 
 @Api(value = "carousel", description = "the carousel API")
 public interface CarouselApi {
@@ -34,7 +35,7 @@ public interface CarouselApi {
     
     @RequestMapping(value = "/carousel",
         method = RequestMethod.DELETE)
-    ResponseEntity<ResponseModel> deleteCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Integer id);
+    ResponseEntity<ResponseModel> deleteCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
     @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={  })
@@ -84,7 +85,7 @@ public interface CarouselApi {
     
     @RequestMapping(value = "/carousel",
         method = RequestMethod.GET)
-    ResponseEntity<ResponseModel> getCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Integer id);
+    ResponseEntity<ResponseModel> getCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
     @ApiOperation(value = "新增首页轮播图", notes = "新增首页轮播图 ", response = ResponseModel.class, tags={  })

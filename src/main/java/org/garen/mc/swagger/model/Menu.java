@@ -11,11 +11,11 @@ import javax.validation.constraints.*;
 /**
  * Menu
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-11T07:12:05.298Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T03:01:05.745Z")
 
 public class Menu   {
   @JsonProperty("id")
-  private Integer id = null;
+  private Long id = null;
 
   @JsonProperty("code")
   private String code = null;
@@ -41,7 +41,7 @@ public class Menu   {
   @JsonProperty("parentCode")
   private String parentCode = null;
 
-  public Menu id(Integer id) {
+  public Menu id(Long id) {
     this.id = id;
     return this;
   }
@@ -53,11 +53,11 @@ public class Menu   {
   @ApiModelProperty(value = "ID")
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

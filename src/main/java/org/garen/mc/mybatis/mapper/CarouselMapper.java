@@ -11,7 +11,7 @@ public interface CarouselMapper <T,Q,PK extends Serializable> extends CommonMapp
 
     int deleteByExample(CarouselExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Carousel record);
 
@@ -19,7 +19,7 @@ public interface CarouselMapper <T,Q,PK extends Serializable> extends CommonMapp
 
     List<Carousel> selectByExample(CarouselExample example);
 
-    Carousel selectByPrimaryKey(Integer id);
+    Carousel selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Carousel record, @Param("example") CarouselExample example);
 
