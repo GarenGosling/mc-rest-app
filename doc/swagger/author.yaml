@@ -1,0 +1,303 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: 作者接口
+
+#host: 127.0.0.1:7443
+#basePath: /v1
+#schemes:
+#  - https
+#produces:
+#  - application/json
+#consumes:
+#  - application/json
+
+# Describe your paths here
+paths:
+  /author:
+    post:
+      summary: 新增作者
+      description: |
+        新增作者
+      operationId: saveAuthor
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: author
+          description: 作者
+          schema:
+            $ref: '#/definitions/author'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      summary: 修改作者
+      description: |
+        修改作者
+      operationId: updateAuthor
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: author
+          description: 作者
+          schema:
+            $ref: '#/definitions/author'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      summary: 删除作者
+      description: |
+        删除作者
+      operationId: deleteAuthor
+      parameters:
+        - in: query
+          name: id
+          description: 作者ID
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    get:
+      summary: ID查询
+      description: |
+        ID查询
+      operationId: getAuthor
+      parameters:
+        - in: query
+          name: id
+          description: 作者ID
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /author/page:
+    get:
+      summary: 分页查询作者
+      description: |
+        分页查询作者
+      operationId: getByPage
+      parameters:
+        - name: start
+          in: query
+          description: 分页开始索引
+          type: integer
+          format: int32
+        - name: length
+          in: query
+          description: 每页数量
+          type: integer
+          format: int32
+        - name: penName
+          in: query
+          description: 作者笔名
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /author/all:
+    get:
+      summary: 查询全部
+      description: |
+        查询全部
+      operationId: getAll
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+
+  /author/code:
+    get:
+      summary: 通过编码查询
+      description: |
+        通过编码查询
+      operationId: getByCode
+      parameters:
+        - name: code
+          in: query
+          description: 编码
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+
+  /author/userCode:
+    get:
+      summary: 通过用户编码查询
+      description: |
+        通过编码查询
+      operationId: getByUserCode
+      parameters:
+        - name: userCode
+          in: query
+          description: 用户编码
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /author/penName:
+    get:
+      summary: 通过笔名查询
+      description: |
+        通过笔名查询
+      operationId: getByPenName
+      parameters:
+        - name: penName
+          in: query
+          description: 笔名
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /author/status:
+    get:
+      summary: 通过状态查询
+      description: |
+        通过状态查询
+      operationId: getByStatus
+      parameters:
+        - name: status
+          in: query
+          type: integer
+          format: int32
+          maxLength: 1
+          description: 0禁用，1启用
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  author:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        maxLength: 20
+        description: ID
+      userCode:
+        type: string
+        maxLength: 64
+        description: 编码
+      idNum:
+        type: string
+        maxLength: 18
+        description: 身份证
+      phone:
+        type: string
+        maxLength: 11
+        description: 手机号
+      realName:
+        type: string
+        maxLength: 20
+        description: 真实姓名
+      penName:
+        type: string
+        maxLength: 32
+        description: 笔名
+      status:
+        type: integer
+        format: int32
+        maxLength: 1
+        description: 0禁用，1启用
+  responseModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      data:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /garen.org/oss/1.0.0
+schemes:
+ - https
+ - http
