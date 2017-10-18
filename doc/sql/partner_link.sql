@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 旅行家测试数据库
+Source Server         : 旅行家
 Source Server Version : 50505
 Source Host           : 120.27.22.41:3306
 Source Database       : mc
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-13 11:05:33
+Date: 2017-10-18 12:10:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,5 +30,6 @@ CREATE TABLE `partner_link` (
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   `status` int(1) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`),
-  KEY `code` (`code`)
+  KEY `code` (`code`),
+  KEY `status` (`status`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='合作链接';

@@ -43,7 +43,7 @@ public abstract class CommonsService<T,Q,PK extends Serializable>{
    }
 
    @Transactional(readOnly = true)
-   public int countByExample(Q query){
+   public long countByExample(Q query){
        return getMapper().countByExample(query);
    }
 

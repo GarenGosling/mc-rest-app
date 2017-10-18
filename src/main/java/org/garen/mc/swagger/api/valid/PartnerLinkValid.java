@@ -5,7 +5,7 @@ import org.garen.mc.swagger.model.PartnerLink;
 import org.springframework.stereotype.Component;
 
 /**
- * 类
+ * 合作链接类
  *
  * @author yanglimou
  * @create 2017/9/23 20:10

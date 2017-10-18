@@ -17,7 +17,7 @@ public interface CommonMapper<T,Q,PK extends Serializable>  {
     /**
      * 根据条件查询记录总数
      */
-    int countByExample(Q example);
+    long countByExample(Q example);
 
     /**
      * 根据条件删除记录

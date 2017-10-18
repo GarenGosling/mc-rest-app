@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 旅行家测试数据库
+Source Server         : 旅行家
 Source Server Version : 50505
 Source Host           : 120.27.22.41:3306
 Source Database       : mc
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-13 11:05:40
+Date: 2017-10-18 12:10:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,5 +31,8 @@ CREATE TABLE `menu` (
   `level` int(1) NOT NULL COMMENT '菜单等级，暂时有三级菜单',
   `parent_code` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '父菜单编码',
   `order_by` int(11) NOT NULL COMMENT '菜单显示顺序',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `code` (`code`),
+  KEY `level` (`level`),
+  KEY `parent_code` (`parent_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='板块表\r\ndefault_img_url显示在首页热门板块处，如果热门文章没有图片，那么显示默认的板块图片，否则显示热门文章的图片\r\nmenu_index和hot_index主要用于标示板块的位置，以后可以根据位置信息和用户的点击量分析页面排版对于用户点击量的影响作出相应的排版调整';
