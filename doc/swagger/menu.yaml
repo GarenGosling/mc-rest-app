@@ -200,6 +200,26 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
+  /menu/tree/parentCode:
+    get:
+      summary: 通过父菜单编码查询，返回Tree格式
+      description: |
+        通过父菜单编码查询，返回Tree格式
+      operationId: getTreeByParentCode
+      parameters:
+        - name: parentCode
+          in: query
+          description: 父菜单编码
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
   /menu/name:
     get:
       summary: 通过名称查询
