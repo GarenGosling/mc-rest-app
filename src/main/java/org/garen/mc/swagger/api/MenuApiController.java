@@ -188,4 +188,18 @@ public class MenuApiController extends BaseModel implements MenuApi {
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i), HttpStatus.OK);
     }
 
+    /**
+     * 通过父菜单编码查询，返回Tree格式
+     * @param parentCode
+     * @return
+     */
+    public ResponseEntity<ResponseModel> getTreeByParentCode(@ApiParam(value = "父菜单编码") @RequestParam(value = "parentCode", required = false) String parentCode) {
+        // 验证
+        String msg = menuValid.parentCodeValid(parentCode);
+        if (StringUtils.isNotBlank(msg))
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
+        //业务
+        List<org.garen.mc.mybatis.domain.Menu> menus = menuManage.getTreeByParentCode(parentCode);
+        return new ResponseEntity<ResponseModel>(successModel("父菜单编码返回树状图查询", menus), HttpStatus.OK);
+    }
 }

@@ -132,4 +132,13 @@ public interface MenuApi {
             method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateMenu(@ApiParam(value = "菜单") @Valid @RequestBody Menu menu);
 
+
+    @ApiOperation(value = "通过父菜单编码查询，返回Tree格式", notes = "通过父菜单编码查询，返回Tree格式 ", response = ResponseModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/menu/tree/parentCode",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> getTreeByParentCode(@ApiParam(value = "父菜单编码") @RequestParam(value = "parentCode", required = false) String parentCode);
 }

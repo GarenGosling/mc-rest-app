@@ -206,4 +206,20 @@ public class MenuManage extends BaseManage<Long> {
         return menu1;
     }
 
+    /**
+     * 通过父菜单编码查询，返回Tree格式
+     * 此处的实现方式不是特别优秀，因为查数据库特别频繁，而且是多次调用。但是如果加上了缓存就不存在这样的问题了。
+     * @param parentCode
+     * @return
+     */
+    public List<Menu> getTreeByParentCode(String parentCode) {
+        List<Menu> menus=getByPatentCode(parentCode,null);
+        for(Menu menu:menus){
+            if (menu.getLevel()!=3){
+                List<Menu> menus1=getByPatentCode(menu.getCode(),null);
+                menu.setChildren(menus1);
+            }
+        }
+        return menus;
+    }
 }

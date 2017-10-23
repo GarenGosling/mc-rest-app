@@ -2,6 +2,7 @@ package org.garen.mc.mybatis.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 
@@ -61,6 +62,8 @@ public class Menu implements Serializable {
      * 菜单显示顺序
      */
     private Integer orderBy;
+
+    private List<Menu> children;
 
     private static final long serialVersionUID = 1L;
 
@@ -150,5 +153,13 @@ public class Menu implements Serializable {
 
     public void setOrderBy(Integer orderBy) {
         this.orderBy = orderBy;
+    }
+
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
     }
 }
