@@ -176,10 +176,5 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<ResponseModel> testLogin() {
-        System.out.println("=====================测试登录认证======================");
-        return new ResponseEntity<ResponseModel>(successModel("测试登录认证"),HttpStatus.OK);
-    }
 
 }
