@@ -141,4 +141,16 @@ public interface MenuApi {
     @RequestMapping(value = "/menu/tree/parentCode",
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getTreeByParentCode(@ApiParam(value = "父菜单编码") @RequestParam(value = "parentCode", required = false) String parentCode);
+
+
+    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = ResponseModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/menu/status",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> getByStatus(@ApiParam(value = "状态（0，不显示，1，显示，2，显示热门）") @RequestParam(value = "status", required = false) Integer status);
+
+
 }

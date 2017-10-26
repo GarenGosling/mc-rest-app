@@ -176,6 +176,14 @@ public class MenuManage extends BaseManage<Long> {
         //保存
         menu1.setCode(CodeGenerateUtils.getRandomCode());
         menu1.setCreateTime(new Date());
+        if(menu1.getParentCode().equals("0")){
+            menu1.setFullCode("/"+menu1.getCode());
+            menu1.setFullName("/"+menu1.getName());
+        }else{
+            Menu parentMenu=getByCode(menu1.getParentCode());
+            menu1.setFullCode(parentMenu.getFullCode()+"/"+menu1.getCode());
+            menu1.setFullName(parentMenu.getFullName()+"/"+menu1.getName());
+        }
         return create(menu1);
     }
 
@@ -190,6 +198,18 @@ public class MenuManage extends BaseManage<Long> {
         menu.setCode(null);
         //类型转换
         Menu menu1 = tranfer(menu);
+
+        //TODO 这里修改应该很复杂，因为可以修改菜单名，所以修改了菜单名后是不是子菜单也得有修改
+        //1、修改自己的菜单全路径
+        if(menu1.getParentCode().equals("0")){
+            menu1.setFullName("/"+menu1.getName());
+        }else{
+            Menu parentMenu=getByCode(menu1.getParentCode());
+            menu1.setFullName(parentMenu.getFullName()+"/"+menu1.getName());
+        }
+        // TODO 2、修改子菜单的情况,暂时不考虑
+
+
         //修改
         return modify(menu1);
     }
@@ -221,5 +241,21 @@ public class MenuManage extends BaseManage<Long> {
             }
         }
         return menus;
+    }
+
+    /**
+     * 状态查询
+     * @param status
+     * @return
+     */
+    public List<Menu> getByStatus(Integer status) {
+        //构造查询条件
+        MenuExample menuExample = new MenuExample();
+        MenuExample.Criteria criteria = menuExample.createCriteria();
+            criteria.andStatusEqualTo(status);
+            //TODO 暂时没有考虑排序
+//        menuExample.setOrderByClause("order_by asc");
+        //查询
+        return getService().findBy(menuExample);
     }
 }

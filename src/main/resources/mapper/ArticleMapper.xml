@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.garen.mc.mybatis.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="org.garen.mc.mybatis.domain.Article">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="author_code" jdbcType="VARCHAR" property="authorCode" />
+    <result column="author_pen_name" jdbcType="VARCHAR" property="authorPenName" />
+    <result column="menu_full_code" jdbcType="VARCHAR" property="menuFullCode" />
+    <result column="menu_full_name" jdbcType="VARCHAR" property="menuFullName" />
+    <result column="subject_name" jdbcType="VARCHAR" property="subjectName" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+    <result column="view_num" jdbcType="INTEGER" property="viewNum" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, title, summary, user_code, author_code, author_pen_name, menu_full_code, 
+    menu_full_name, subject_name, md5, view_num, comment_num, create_time, publish_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.ArticleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.garen.mc.mybatis.domain.ArticleExample">
+    delete from article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.garen.mc.mybatis.domain.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into article (code, title, summary, 
+      user_code, author_code, author_pen_name, 
+      menu_full_code, menu_full_name, subject_name, 
+      md5, view_num, comment_num, 
+      create_time, publish_time, update_time
+      )
+    values (#{code,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{userCode,jdbcType=VARCHAR}, #{authorCode,jdbcType=VARCHAR}, #{authorPenName,jdbcType=VARCHAR}, 
+      #{menuFullCode,jdbcType=VARCHAR}, #{menuFullName,jdbcType=VARCHAR}, #{subjectName,jdbcType=VARCHAR}, 
+      #{md5,jdbcType=VARCHAR}, #{viewNum,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.garen.mc.mybatis.domain.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="authorCode != null">
+        author_code,
+      </if>
+      <if test="authorPenName != null">
+        author_pen_name,
+      </if>
+      <if test="menuFullCode != null">
+        menu_full_code,
+      </if>
+      <if test="menuFullName != null">
+        menu_full_name,
+      </if>
+      <if test="subjectName != null">
+        subject_name,
+      </if>
+      <if test="md5 != null">
+        md5,
+      </if>
+      <if test="viewNum != null">
+        view_num,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null">
+        #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorPenName != null">
+        #{authorPenName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuFullCode != null">
+        #{menuFullCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuFullName != null">
+        #{menuFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null">
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null">
+        #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        #{viewNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.garen.mc.mybatis.domain.ArticleExample" resultType="java.lang.Long">
+    select count(*) from article
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update article
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.summary != null">
+        summary = #{record.summary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userCode != null">
+        user_code = #{record.userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorCode != null">
+        author_code = #{record.authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorPenName != null">
+        author_pen_name = #{record.authorPenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuFullCode != null">
+        menu_full_code = #{record.menuFullCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuFullName != null">
+        menu_full_name = #{record.menuFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectName != null">
+        subject_name = #{record.subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.md5 != null">
+        md5 = #{record.md5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewNum != null">
+        view_num = #{record.viewNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentNum != null">
+        comment_num = #{record.commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publishTime != null">
+        publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update article
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      summary = #{record.summary,jdbcType=VARCHAR},
+      user_code = #{record.userCode,jdbcType=VARCHAR},
+      author_code = #{record.authorCode,jdbcType=VARCHAR},
+      author_pen_name = #{record.authorPenName,jdbcType=VARCHAR},
+      menu_full_code = #{record.menuFullCode,jdbcType=VARCHAR},
+      menu_full_name = #{record.menuFullName,jdbcType=VARCHAR},
+      subject_name = #{record.subjectName,jdbcType=VARCHAR},
+      md5 = #{record.md5,jdbcType=VARCHAR},
+      view_num = #{record.viewNum,jdbcType=INTEGER},
+      comment_num = #{record.commentNum,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.garen.mc.mybatis.domain.Article">
+    update article
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null">
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null">
+        author_code = #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorPenName != null">
+        author_pen_name = #{authorPenName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuFullCode != null">
+        menu_full_code = #{menuFullCode,jdbcType=VARCHAR},
+      </if>
+      <if test="menuFullName != null">
+        menu_full_name = #{menuFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null">
+        subject_name = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null">
+        md5 = #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="viewNum != null">
+        view_num = #{viewNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.garen.mc.mybatis.domain.Article">
+    update article
+    set code = #{code,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      author_code = #{authorCode,jdbcType=VARCHAR},
+      author_pen_name = #{authorPenName,jdbcType=VARCHAR},
+      menu_full_code = #{menuFullCode,jdbcType=VARCHAR},
+      menu_full_name = #{menuFullName,jdbcType=VARCHAR},
+      subject_name = #{subjectName,jdbcType=VARCHAR},
+      md5 = #{md5,jdbcType=VARCHAR},
+      view_num = #{viewNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

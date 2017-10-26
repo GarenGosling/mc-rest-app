@@ -1,0 +1,255 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: 文章接口
+
+#host: 127.0.0.1:7443
+#basePath: /v1
+#schemes:
+#  - https
+#produces:
+#  - application/json
+#consumes:
+#  - application/json
+
+# Describe your paths here
+paths:
+  /articles:
+    post:
+      summary: 发布文章
+      description: |
+        发布文章
+      operationId: saveArticle
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: article
+          description: 文章
+          schema:
+            $ref: '#/definitions/article'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    get:
+      summary: 查询全部
+      description: |
+        查询全部文章
+      operationId: findALL
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /articles/{id}:
+    get:
+      summary: id查询
+      description: |
+        根据文章id查询文章和文章的详情
+      operationId: getArticle
+      parameters:
+        - name: id
+          in: path
+          description: 文章id
+          format: int64
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      summary: id删除
+      description: |
+        根据文章id删除文章和文章详情
+      operationId: deleteArticle
+      parameters:
+        - name: id
+          in: path
+          description: 文章id
+          format: int64
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      summary: 修改文章
+      description: |
+        根据文章id修改文章
+      operationId: updateArticle
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 文章id
+          format: int64
+          type: integer
+          required: true
+        - in: body
+          name: article
+          description: 文章
+          schema:
+            $ref: '#/definitions/article'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /articles/query:
+    get:
+      summary: 查询文章
+      operationId: findArticle
+      description: 文章统一查询方法
+      parameters:
+        - name: title
+          in: query
+          description: 文章标题
+          type: string
+        - name: menuCode
+          in: query
+          description: 菜单码，按照菜单码模糊查询文章菜单码全路径字段
+          type: string
+        - name: subjectName
+          in: query
+          type: string
+          description: 专题名称，按照专题名称查询
+        - name: showDetail
+          in: query
+          type: integer
+          format: int32
+          description: 是否显示文章详情，1显示，0不显示
+        - name: orderBy
+          in: query
+          type: string
+          description: 排序字段
+        - name: start
+          in: query
+          description: 分页开始索引
+          type: integer
+          format: int32
+        - name: length
+          in: query
+          description: 每页数量
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  article:
+    description: 文章对象
+    type: object
+    properties:
+      title:
+        type: string
+        maxLength: 50
+        description: 文章标题
+      summary:
+        type: string
+        maxLength: 255
+        description: 文章简述
+      md5:
+        type: string
+        maxLength: 50
+        description: 主题图片的md5值
+      menuFullCode:
+        type: string
+        maxLength: 255
+        description: 菜单码全路径（根据树形菜单可以获取）
+      menuFullName:
+        type: string
+        maxLength: 255
+        description: 菜单名全路径（根据树形菜单可以获取）
+      subjectName:
+        type: string
+        maxLength: 20
+        description: 专题名称
+      articleDetails:
+        type: array
+        items:
+          $ref: '#/definitions/articleDetail'
+        description: 文章内容集合，文章内容分成了多个部分
+  articleDetail:
+    description: 文章详情
+    type: object
+    properties:
+      text:
+       type: string
+       maxLength: 4000
+       description: 文字段落
+      md5:
+        type: string
+        maxLength: 64
+        description: 图片md5
+  responseModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      data:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /garen.org/oss/1.0.0
+schemes:
+ - https
+ - http

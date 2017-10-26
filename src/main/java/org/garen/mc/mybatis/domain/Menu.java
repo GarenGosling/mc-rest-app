@@ -24,6 +24,16 @@ public class Menu implements Serializable {
     private String name;
 
     /**
+     * 全部菜单码以/分割
+     */
+    private String fullCode;
+
+    /**
+     * 全部菜单名以/分割
+     */
+    private String fullName;
+
+    /**
      * 菜单链接
      */
     private String url;
@@ -44,7 +54,7 @@ public class Menu implements Serializable {
     private Date updateTime;
 
     /**
-     * 菜单状态
+     * 菜单状态（0不显示，1显示，2显示首页）
      */
     private Integer status;
 
@@ -89,6 +99,22 @@ public class Menu implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFullCode() {
+        return fullCode;
+    }
+
+    public void setFullCode(String fullCode) {
+        this.fullCode = fullCode;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getUrl() {

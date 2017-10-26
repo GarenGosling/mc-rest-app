@@ -153,7 +153,6 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
-
   /menu/code:
     get:
       summary: 通过编码查询
@@ -165,6 +164,27 @@ paths:
           in: query
           description: 菜单编码
           type: string
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /menu/status:
+    get:
+      summary: 通过状态查询
+      description: |
+        通过状态查询
+      operationId: getByStatus
+      parameters:
+        - name: status
+          in: query
+          description: 状态（0，不显示，1，显示，2，显示热门）
+          type: integer
+          format: int32
       responses:
         '200':
           description: Successful response

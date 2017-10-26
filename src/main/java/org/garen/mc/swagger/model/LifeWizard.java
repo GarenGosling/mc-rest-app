@@ -7,16 +7,16 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
- * PartnerLink
+ * LifeWizard
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T02:54:43.490Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-23T09:34:36.321Z")
 
-public class PartnerLink   {
+public class LifeWizard   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("code")
-  private String code = null;
+  @JsonProperty("md5")
+  private String md5 = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -24,16 +24,16 @@ public class PartnerLink   {
   @JsonProperty("url")
   private String url = null;
 
-  @JsonProperty("md5")
-  private String md5 = null;
-
   @JsonProperty("description")
   private String description = null;
 
   @JsonProperty("status")
   private Integer status = null;
 
-  public PartnerLink id(Long id) {
+  @JsonProperty("orderBy")
+  private Integer orderBy = null;
+
+  public LifeWizard id(Long id) {
     this.id = id;
     return this;
   }
@@ -53,36 +53,36 @@ public class PartnerLink   {
     this.id = id;
   }
 
-  public PartnerLink code(String code) {
-    this.code = code;
+  public LifeWizard md5(String md5) {
+    this.md5 = md5;
     return this;
   }
 
    /**
-   * 编码
-   * @return code
+   * 图片md5值
+   * @return md5
   **/
-  @ApiModelProperty(value = "编码")
+  @ApiModelProperty(value = "图片md5值")
 
- @Size(max=64)
-  public String getCode() {
-    return code;
+ @Size(max=50)
+  public String getMd5() {
+    return md5;
   }
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setMd5(String md5) {
+    this.md5 = md5;
   }
 
-  public PartnerLink name(String name) {
+  public LifeWizard name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * 名字
+   * 项目名
    * @return name
   **/
-  @ApiModelProperty(value = "名字")
+  @ApiModelProperty(value = "项目名")
 
  @Size(max=20)
   public String getName() {
@@ -93,7 +93,7 @@ public class PartnerLink   {
     this.name = name;
   }
 
-  public PartnerLink url(String url) {
+  public LifeWizard url(String url) {
     this.url = url;
     return this;
   }
@@ -113,38 +113,18 @@ public class PartnerLink   {
     this.url = url;
   }
 
-  public PartnerLink md5(String md5) {
-    this.md5 = md5;
-    return this;
-  }
-
-   /**
-   * 图片MD5值
-   * @return md5
-  **/
-  @ApiModelProperty(value = "图片MD5值")
-
- @Size(max=50)
-  public String getMd5() {
-    return md5;
-  }
-
-  public void setMd5(String md5) {
-    this.md5 = md5;
-  }
-
-  public PartnerLink description(String description) {
+  public LifeWizard description(String description) {
     this.description = description;
     return this;
   }
 
    /**
-   * 描述信息
+   * 生活向导描述信息
    * @return description
   **/
-  @ApiModelProperty(value = "描述信息")
+  @ApiModelProperty(value = "生活向导描述信息")
 
- @Size(max=255)
+ @Size(max=100)
   public String getDescription() {
     return description;
   }
@@ -153,16 +133,16 @@ public class PartnerLink   {
     this.description = description;
   }
 
-  public PartnerLink status(Integer status) {
+  public LifeWizard status(Integer status) {
     this.status = status;
     return this;
   }
 
    /**
-   * 0表示不显示首页，1表示显示首页
+   * 生活向导状态信息，1显示首页，0不显示首页
    * @return status
   **/
-  @ApiModelProperty(value = "0表示不显示首页，1表示显示首页")
+  @ApiModelProperty(value = "生活向导状态信息，1显示首页，0不显示首页")
 
 
   public Integer getStatus() {
@@ -171,6 +151,26 @@ public class PartnerLink   {
 
   public void setStatus(Integer status) {
     this.status = status;
+  }
+
+  public LifeWizard orderBy(Integer orderBy) {
+    this.orderBy = orderBy;
+    return this;
+  }
+
+   /**
+   * 生活向导排序字段
+   * @return orderBy
+  **/
+  @ApiModelProperty(value = "生活向导排序字段")
+
+
+  public Integer getOrderBy() {
+    return orderBy;
+  }
+
+  public void setOrderBy(Integer orderBy) {
+    this.orderBy = orderBy;
   }
 
 
@@ -182,33 +182,33 @@ public class PartnerLink   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PartnerLink partnerLink = (PartnerLink) o;
-    return Objects.equals(this.id, partnerLink.id) &&
-        Objects.equals(this.code, partnerLink.code) &&
-        Objects.equals(this.name, partnerLink.name) &&
-        Objects.equals(this.url, partnerLink.url) &&
-        Objects.equals(this.md5, partnerLink.md5) &&
-        Objects.equals(this.description, partnerLink.description) &&
-        Objects.equals(this.status, partnerLink.status);
+    LifeWizard lifeWizard = (LifeWizard) o;
+    return Objects.equals(this.id, lifeWizard.id) &&
+        Objects.equals(this.md5, lifeWizard.md5) &&
+        Objects.equals(this.name, lifeWizard.name) &&
+        Objects.equals(this.url, lifeWizard.url) &&
+        Objects.equals(this.description, lifeWizard.description) &&
+        Objects.equals(this.status, lifeWizard.status) &&
+        Objects.equals(this.orderBy, lifeWizard.orderBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, code, name, url, md5, description, status);
+    return Objects.hash(id, md5, name, url, description, status, orderBy);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PartnerLink {\n");
+    sb.append("class LifeWizard {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    md5: ").append(toIndentedString(md5)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    md5: ").append(toIndentedString(md5)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -202,4 +202,18 @@ public class MenuApiController extends BaseModel implements MenuApi {
         List<org.garen.mc.mybatis.domain.Menu> menus = menuManage.getTreeByParentCode(parentCode);
         return new ResponseEntity<ResponseModel>(successModel("父菜单编码返回树状图查询", menus), HttpStatus.OK);
     }
+
+    /**
+     * 状态查询
+     * @param status
+     * @return
+     */
+    public ResponseEntity<ResponseModel> getByStatus(@ApiParam(value = "状态（0，不显示，1，显示，2，显示热门）") @RequestParam(value = "status", required = false) Integer status) {
+        String msg=menuValid.statusValid(status);
+        if(msg!=null)
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
+        List<org.garen.mc.mybatis.domain.Menu> menus=menuManage.getByStatus(status);
+        return new ResponseEntity<ResponseModel>(successModel("状态查询", menus), HttpStatus.OK);
+    }
+
 }

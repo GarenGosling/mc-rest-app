@@ -5,12 +5,16 @@ import org.apache.ibatis.session.RowBounds;
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.domain.AuthorExample;
 import org.garen.mc.mybatis.service.AuthorService;
+import org.garen.mc.remote.LoginManage;
+import org.garen.mc.remote.dto.CommonResponse;
+import org.garen.mc.remote.dto.LoginVo;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +32,8 @@ public class AuthorManage extends BaseManage<Long> {
 
     @Autowired
     private AuthorService<Author, AuthorExample, Long> authorService;
+    @Autowired
+    private LoginManage loginManage;
 
     @Override
     public AuthorService<Author, AuthorExample, Long> getService() {
@@ -196,5 +202,22 @@ public class AuthorManage extends BaseManage<Long> {
         Author author1 = tranfer(author);
         //修改
         return modify(author1);
+    }
+    /**
+     *
+     * 根据请求获取作者
+     * 必须要先登录
+     * @param request
+     * @return
+     */
+    public Author getAuthor(HttpServletRequest request){
+        try {
+            CommonResponse response=loginManage.getLoginVoByRequest(request);
+            LoginVo loginVo=(LoginVo)response.getData();
+            return getByUserCode(loginVo.getLoginInfo().getUserCode());
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+        return  null;
     }
 }

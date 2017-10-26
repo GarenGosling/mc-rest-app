@@ -1,17 +1,15 @@
 package org.garen.mc.swagger.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+
+import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  * Menu
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-13T03:01:05.745Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-24T02:47:40.809Z")
 
 public class Menu   {
   @JsonProperty("id")
