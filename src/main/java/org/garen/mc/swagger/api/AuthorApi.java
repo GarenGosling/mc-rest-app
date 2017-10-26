@@ -126,4 +126,11 @@ public interface AuthorApi {
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateAuthor(@ApiParam(value = "作者") @Valid @RequestBody Author author);
 
+    @ApiOperation(value = "登录认证测试", notes = "登录认证测试", response = ResponseModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+    @RequestMapping(value = "/api/test",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> testLogin();
 }

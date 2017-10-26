@@ -19,6 +19,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-17T09:09:21.807Z")
 
 @Controller
@@ -172,6 +174,12 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
         //业务
         int i=authorManage.updateAuthor(author);
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ResponseModel> testLogin() {
+        System.out.println("=====================测试登录认证======================");
+        return new ResponseEntity<ResponseModel>(successModel("测试登录认证"),HttpStatus.OK);
     }
 
 }
