@@ -1,0 +1,213 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: 更多关注接口
+
+#host: 127.0.0.1:7443
+#basePath: /v1
+#schemes:
+#  - https
+#produces:
+#  - application/json
+#consumes:
+#  - application/json
+
+# Describe your paths here
+paths:
+  /moreAttentions:
+    post:
+      summary: 新增更多关注
+      description: |
+        新增更多关注
+      operationId: saveMoreAttention
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: moreAttention
+          description: 更多关注
+          schema:
+            $ref: '#/definitions/moreAttention'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    get:
+      summary: 查询全部
+      description: |
+        查询全部更多关注
+      operationId: findALL
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /moreAttentions/{id}:
+    get:
+      summary: id查询
+      description: |
+        根据更多关注id查询更多关注和更多关注的详情
+      operationId: getMoreAttention
+      parameters:
+        - name: id
+          in: path
+          description: 更多关注id
+          format: int64
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    delete:
+      summary: id删除
+      description: |
+        根据更多关注id删除更多关注和更多关注详情
+      operationId: deleteMoreAttention
+      parameters:
+        - name: id
+          in: path
+          description: 更多关注id
+          format: int64
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    put:
+      summary: 修改更多关注
+      description: |
+        根据更多关注id修改更多关注
+      operationId: updateMoreAttention
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 更多关注id
+          format: int64
+          type: integer
+          required: true
+        - in: body
+          name: moreAttention
+          description: 更多关注
+          schema:
+            $ref: '#/definitions/moreAttention'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /moreAttentions/status/{status}:
+    get:
+      summary: 状态查询
+      description: |
+        根据更多关注id查询更多关注和更多关注的详情
+        （首页接口设为1）
+      operationId: getByStatus
+      parameters:
+        - name: status
+          in: path
+          description: 更多关注状态
+          format: int64
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  moreAttention:
+    description: 更多关注对象
+    type: object
+    properties:
+      url:
+        type: string
+        maxLength: 50
+        description: 关注网站链接
+      description:
+        type: string
+        maxLength: 100
+        description: 描述信息
+      md5:
+        type: string
+        maxLength: 50
+        description: 关注网站主题图片的md5值
+      status:
+        type: integer
+        format: int32
+        maxLength: 1
+        description: 状态（0：不显示；1：显示）
+      orderBy:
+        type: integer
+        format: int32
+        maxLength: 11
+        description: 排列顺序
+  responseModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      data:
+        type: string
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /garen.org/oss/1.0.0
+schemes:
+ - https
+ - http
