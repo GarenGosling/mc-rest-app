@@ -36,13 +36,17 @@ public class MenuManage extends BaseManage<Long> {
     }
 
     /**
-     * 删除
+     * 递归删除
      *
      * @param id
      * @return
      */
     public int deletePartnerLink(Long id) {
-        return removeById(id);
+        Menu menu=getMenu(id);
+        MenuExample example=new MenuExample();
+        MenuExample.Criteria criteria=example.createCriteria();
+        criteria.andFullCodeLike("%"+menu.getCode()+"%");
+        return remove(example);
     }
 
     /**
@@ -189,6 +193,13 @@ public class MenuManage extends BaseManage<Long> {
 
     /**
      * 修改
+     * 递归修改
+     * 这里可以修改
+     * 1、名字
+     * 2、url
+     * 3、level
+     * 4、
+     *
      *
      * @param menu
      * @return
@@ -196,20 +207,24 @@ public class MenuManage extends BaseManage<Long> {
     public int updateMenu(org.garen.mc.swagger.model.Menu menu) {
         //去掉无用参数
         menu.setCode(null);
+        menu.setParentCode(null);
+        menu.setLevel(null);
         //类型转换
         Menu menu1 = tranfer(menu);
-
-        //TODO 这里修改应该很复杂，因为可以修改菜单名，所以修改了菜单名后是不是子菜单也得有修改
-        //1、修改自己的菜单全路径
-        if(menu1.getParentCode().equals("0")){
-            menu1.setFullName("/"+menu1.getName());
-        }else{
-            Menu parentMenu=getByCode(menu1.getParentCode());
-            menu1.setFullName(parentMenu.getFullName()+"/"+menu1.getName());
+        //数据库对象
+        Menu menu2=getMenu(menu1.getId());
+        //如果修改了菜单名子菜单也得修改
+        if(StringUtils.isNotBlank(menu1.getName())&&!menu1.getName().equals(menu2.getName())){
+            //递归修改菜单名
+            MenuExample example=new MenuExample();
+            MenuExample.Criteria criteria=example.createCriteria();
+            criteria.andFullCodeLike("%"+menu2.getCode()+"%");
+            List<Menu> menus=findListBy(example);
+            for(Menu menu3:menus){
+                menu3.setFullName(menu3.getFullName().replace(menu2.getName(),menu1.getName()));
+                modify(menu3);
+            }
         }
-        // TODO 2、修改子菜单的情况,暂时不考虑
-
-
         //修改
         return modify(menu1);
     }
