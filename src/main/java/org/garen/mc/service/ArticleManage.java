@@ -195,4 +195,37 @@ public class ArticleManage extends BaseManage<Long> {
         map.put("count", count);
         return map;
     }
+
+    /**
+     * 精选会员查询成功
+     * @param menuCode
+     * @param start
+     * @param length
+     * @return
+     */
+    public Map findPopAuthor(String menuCode, Integer start, Integer length) {
+        //初始化参数
+        if (start == null) start = 0;
+        if (length == null) length = 10;
+        //构造查询条件
+        ArticleExample articleExample = new ArticleExample();
+        ArticleExample.Criteria criteria = articleExample.createCriteria();
+        if (StringUtils.isNotBlank(menuCode))
+            criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+        //查询实体数据
+        articleExample.setOffset(start*length);
+        articleExample.setLimit(length);
+        List<Article> articles=articleService.selectPopAuthorByExample(articleExample);
+        //查询统计个数
+        String sql = "select count(*) count from article where 1=1 ";
+        if (StringUtils.isNotBlank(menuCode))
+            criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+        //查询
+        int count = getService().countBySQL(sql);
+        //构造返回map
+        Map map = new HashMap();
+        map.put("list", articles);
+        map.put("count", count);
+        return map;
+    }
 }

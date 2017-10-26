@@ -28,4 +28,6 @@ public interface ArticleMapper <T,Q,PK extends Serializable> extends CommonMappe
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectPopAuthorByExample(ArticleExample example);
 }

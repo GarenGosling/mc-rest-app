@@ -146,4 +146,18 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
         int i=articleManage.updateArticle(id,article);
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
     }
+
+    /**
+     * 精选会员
+     * @param menuCode
+     * @param start
+     * @param length
+     * @return
+     */
+    public ResponseEntity<ResponseModel> findPopAuthor(@ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,
+                                                       @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
+                                                       @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length) {
+        Map map=articleManage.findPopAuthor(menuCode,start,length);
+        return new ResponseEntity<ResponseModel>(successModel("精选会员查询成功",map),HttpStatus.OK);
+    }
 }

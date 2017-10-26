@@ -83,12 +83,29 @@
     update_time
   </sql>
   <select id="selectByExample" parameterType="org.garen.mc.mybatis.domain.ArticleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
+  select
+  <if test="distinct">
+    distinct
+  </if>
+  <include refid="Base_Column_List" />
+  from article
+  <if test="_parameter != null">
+    <include refid="Example_Where_Clause" />
+  </if>
+  <if test="orderByClause != null">
+    order by ${orderByClause}
+  </if>
+  <if test="limit != null">
+    <if test="offset != null">
+      limit ${offset}, ${limit}
     </if>
-    <include refid="Base_Column_List" />
-    from article
+    <if test="offset == null">
+      limit ${limit}
+    </if>
+  </if>
+</select>
+  <select id="selectPopAuthorByExample" parameterType="org.garen.mc.mybatis.domain.ArticleExample" resultMap="BaseResultMap">
+    select * from (select * from (select b.* from(select author_code,sum(view_num) sum from article GROUP BY author_code ORDER BY sum desc)a LEFT JOIN article b on a.author_code=b.author_code ORDER BY a.sum desc,b.view_num desc) c GROUP BY author_code)d
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -104,6 +121,7 @@
       </if>
     </if>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

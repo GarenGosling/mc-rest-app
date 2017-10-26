@@ -91,4 +91,13 @@ public interface ArticlesApi {
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id, @ApiParam(value = "文章") @Valid @RequestBody Article article,HttpServletRequest request);
 
+    @ApiOperation(value = "精选会员专题", notes = "精选会员专题，根据作者的所有文章的查看数字进行倒排序，显示相关作者的最受欢迎的文章 整体显示的是（作者和其中最受欢迎的一片文章）的列表 ", response = ResponseModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/articles/popAuthor",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> findPopAuthor(@ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,@ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length);
+
 }
