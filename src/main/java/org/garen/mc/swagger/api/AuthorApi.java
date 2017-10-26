@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-17T09:09:21.807Z")
 
 @Api(value = "author", description = "the author API")
+@RequestMapping("/api")
 public interface AuthorApi {
 
     @ApiOperation(value = "删除作者", notes = "删除作者 ", response = ResponseModel.class, tags={  })
