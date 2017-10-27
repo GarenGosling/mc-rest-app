@@ -192,6 +192,33 @@ public class AuthorManage extends BaseManage<Long> {
     }
 
     /**
+     * 手机号查询
+     * @param phone
+     * @return
+     */
+    public Author getByPhone(String phone) {
+        //构造查询条件
+        AuthorExample example = new AuthorExample();
+        AuthorExample.Criteria criteria = example.createCriteria();
+        criteria.andPhoneEqualTo(EsapiUtil.sql(phone));
+        //查询
+        return getService().findByOne(example);
+    }
+    /**
+     * 手机号查询
+     * @param idNum
+     * @return
+     */
+    public Author getByIdNum(String idNum) {
+        //构造查询条件
+        AuthorExample example = new AuthorExample();
+        AuthorExample.Criteria criteria = example.createCriteria();
+        criteria.andIdNumEqualTo(EsapiUtil.sql(idNum));
+        //查询
+        return getService().findByOne(example);
+    }
+
+    /**
      * 修改
      *
      * @param author

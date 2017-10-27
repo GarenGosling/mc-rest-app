@@ -1,7 +1,9 @@
 package org.garen.mc.swagger.api.valid;
 
 import org.apache.commons.lang3.StringUtils;
+import org.garen.mc.service.AuthorManage;
 import org.garen.mc.swagger.model.Author;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AuthorValid extends BaseValid {
+    @Autowired
+    private AuthorManage authorManage;
     /**
      * 保存验证
      * @param author
@@ -33,6 +37,13 @@ public class AuthorValid extends BaseValid {
             return  emptyMsg("笔名");
         if(author.getStatus()==null)
             return  emptyMsg("状态");
+        //作者,手机号,身份证号重复验证
+        if(authorManage.getByUserCode(author.getUserCode())!=null)
+            return  "该用户已绑定作者";
+        if(authorManage.getByPhone(author.getPhone())!=null)
+            return  "该手机号已绑定作者";
+        if(authorManage.getByIdNum(author.getIdNum())!=null)
+            return  "该身份证号已绑定作者";
         return  null;
     }
     /**
@@ -57,6 +68,16 @@ public class AuthorValid extends BaseValid {
             return  emptyMsg("笔名");
         if(author.getStatus()==null)
             return  emptyMsg("状态");
+        //作者,手机号,身份证号重复验证
+        org.garen.mc.mybatis.domain.Author author1=authorManage.getByUserCode(author.getUserCode());
+        if(author1!=null&&author1.getId()!=author.getId())
+            return  "该用户已绑定其他作者";
+        author1=authorManage.getByPhone(author.getPhone());
+        if(author1!=null&&author1.getId()!=author.getId())
+            return  "该手机号已绑定其他作者";
+        author1=authorManage.getByIdNum(author.getIdNum());
+        if(author1!=null&&author1.getId()!=author.getId())
+            return  "该身份证号已绑定其他作者";
         return  null;
     }
 
