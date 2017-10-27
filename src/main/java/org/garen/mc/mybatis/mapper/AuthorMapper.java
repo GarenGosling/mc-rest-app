@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.domain.AuthorExample;
 
-public interface AuthorMapper<T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK> {
+public interface AuthorMapper <T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK>{
     long countByExample(AuthorExample example);
 
     int deleteByExample(AuthorExample example);

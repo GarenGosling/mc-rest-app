@@ -57,6 +57,11 @@ public class Author implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 驳回原因
+     */
+    private String rejectReason;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -137,5 +142,13 @@ public class Author implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getRejectReason() {
+        return rejectReason;
+    }
+
+    public void setRejectReason(String rejectReason) {
+        this.rejectReason = rejectReason;
     }
 }

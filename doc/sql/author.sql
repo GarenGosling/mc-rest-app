@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-18 12:10:58
+Date: 2017-10-27 14:05:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,8 +30,11 @@ CREATE TABLE `author` (
   `status` int(1) NOT NULL COMMENT '状态',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+  `reject_reason` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '驳回原因',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `user_code` (`user_code`) USING BTREE,
+  UNIQUE KEY `phone` (`phone`),
+  UNIQUE KEY `id_num` (`id_num`),
   KEY `code` (`code`),
-  KEY `pen_name` (`pen_name`),
-  KEY `user_code` (`user_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='作者表';
+  KEY `pen_name` (`pen_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='作者表';

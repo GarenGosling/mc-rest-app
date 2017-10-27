@@ -1,15 +1,17 @@
 package org.garen.mc.swagger.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.Size;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * Author
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-17T09:09:21.807Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-27T06:01:42.461Z")
 
 public class Author   {
   @JsonProperty("id")
@@ -32,6 +34,9 @@ public class Author   {
 
   @JsonProperty("status")
   private Integer status = null;
+
+  @JsonProperty("rejectReason")
+  private String rejectReason = null;
 
   public Author id(Long id) {
     this.id = id;
@@ -173,6 +178,26 @@ public class Author   {
     this.status = status;
   }
 
+  public Author rejectReason(String rejectReason) {
+    this.rejectReason = rejectReason;
+    return this;
+  }
+
+   /**
+   * 驳回原因
+   * @return rejectReason
+  **/
+  @ApiModelProperty(value = "驳回原因")
+
+ @Size(max=255)
+  public String getRejectReason() {
+    return rejectReason;
+  }
+
+  public void setRejectReason(String rejectReason) {
+    this.rejectReason = rejectReason;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -189,12 +214,13 @@ public class Author   {
         Objects.equals(this.phone, author.phone) &&
         Objects.equals(this.realName, author.realName) &&
         Objects.equals(this.penName, author.penName) &&
-        Objects.equals(this.status, author.status);
+        Objects.equals(this.status, author.status) &&
+        Objects.equals(this.rejectReason, author.rejectReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, userCode, idNum, phone, realName, penName, status);
+    return Objects.hash(id, userCode, idNum, phone, realName, penName, status, rejectReason);
   }
 
   @Override
@@ -209,6 +235,7 @@ public class Author   {
     sb.append("    realName: ").append(toIndentedString(realName)).append("\n");
     sb.append("    penName: ").append(toIndentedString(penName)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }

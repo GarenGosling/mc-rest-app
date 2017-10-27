@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-18 12:10:43
+Date: 2017-10-27 14:06:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,11 +23,13 @@ CREATE TABLE `menu` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `code` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '编码',
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '菜单名',
+  `full_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '全部菜单码以/分割',
+  `full_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '全部菜单名以/分割',
   `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '菜单链接',
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '菜单描述信息',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  `status` int(2) NOT NULL COMMENT '菜单状态',
+  `status` int(2) NOT NULL COMMENT '菜单状态（0不显示，1显示，2显示首页）',
   `level` int(1) NOT NULL COMMENT '菜单等级，暂时有三级菜单',
   `parent_code` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '父菜单编码',
   `order_by` int(11) NOT NULL COMMENT '菜单显示顺序',
@@ -35,4 +37,4 @@ CREATE TABLE `menu` (
   KEY `code` (`code`),
   KEY `level` (`level`),
   KEY `parent_code` (`parent_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='板块表\r\ndefault_img_url显示在首页热门板块处，如果热门文章没有图片，那么显示默认的板块图片，否则显示热门文章的图片\r\nmenu_index和hot_index主要用于标示板块的位置，以后可以根据位置信息和用户的点击量分析页面排版对于用户点击量的影响作出相应的排版调整';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='板块表\r\ndefault_img_url显示在首页热门板块处，如果热门文章没有图片，那么显示默认的板块图片，否则显示热门文章的图片\r\nmenu_index和hot_index主要用于标示板块的位置，以后可以根据位置信息和用户的点击量分析页面排版对于用户点击量的影响作出相应的排版调整';
