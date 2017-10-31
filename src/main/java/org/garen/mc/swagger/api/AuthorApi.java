@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 @RequestMapping("/api")
 public interface AuthorApi {
 
-    @ApiOperation(value = "删除作者", notes = "删除作者 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "删除作者", notes = "删除作者 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -34,7 +34,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> deleteAuthor(@ApiParam(value = "作者ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -44,7 +44,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getAll();
 
 
-    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -54,7 +54,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getAuthor(@ApiParam(value = "作者ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "通过编码查询", notes = "通过编码查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过编码查询", notes = "通过编码查询 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -64,7 +64,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByCode(@ApiParam(value = "编码") @RequestParam(value = "code", required = false) String code);
 
 
-    @ApiOperation(value = "分页查询作者", notes = "分页查询作者 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "分页查询作者", notes = "分页查询作者 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -74,7 +74,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "作者笔名") @RequestParam(value = "penName", required = false) String penName);
 
 
-    @ApiOperation(value = "通过笔名查询", notes = "通过笔名查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过笔名查询", notes = "通过笔名查询 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -84,7 +84,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByPenName(@ApiParam(value = "笔名") @RequestParam(value = "penName", required = false) String penName);
 
 
-    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过状态查询", notes = "通过状态查询 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -94,7 +94,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByStatus(@Size(max = 1) @ApiParam(value = "0禁用，1启用") @RequestParam(value = "status", required = false) Integer status);
 
 
-    @ApiOperation(value = "通过用户编码查询", notes = "通过编码查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过用户编码查询", notes = "通过编码查询 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -104,7 +104,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByUserCode(@ApiParam(value = "用户编码") @RequestParam(value = "userCode", required = false) String userCode);
 
 
-    @ApiOperation(value = "新增作者", notes = "新增作者 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "新增作者", notes = "新增作者 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -116,7 +116,7 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> saveAuthor(@ApiParam(value = "作者") @Valid @RequestBody Author author);
 
 
-    @ApiOperation(value = "修改作者", notes = "修改作者 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "修改作者", notes = "修改作者 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })

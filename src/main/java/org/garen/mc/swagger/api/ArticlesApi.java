@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @Api(value = "articles", description = "the articles API")
 public interface ArticlesApi {
 
-    @ApiOperation(value = "id删除", notes = "根据文章id删除文章和文章详情 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "id删除", notes = "根据文章id删除文章和文章详情 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -30,7 +30,7 @@ public interface ArticlesApi {
     ResponseEntity<ResponseModel> deleteArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id,HttpServletRequest request);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部文章 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部文章 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -47,7 +47,7 @@ public interface ArticlesApi {
 
 
 
-    @ApiOperation(value = "查询文章", notes = "文章统一查询方法", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询文章", notes = "文章统一查询方法", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -58,7 +58,7 @@ public interface ArticlesApi {
 
 
 
-    @ApiOperation(value = "id查询", notes = "根据文章id查询文章和文章的详情 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "id查询", notes = "根据文章id查询文章和文章的详情 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -68,19 +68,19 @@ public interface ArticlesApi {
     ResponseEntity<ResponseModel> getArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id);
 
 
-    @ApiOperation(value = "发布文章", notes = "发布文章 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "发布文章", notes = "发布文章 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
     
-    @RequestMapping(value = "/api/articles",
+    @RequestMapping(value = "/articles",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<ResponseModel> saveArticle(@ApiParam(value = "文章") @Valid @RequestBody Article article, HttpServletRequest request);
 
 
-    @ApiOperation(value = "修改文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "修改文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -91,7 +91,7 @@ public interface ArticlesApi {
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id, @ApiParam(value = "文章") @Valid @RequestBody Article article,HttpServletRequest request);
 
-    @ApiOperation(value = "精选会员专题", notes = "精选会员专题，根据作者的所有文章的查看数字进行倒排序，显示相关作者的最受欢迎的文章 整体显示的是（作者和其中最受欢迎的一片文章）的列表 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "精选会员专题", notes = "精选会员专题，根据作者的所有文章的查看数字进行倒排序，显示相关作者的最受欢迎的文章 整体显示的是（作者和其中最受欢迎的一片文章）的列表 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })

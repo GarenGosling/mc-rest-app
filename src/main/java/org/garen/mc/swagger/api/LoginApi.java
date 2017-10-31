@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
 @Api(value = "author", description = "the author API")
 public interface LoginApi {
 
-    @ApiOperation(value = "登录认证测试", notes = "登录认证测试", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "登录认证测试", notes = "登录认证测试", response = ResponseModel.class, tags={ "login", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -34,7 +34,7 @@ public interface LoginApi {
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> testLogin();
 
-    @ApiOperation(value = "获取登录信息", notes = "获取登录信息", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "获取登录信息", notes = "获取登录信息", response = ResponseModel.class, tags={ "login", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -42,7 +42,7 @@ public interface LoginApi {
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getLoginVo(HttpServletRequest request, HttpServletResponse response);
 
-    @ApiOperation(value = "获取登录信息", notes = "获取登录信息", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "获取登录信息", notes = "获取登录信息", response = ResponseModel.class, tags={ "login", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -50,7 +50,7 @@ public interface LoginApi {
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getLoginVo2(@ApiParam(value = "登录凭证") @RequestParam(value = "ticket", required = false) String ticket);
 
-    @ApiOperation(value = "是否已登录", notes = "是否已登录 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "是否已登录", notes = "是否已登录 ", response = ResponseModel.class, tags={ "login", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ResponseModel.class) })
@@ -58,7 +58,7 @@ public interface LoginApi {
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> isLogin(HttpServletRequest request, HttpServletResponse response);
 
-    @ApiOperation(value = "是否已登录", notes = "是否已登录 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "是否已登录", notes = "是否已登录 ", response = ResponseModel.class, tags={ "login", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ResponseModel.class) })

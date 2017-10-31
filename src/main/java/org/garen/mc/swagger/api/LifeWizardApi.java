@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @Api(value = "lifeWizard", description = "the lifeWizard API")
 public interface LifeWizardApi {
 
-    @ApiOperation(value = "删除首页生活向导", notes = "删除首页生活向导 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "删除首页生活向导", notes = "删除首页生活向导 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -37,7 +37,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> deleteLifeWizard(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -47,7 +47,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> getAll();
 
 
-    @ApiOperation(value = "通过项目名查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过项目名查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -57,7 +57,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> getByName(@ApiParam(value = "项目名") @RequestParam(value = "name", required = false) String name);
 
 
-    @ApiOperation(value = "分页查询首页生活向导", notes = "分页查询首页生活向导 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "分页查询首页生活向导", notes = "分页查询首页生活向导 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -67,7 +67,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "首页生活向导项目名") @RequestParam(value = "name", required = false) String name);
 
 
-    @ApiOperation(value = "通过状态查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过状态查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -77,7 +77,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> getByStatus(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status);
 
 
-    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -87,7 +87,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> getLifeWizard(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "新增首页生活向导", notes = "新增首页生活向导 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "新增首页生活向导", notes = "新增首页生活向导 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -99,7 +99,7 @@ public interface LifeWizardApi {
     ResponseEntity<ResponseModel> saveLifeWizard(@ApiParam(value = "首页生活向导") @Valid @RequestBody LifeWizard lifeWizard);
 
 
-    @ApiOperation(value = "修改首页生活向导", notes = "修改首页生活向导 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "修改首页生活向导", notes = "修改首页生活向导 ", response = ResponseModel.class, tags={ "lifeWizard", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })

@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Api(value = "moreAttentions", description = "the moreAttentions API")
 public interface MoreAttentionsApi {
 
-    @ApiOperation(value = "id删除", notes = "根据更多关注id删除更多关注和更多关注详情 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "id删除", notes = "根据更多关注id删除更多关注和更多关注详情 ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -38,7 +38,7 @@ public interface MoreAttentionsApi {
     ResponseEntity<ResponseModel> deleteMoreAttention(@ApiParam(value = "更多关注id", required = true) @PathVariable("id") Long id);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部更多关注 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部更多关注 ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -48,7 +48,7 @@ public interface MoreAttentionsApi {
     ResponseEntity<ResponseModel> findALL();
 
 
-    @ApiOperation(value = "状态查询", notes = "根据更多关注id查询更多关注和更多关注的详情 （首页接口设为1） ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "状态查询", notes = "根据更多关注id查询更多关注和更多关注的详情 （首页接口设为1） ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -58,7 +58,7 @@ public interface MoreAttentionsApi {
     ResponseEntity<ResponseModel> getByStatus(@ApiParam(value = "更多关注状态", required = true) @PathVariable("status") Integer status);
 
 
-    @ApiOperation(value = "id查询", notes = "根据更多关注id查询更多关注和更多关注的详情 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "id查询", notes = "根据更多关注id查询更多关注和更多关注的详情 ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -68,7 +68,7 @@ public interface MoreAttentionsApi {
     ResponseEntity<ResponseModel> getMoreAttention(@ApiParam(value = "更多关注id", required = true) @PathVariable("id") Long id);
 
 
-    @ApiOperation(value = "新增更多关注", notes = "新增更多关注 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "新增更多关注", notes = "新增更多关注 ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -80,7 +80,7 @@ public interface MoreAttentionsApi {
     ResponseEntity<ResponseModel> saveMoreAttention(@ApiParam(value = "更多关注") @Valid @RequestBody MoreAttention moreAttention);
 
 
-    @ApiOperation(value = "修改更多关注", notes = "根据更多关注id修改更多关注 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "修改更多关注", notes = "根据更多关注id修改更多关注 ", response = ResponseModel.class, tags={ "moreAttention", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })

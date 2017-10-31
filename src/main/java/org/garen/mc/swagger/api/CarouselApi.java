@@ -28,7 +28,7 @@ import javax.validation.Valid;
 @Api(value = "carousel", description = "the carousel API")
 public interface CarouselApi {
 
-    @ApiOperation(value = "删除首页轮播图", notes = "删除首页轮播图 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "删除首页轮播图", notes = "删除首页轮播图 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -38,7 +38,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> deleteCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "查询全部", notes = "查询全部 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -48,7 +48,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getAll();
 
 
-    @ApiOperation(value = "通过描述查询", notes = "通过描述查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过描述查询", notes = "通过描述查询 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -58,7 +58,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getByDescription(@ApiParam(value = "首页轮播图描述信息") @RequestParam(value = "description", required = false) String description);
 
 
-    @ApiOperation(value = "分页查询首页轮播图", notes = "分页查询首页轮播图 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "分页查询首页轮播图", notes = "分页查询首页轮播图 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -68,7 +68,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "首页轮播图描述信息") @RequestParam(value = "description", required = false) String description);
 
 
-    @ApiOperation(value = "通过状态和位置查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "通过状态和位置查询", notes = "状态和位置查询 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -78,7 +78,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getByStatusAndPlace(@Size(max = 1) @ApiParam(value = "0表示不显示首页，1表示显示首页") @RequestParam(value = "status", required = false) Integer status, @Size(max = 50) @ApiParam(value = "位置编号") @RequestParam(value = "place", required = false) String place);
 
 
-    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "ID查询", notes = "ID查询 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -88,7 +88,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> getCarousel(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) Long id);
 
 
-    @ApiOperation(value = "新增首页轮播图", notes = "新增首页轮播图 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "新增首页轮播图", notes = "新增首页轮播图 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -100,7 +100,7 @@ public interface CarouselApi {
     ResponseEntity<ResponseModel> saveCarousel(@ApiParam(value = "首页轮播图") @Valid @RequestBody Carousel carousel);
 
 
-    @ApiOperation(value = "修改首页轮播图", notes = "修改首页轮播图 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "修改首页轮播图", notes = "修改首页轮播图 ", response = ResponseModel.class, tags={ "carousel", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })

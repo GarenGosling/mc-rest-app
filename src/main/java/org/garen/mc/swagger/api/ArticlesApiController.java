@@ -112,8 +112,8 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
      */
     public ResponseEntity<ResponseModel> saveArticle(@ApiParam(value = "文章"  )  @Valid @RequestBody Article article, HttpServletRequest request) {
         Author author=authorManage.getAuthor(request);
-        if(author==null)
-            return  new ResponseEntity<ResponseModel>(badRequestModel("还未注册为作者"),HttpStatus.OK);
+//        if(author==null)
+//            return  new ResponseEntity<ResponseModel>(badRequestModel("还未注册为作者"),HttpStatus.OK);
         //验证新增对象参数
         String msg = articleValid.saveArticleValid(article);
         if(StringUtils.isNotBlank(msg)){
