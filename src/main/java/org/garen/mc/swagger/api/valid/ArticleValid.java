@@ -52,4 +52,18 @@ public class ArticleValid extends  BaseValid{
     public String updateArticleValid(Article article) {
         return saveArticleValid(article);
     }
+
+    /**
+     * 审核文章验证
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public String auditArticleValid(Integer status, String rejectReason) {
+        if(status==null)
+            return  emptyMsg("状态");
+        if(status==2&&StringUtils.isBlank(rejectReason))
+            return  emptyMsg("驳回理由为空");
+        return null;
+    }
 }

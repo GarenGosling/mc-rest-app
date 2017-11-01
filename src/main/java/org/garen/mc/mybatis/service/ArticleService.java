@@ -26,8 +26,6 @@ public class ArticleService <T,Q,PK extends Serializable> extends CommonsService
     public ArticleMapper<T, Q, PK> getMapper() {
         return articleMapper;
     }
-    public List<Article> selectPopAuthorByExample(ArticleExample example){
-        return getMapper().selectPopAuthorByExample(example);
-    }
+
 
 }

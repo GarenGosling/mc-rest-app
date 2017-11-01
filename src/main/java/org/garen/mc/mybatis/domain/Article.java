@@ -85,6 +85,16 @@ public class Article implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 文章状态（0未审核，1审核通过。。。）
+     */
+    private Integer status;
+
+    /**
+     * 驳回原因
+     */
+    private String rejectReason;
+
     private List<ArticleDetail> articleDetails;
 
     private static final long serialVersionUID = 1L;
@@ -215,6 +225,22 @@ public class Article implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getRejectReason() {
+        return rejectReason;
+    }
+
+    public void setRejectReason(String rejectReason) {
+        this.rejectReason = rejectReason;
     }
 
     public List<ArticleDetail> getArticleDetails() {

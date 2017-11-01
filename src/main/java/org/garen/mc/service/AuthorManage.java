@@ -2,6 +2,7 @@ package org.garen.mc.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
+import org.garen.mc.mybatis.domain.Article;
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.domain.AuthorExample;
 import org.garen.mc.mybatis.service.AuthorService;
@@ -247,4 +248,5 @@ public class AuthorManage extends BaseManage<Long> {
         }
         return  null;
     }
+
 }

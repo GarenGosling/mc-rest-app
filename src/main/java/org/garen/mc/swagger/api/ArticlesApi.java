@@ -99,5 +99,23 @@ public interface ArticlesApi {
     @RequestMapping(value = "/articles/popAuthor",
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> findPopAuthor(@ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,@ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length);
+    @ApiOperation(value = "审核文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={"article",  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/articles/{id}/auditArticle",
+            produces = { "application/json" },
+            consumes = { "application/json" },
+            method = RequestMethod.PUT)
+    ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "文章id",required=true ) @PathVariable("id") Long id,@ApiParam(value = "文章审核状态（1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status,@ApiParam(value = "驳回原因") @RequestParam(value = "rejectReason", required = false) String rejectReason);
+    @ApiOperation(value = "状态查询文章", notes = "状态查询文章", response = ResponseModel.class, tags={ "article",   })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/articles/status",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> findByStatus(@ApiParam(value = "状态（0：未审核，1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status);
 
 }

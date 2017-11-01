@@ -1184,6 +1184,136 @@ public class ArticleExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonIsNull() {
+            addCriterion("reject_reason is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonIsNotNull() {
+            addCriterion("reject_reason is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonEqualTo(String value) {
+            addCriterion("reject_reason =", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonNotEqualTo(String value) {
+            addCriterion("reject_reason <>", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonGreaterThan(String value) {
+            addCriterion("reject_reason >", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonGreaterThanOrEqualTo(String value) {
+            addCriterion("reject_reason >=", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonLessThan(String value) {
+            addCriterion("reject_reason <", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonLessThanOrEqualTo(String value) {
+            addCriterion("reject_reason <=", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonLike(String value) {
+            addCriterion("reject_reason like", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonNotLike(String value) {
+            addCriterion("reject_reason not like", value, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonIn(List<String> values) {
+            addCriterion("reject_reason in", values, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonNotIn(List<String> values) {
+            addCriterion("reject_reason not in", values, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonBetween(String value1, String value2) {
+            addCriterion("reject_reason between", value1, value2, "rejectReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andRejectReasonNotBetween(String value1, String value2) {
+            addCriterion("reject_reason not between", value1, value2, "rejectReason");
+            return (Criteria) this;
+        }
     }
 
     /**

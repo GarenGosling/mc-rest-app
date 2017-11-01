@@ -160,4 +160,34 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
         Map map=articleManage.findPopAuthor(menuCode,start,length);
         return new ResponseEntity<ResponseModel>(successModel("精选会员查询成功",map),HttpStatus.OK);
     }
+
+    /**
+     * 审核文章
+     * @param id
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "文章id",required=true ) @PathVariable("id") Long id,
+                                                      @ApiParam(value = "文章审核状态（1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status,
+                                                      @ApiParam(value = "驳回原因") @RequestParam(value = "rejectReason", required = false) String rejectReason) {
+       String msg=articleValid.auditArticleValid(status,rejectReason);
+       if(msg!=null)
+           return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
+        int i=articleManage.auditArticle(id,status,rejectReason);
+        return new ResponseEntity<ResponseModel>(successModel("审核成功，数量：" + i),HttpStatus.OK);
+    }
+
+    /**
+     * 状态查询
+     * @param status
+     * @return
+     */
+    public ResponseEntity<ResponseModel> findByStatus(@ApiParam(value = "状态（0：未审核，1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status) {
+        String msg=articleValid.statusValid(status);
+        if(msg!=null)
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
+        List<org.garen.mc.mybatis.domain.Article> articles=articleManage.findByStatus(status);
+        return new ResponseEntity<ResponseModel>(successModel("状态查询",articles),HttpStatus.OK);
+    }
 }

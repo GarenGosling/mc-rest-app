@@ -241,4 +241,31 @@ public class ArticleManage extends BaseManage<Long> {
         map.put("count", maps.size());
         return map;
     }
+
+    /**
+     * 文章查询
+     * @param status
+     * @return
+     */
+    public List<Article> findByStatus(Integer status) {
+        ArticleExample articleExample = new ArticleExample();
+        ArticleExample.Criteria criteria = articleExample.createCriteria();
+        criteria.andStatusEqualTo(status);
+        return findListBy(articleExample);
+    }
+
+    /**
+     * 审核
+     * @param id
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public int auditArticle(Long id, Integer status, String rejectReason) {
+        Article article=new Article();
+        article.setId(id);
+        article.setStatus(status);
+        article.setRejectReason(rejectReason);
+        return modify(article);
+    }
 }
