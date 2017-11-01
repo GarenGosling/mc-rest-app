@@ -13,6 +13,7 @@ import org.garen.mc.util.TransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -197,7 +198,12 @@ public class ArticleManage extends BaseManage<Long> {
     }
 
     /**
-     * 精选会员查询成功
+     * 精选会员查询
+     * //先通过sql语句查询文章查看数最高的作者
+     *
+     * 然后根据作者找到点击数最高的文章
+     *
+     *
      * @param menuCode
      * @param start
      * @param length
@@ -207,25 +213,32 @@ public class ArticleManage extends BaseManage<Long> {
         //初始化参数
         if (start == null) start = 0;
         if (length == null) length = 10;
-        //构造查询条件
-        ArticleExample articleExample = new ArticleExample();
-        ArticleExample.Criteria criteria = articleExample.createCriteria();
-        if (StringUtils.isNotBlank(menuCode))
-            criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
-        //查询实体数据
-        articleExample.setOffset(start*length);
-        articleExample.setLimit(length);
-        List<Article> articles=articleService.selectPopAuthorByExample(articleExample);
-        //查询统计个数
-        String sql = "select count(*) count from article where 1=1 ";
-        if (StringUtils.isNotBlank(menuCode))
-            criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
-        //查询
-        int count = getService().countBySQL(sql);
+
+        //查询作者码
+        String sql="select author_code from article where 1=1";
+        if(StringUtils.isNotBlank(menuCode))
+            sql+=" and menu_full_code like '%"+EsapiUtil.sql(menuCode.trim())+"%'";
+        sql+=" GROUP BY author_code ORDER BY sum(view_num) desc limit "+start+","+length;
+        List<Map<String,String>> maps=getService().selectBySQL(sql);
+        //根据作者码查询文章
+        List<Article> articles=new ArrayList<>();
+        for(Map<String,String> map:maps) {
+            String authorCode = map.get("author_code");
+            //根据作者码查询每一个作者在本栏目评论点击数最高的那个文章
+            ArticleExample articleExample = new ArticleExample();
+            ArticleExample.Criteria criteria = articleExample.createCriteria();
+            if (StringUtils.isNotBlank(menuCode))
+                criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+            criteria.andAuthorCodeEqualTo(authorCode);
+            articleExample.setOrderByClause("view_num desc");
+            articleExample.setLimit(1);
+            Article article = getService().findByOne(articleExample);
+            articles.add(article);
+        }
         //构造返回map
         Map map = new HashMap();
         map.put("list", articles);
-        map.put("count", count);
+        map.put("count", maps.size());
         return map;
     }
 }
