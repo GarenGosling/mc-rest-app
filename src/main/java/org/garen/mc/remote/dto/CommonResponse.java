@@ -3,7 +3,7 @@ package org.garen.mc.remote.dto;
 public class CommonResponse {
     private String code;
     private String message;
-    private Object data;
+    private LoginVo data;
 
     public String getCode() {
         return code;
@@ -21,11 +21,11 @@ public class CommonResponse {
         this.message = message;
     }
 
-    public Object getData() {
+    public LoginVo getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(LoginVo data) {
         this.data = data;
     }
 }
