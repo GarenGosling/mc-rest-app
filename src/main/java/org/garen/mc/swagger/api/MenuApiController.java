@@ -119,7 +119,7 @@ public class MenuApiController extends BaseModel implements MenuApi {
         if (StringUtils.isNotBlank(msg))
             return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
         //业务
-        List<org.garen.mc.mybatis.domain.Menu> menus = menuManage.getByPatentCode(parentCode, status);
+        List<org.garen.mc.mybatis.domain.Menu> menus = menuManage.getByParentCode(parentCode, status);
         return new ResponseEntity<ResponseModel>(successModel("父菜单编码查询", menus), HttpStatus.OK);
     }
 

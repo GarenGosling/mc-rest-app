@@ -4,8 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.garen.mc.mybatis.domain.Menu;
 import org.garen.mc.mybatis.domain.MenuExample;
-import org.garen.mc.mybatis.domain.PartnerLink;
-import org.garen.mc.mybatis.service.CommonsService;
 import org.garen.mc.mybatis.service.MenuService;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
@@ -109,7 +107,7 @@ public class MenuManage extends BaseManage<Long> {
      * @param pCode
      * @return
      */
-    public List<Menu> getByPatentCode(String pCode, Integer status) {
+    public List<Menu> getByParentCode(String pCode, Integer status) {
         //构造查询条件
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();
@@ -248,12 +246,12 @@ public class MenuManage extends BaseManage<Long> {
      * @return
      */
     public List<Menu> getTreeByParentCode(String parentCode) {
-        List<Menu> menus=getByPatentCode(parentCode,null);
+        List<Menu> menus= getByParentCode(parentCode,null);
         for(Menu menu:menus){
-            if (menu.getLevel()!=3){
-                List<Menu> menus1=getByPatentCode(menu.getCode(),null);
+//            if (menu.getLevel()!=3){
+                List<Menu> menus1= getTreeByParentCode(menu.getCode());
                 menu.setChildren(menus1);
-            }
+//            }
         }
         return menus;
     }
