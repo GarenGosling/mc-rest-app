@@ -64,14 +64,14 @@ public interface AuthorApi {
     ResponseEntity<ResponseModel> getByCode(@ApiParam(value = "编码") @RequestParam(value = "code", required = false) String code);
 
 
-    @ApiOperation(value = "分页查询作者", notes = "分页查询作者 ", response = ResponseModel.class, tags={ "author", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
-        @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+    @ApiOperation(value = "分页查询作者", notes = "分页查询作者 ", response = ResponseModel.class, tags={"author",  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
     @RequestMapping(value = "/author/page",
-        method = RequestMethod.GET)
-    ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "作者笔名") @RequestParam(value = "penName", required = false) String penName);
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length, @ApiParam(value = "作者笔名") @RequestParam(value = "penName", required = false) String penName, @ApiParam(value = "作者真实姓名") @RequestParam(value = "realName", required = false) String realName, @ApiParam(value = "作者审核状态") @RequestParam(value = "status", required = false) Integer status);
 
 
     @ApiOperation(value = "通过笔名查询", notes = "通过笔名查询 ", response = ResponseModel.class, tags={ "author", })

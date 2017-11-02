@@ -87,7 +87,7 @@ public class AuthorManage extends BaseManage<Long> {
      *
      * @return
      */
-    public List<org.garen.mc.mybatis.domain.Author> getAll() {
+    public List<Author> getAll() {
 
         //查询
         return getService().findAll();
@@ -124,10 +124,11 @@ public class AuthorManage extends BaseManage<Long> {
      *
      * @param start
      * @param length
-     * @param penName
-     * @return
+     * @param realName
+     *@param penName
+     * @param status  @return
      */
-    public Map getByPage(Integer start, Integer length, String penName) {
+    public Map getByPage(Integer start, Integer length, String realName, String penName, Integer status) {
         //初始化参数
         if (start == null) start = 0;
         if (length == null) length = 10;
@@ -136,6 +137,10 @@ public class AuthorManage extends BaseManage<Long> {
         AuthorExample.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotBlank(penName))
             criteria.andPenNameLike("%" + EsapiUtil.sql(penName.trim()) + "%");
+        if(StringUtils.isNotBlank(realName))
+            criteria.andRealNameLike("%" + EsapiUtil.sql(realName.trim()) + "%");
+        if(status==null)
+            criteria.andStatusEqualTo(status);
         example.setOrderByClause("id desc");
         //查询
         List<Author> partnerLinks = getService().findBy(new RowBounds(start, length), example);

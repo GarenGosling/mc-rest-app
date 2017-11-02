@@ -92,11 +92,14 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
      * @param name
      * @return
      */
+
     public ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
-        @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
-        @ApiParam(value = "作者笔名") @RequestParam(value = "penName", required = false) String penName) {
+                                                   @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
+                                                   @ApiParam(value = "作者笔名") @RequestParam(value = "penName", required = false) String penName,
+                                                   @ApiParam(value = "作者真实姓名") @RequestParam(value = "realName", required = false) String realName,
+                                                   @ApiParam(value = "作者审核状态") @RequestParam(value = "status", required = false) Integer status) {
         //业务
-        Map page=authorManage.getByPage(start,length,penName);
+        Map page=authorManage.getByPage(start,length,penName,realName,start);
         return new ResponseEntity<ResponseModel>(successModel("分页查询",page),HttpStatus.OK);
     }
 
