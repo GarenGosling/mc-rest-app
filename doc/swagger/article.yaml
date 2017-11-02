@@ -177,6 +177,61 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
+  /articles/status:
+    get:
+      summary: 状态查询文章
+      operationId: findByStatus
+      description: 状态查询文章
+      parameters:
+        - name: status
+          in: query
+          description: 状态（0：未审核，1：审核通过，2：审核驳回）
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /articles/{id}/auditArticle:
+    put:
+      summary: 审核文章
+      description: |
+        根据文章id修改文章
+      operationId: auditArticle
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 文章id
+          format: int64
+          type: integer
+          required: true
+        - name: status
+          in: query
+          type: integer
+          format: int32
+          description: 文章审核状态（1：审核通过，2：审核驳回）
+        - name: rejectReason
+          in: query
+          type: string
+          description: 驳回原因
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
 definitions:
   article:
     description: 文章对象
@@ -188,7 +243,7 @@ definitions:
         description: 文章标题
       summary:
         type: string
-        maxLength: 255
+        maxLength: 4000
         description: 文章简述
       md5:
         type: string
