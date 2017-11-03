@@ -99,7 +99,7 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
                                                    @ApiParam(value = "作者真实姓名") @RequestParam(value = "realName", required = false) String realName,
                                                    @ApiParam(value = "作者审核状态") @RequestParam(value = "status", required = false) Integer status) {
         //业务
-        Map page=authorManage.getByPage(start,length,penName,realName,start);
+        Map page=authorManage.getByPage(start,length,realName,penName,status);
         return new ResponseEntity<ResponseModel>(successModel("分页查询",page),HttpStatus.OK);
     }
 
