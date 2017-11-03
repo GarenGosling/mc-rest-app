@@ -7,12 +7,15 @@ import org.garen.mc.mybatis.domain.ArticleDetail;
 import org.garen.mc.mybatis.domain.ArticleExample;
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.service.ArticleService;
+import org.garen.mc.remote.LoginManage;
+import org.garen.mc.remote.dto.LoginVo;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +40,9 @@ public class ArticleManage extends BaseManage<Long> {
 
     @Autowired
     private ArticleDetailManage articleDetailManage;
+
+    @Autowired
+    private LoginManage loginManage;
 
     /**
      * 删除
@@ -267,5 +273,71 @@ public class ArticleManage extends BaseManage<Long> {
         article.setStatus(status);
         article.setRejectReason(rejectReason);
         return modify(article);
+    }
+
+    /**
+     * 按照用户查询
+     * @param title
+     * @param menuCode
+     * @param subjectName
+     * @param orderBy
+     * @param start
+     * @param length
+     * @param authorName
+     * @param status
+     * @return
+     */
+    public Map findArticle2(String title, String menuCode, String subjectName, String orderBy, Integer start, Integer length, String authorName, Integer status, HttpServletRequest request) {
+        LoginVo loginVo=loginManage.getLoginVo(request);
+        if(loginVo==null)
+            return null;
+        //初始化参数
+        if (start == null) start = 0;
+        if (length == null) length = 10;
+        //构造查询条件
+        String sql= "select * from article a1 LEFT JOIN author a2 on a1.author_code=a2.`code` where 1=1";
+        if (StringUtils.isNotBlank(title))
+            sql += " AND a1.title like '%" + EsapiUtil.sql(title.trim()) + "%'";
+        if (StringUtils.isNotBlank(menuCode))
+            sql += " AND a1.menu_full_code like '%" + EsapiUtil.sql(menuCode.trim()) + "%'";
+        if (StringUtils.isNotBlank(subjectName))
+            sql += " AND a1.subject_name like '%" + EsapiUtil.sql(subjectName.trim()) + "%'";
+        if(StringUtils.isNotBlank(authorName))
+            sql+= " AND (a2.pen_name = '"+EsapiUtil.sql(authorName)+"' or a2.real_name='"+EsapiUtil.sql(authorName)+"')";
+        if(status!=null)
+            sql+=" AND a1.status="+status;
+        //增加用户的查询限制
+        //如果不是管理员的话，有用户限制
+        if(!loginVo.getLoginInfo().getLoginName().equalsIgnoreCase("admin")){
+            sql+=" AND a1.user_code='"+loginVo.getUserBase().getUserCode()+"'";
+        }
+        if(StringUtils.isNotBlank(orderBy))
+            sql+=" order by "+EsapiUtil.sql(orderBy);
+        sql+=" limit "+start+","+length;
+        List<Map<String,Object>> list=getService().findBySQL(sql);
+
+
+        //查询统计个数
+        sql= "select count(*) from article a1 LEFT JOIN author a2 on a1.author_code=a2.`code` where 1=1";
+        if (StringUtils.isNotBlank(title))
+            sql += " AND a1.title like '%" + EsapiUtil.sql(title.trim()) + "%'";
+        if (StringUtils.isNotBlank(menuCode))
+            sql += " AND a1.menu_full_code like '%" + EsapiUtil.sql(menuCode.trim()) + "%'";
+        if (StringUtils.isNotBlank(subjectName))
+            sql += " AND a1.subject_name like '%" + EsapiUtil.sql(subjectName.trim()) + "%'";
+        if(StringUtils.isNotBlank(authorName))
+            sql+= " AND (a2.pen_name = '"+EsapiUtil.sql(authorName)+"' or a2.real_name='"+EsapiUtil.sql(authorName)+"')";
+        if(status!=null)
+            sql+=" AND a1.status="+status;
+        if(!loginVo.getLoginInfo().getLoginName().equalsIgnoreCase("admin")){
+            sql+=" AND a1.user_code='"+loginVo.getUserBase().getUserCode()+"'";
+        }
+        //查询
+        int count = getService().countBySQL(sql);
+        //构造返回map
+        Map map = new HashMap();
+        map.put("list", list);
+        map.put("count", count);
+        return map;
     }
 }

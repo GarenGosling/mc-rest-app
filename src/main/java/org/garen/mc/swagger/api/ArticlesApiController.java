@@ -190,4 +190,28 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
         List<org.garen.mc.mybatis.domain.Article> articles=articleManage.findByStatus(status);
         return new ResponseEntity<ResponseModel>(successModel("状态查询",articles),HttpStatus.OK);
     }
+
+    /**
+     * 按照用户查询
+     * @param title
+     * @param menuCode
+     * @param subjectName
+     * @param orderBy
+     * @param start
+     * @param length
+     * @param authorName
+     * @param status
+     * @return
+     */
+    public ResponseEntity<ResponseModel> findArticle2(@ApiParam(value = "文章标题") @RequestParam(value = "title", required = false) String title,
+                                                      @ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,
+                                                      @ApiParam(value = "专题名称，按照专题名称查询") @RequestParam(value = "subjectName", required = false) String subjectName,
+                                                      @ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy,
+                                                      @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
+                                                      @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
+                                                      @ApiParam(value = "作者名称或者真实姓名") @RequestParam(value = "authorName", required = false) String authorName,
+                                                      @ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status,HttpServletRequest request) {
+        Map map=articleManage.findArticle2(title,menuCode,subjectName,orderBy,start,length,authorName,status,request);
+        return new ResponseEntity<ResponseModel>(successModel("查询",map),HttpStatus.OK);
+    }
 }

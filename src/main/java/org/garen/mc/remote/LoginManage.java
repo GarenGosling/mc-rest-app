@@ -2,6 +2,7 @@ package org.garen.mc.remote;
 
 import org.apache.commons.collections.map.MultiValueMap;
 import org.apache.commons.lang3.StringUtils;
+import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.remote.dto.CommonResponse;
 import org.garen.mc.remote.dto.LoginVo;
 import org.garen.mc.swagger.LoginDTO;
@@ -68,6 +69,22 @@ public class LoginManage {
         org.springframework.util.MultiValueMap<String, Object> param = new LinkedMultiValueMap();
         param.add("ticket", ticket);
         return restTemplateUtil.post(url, param, LoginDTO.class);
+    }
+    /**
+     *
+     * 根据请求获取作者
+     * 必须要先登录
+     * @param request
+     * @return
+     */
+    public LoginVo getLoginVo(HttpServletRequest request){
+        try {
+            CommonResponse response=getLoginVoByRequest(request);
+            return (LoginVo)response.getData();
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+        return  null;
     }
 
 

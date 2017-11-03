@@ -117,5 +117,12 @@ public interface ArticlesApi {
     @RequestMapping(value = "/articles/status",
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> findByStatus(@ApiParam(value = "状态（0：未审核，1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status);
+    @ApiOperation(value = "根据用户查询文章", notes = "根据用户查询文章（管理员查询和普通用户查看自己的文章） 普通用户只能查看自己发的文章，管理员可以查看别人的文章，通过前端你舒服 ", response = ResponseModel.class, tags={ "article", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
+    @RequestMapping(value = "/api/articles/queryByAuthor",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> findArticle2(@ApiParam(value = "文章标题") @RequestParam(value = "title", required = false) String title,@ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,@ApiParam(value = "专题名称，按照专题名称查询") @RequestParam(value = "subjectName", required = false) String subjectName,@ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy,@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,@ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,@ApiParam(value = "作者名称或者真实姓名") @RequestParam(value = "authorName", required = false) String authorName,@ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status,HttpServletRequest request);
 }
