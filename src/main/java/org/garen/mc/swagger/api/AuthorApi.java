@@ -11,10 +11,7 @@ import org.garen.mc.swagger.model.Author;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.ResponseModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
@@ -126,5 +123,15 @@ public interface AuthorApi {
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateAuthor(@ApiParam(value = "作者") @Valid @RequestBody Author author);
+    @ApiOperation(value = "审核作者", notes = "审核作者 ", response = ResponseModel.class, tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/author/{id}/audit",
+            produces = { "application/json" },
+            consumes = { "application/json" },
+            method = RequestMethod.PUT)
+    ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "id",required=true ) @PathVariable("id") Long id, @ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status, @ApiParam(value = "驳回理由") @RequestParam(value = "rejectReason", required = false) String rejectReason);
 
 }

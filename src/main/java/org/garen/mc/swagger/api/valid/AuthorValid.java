@@ -102,4 +102,17 @@ public class AuthorValid extends BaseValid {
         return null;
     }
 
+    /**
+     * 审核验证
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public String auditAuthorValid(Integer status, String rejectReason) {
+        if(status==null)
+            return emptyMsg("status");
+        if(status==2&&StringUtils.isBlank(rejectReason))
+            return "驳回审核必须填写驳回理由";
+        return  null;
+    }
 }

@@ -254,4 +254,18 @@ public class AuthorManage extends BaseManage<Long> {
         return  null;
     }
 
+    /**
+     * 审核
+     * @param id
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public int auditAuthor(Long id, Integer status, String rejectReason) {
+        Author author=new Author();
+        author.setId(id);
+        author.setStatus(status);
+        author.setRejectReason(rejectReason);
+        return modify(author);
+    }
 }

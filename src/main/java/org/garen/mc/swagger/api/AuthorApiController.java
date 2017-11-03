@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -179,5 +180,20 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
     }
 
-
+    /**
+     * 审核作者
+     * @param id
+     * @param status
+     * @param rejectReason
+     * @return
+     */
+    public ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "id",required=true ) @PathVariable("id") Long id,
+                                                     @ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status,
+                                                     @ApiParam(value = "驳回理由") @RequestParam(value = "rejectReason", required = false) String rejectReason) {
+        String msg=authorValid.auditAuthorValid(status,rejectReason);
+        if(StringUtils.isNotBlank(msg))
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
+        int i=authorManage.auditAuthor(id,status,rejectReason);
+        return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
+    }
 }
