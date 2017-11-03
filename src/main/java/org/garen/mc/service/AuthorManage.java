@@ -139,7 +139,7 @@ public class AuthorManage extends BaseManage<Long> {
             criteria.andPenNameLike("%" + EsapiUtil.sql(penName.trim()) + "%");
         if(StringUtils.isNotBlank(realName))
             criteria.andRealNameLike("%" + EsapiUtil.sql(realName.trim()) + "%");
-        if(status==null)
+        if(status!=null)
             criteria.andStatusEqualTo(status);
         example.setOrderByClause("id desc");
         //查询
