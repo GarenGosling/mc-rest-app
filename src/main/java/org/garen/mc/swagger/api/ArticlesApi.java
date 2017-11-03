@@ -8,6 +8,7 @@ package org.garen.mc.swagger.api;
 
 import io.swagger.annotations.*;
 import org.garen.mc.swagger.model.Article;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.ResponseModel;
 import org.springframework.http.ResponseEntity;
@@ -99,16 +100,16 @@ public interface ArticlesApi {
     @RequestMapping(value = "/articles/popAuthor",
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> findPopAuthor(@ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,@ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,@ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length);
-    @ApiOperation(value = "审核文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={"article",  })
+    @ApiOperation(value = "审核文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
-    @RequestMapping(value = "/api/articles/{id}/auditArticle",
+    @RequestMapping(value = "/api/articles/audit",
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "文章id",required=true ) @PathVariable("id") Long id,@ApiParam(value = "文章审核状态（1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status,@ApiParam(value = "驳回原因") @RequestParam(value = "rejectReason", required = false) String rejectReason);
+    ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "审核对象"  )  @Valid @RequestBody Audit audit);
     @ApiOperation(value = "状态查询文章", notes = "状态查询文章", response = ResponseModel.class, tags={ "article",   })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),

@@ -9,6 +9,7 @@ import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.service.ArticleService;
 import org.garen.mc.remote.LoginManage;
 import org.garen.mc.remote.dto.LoginVo;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
@@ -262,16 +263,14 @@ public class ArticleManage extends BaseManage<Long> {
 
     /**
      * 审核
-     * @param id
-     * @param status
-     * @param rejectReason
+     * @param audit
      * @return
      */
-    public int auditArticle(Long id, Integer status, String rejectReason) {
+    public int auditArticle(Audit audit) {
         Article article=new Article();
-        article.setId(id);
-        article.setStatus(status);
-        article.setRejectReason(rejectReason);
+        article.setId(audit.getId());
+        article.setStatus(audit.getStatus());
+        article.setRejectReason(audit.getRemark());
         return modify(article);
     }
 

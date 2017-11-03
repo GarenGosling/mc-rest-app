@@ -10,7 +10,9 @@ import org.garen.mc.remote.dto.LoginVo;
 import org.garen.mc.service.ArticleManage;
 import org.garen.mc.service.AuthorManage;
 import org.garen.mc.swagger.api.valid.ArticleValid;
+import org.garen.mc.swagger.api.valid.AuditValid;
 import org.garen.mc.swagger.model.Article;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.swagger.model.BaseModel;
 import org.garen.mc.swagger.model.ResponseModel;
 import org.garen.mc.util.JsonMapper;
@@ -39,6 +41,8 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
     private LoginManage loginManage;
     @Autowired
     private AuthorManage authorManage;
+    @Autowired
+    private AuditValid auditValid;
 
     /**
      * 删除
@@ -168,13 +172,11 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
      * @param rejectReason
      * @return
      */
-    public ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "文章id",required=true ) @PathVariable("id") Long id,
-                                                      @ApiParam(value = "文章审核状态（1：审核通过，2：审核驳回）") @RequestParam(value = "status", required = false) Integer status,
-                                                      @ApiParam(value = "驳回原因") @RequestParam(value = "rejectReason", required = false) String rejectReason) {
-       String msg=articleValid.auditArticleValid(status,rejectReason);
+    public ResponseEntity<ResponseModel> auditArticle(@ApiParam(value = "审核对象"  )  @Valid @RequestBody Audit audit) {
+       String msg=auditValid.auditValid(audit);
        if(msg!=null)
            return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
-        int i=articleManage.auditArticle(id,status,rejectReason);
+        int i=articleManage.auditArticle(audit);
         return new ResponseEntity<ResponseModel>(successModel("审核成功，数量：" + i),HttpStatus.OK);
     }
 
