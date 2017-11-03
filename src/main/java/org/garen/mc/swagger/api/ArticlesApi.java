@@ -104,7 +104,7 @@ public interface ArticlesApi {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
-    @RequestMapping(value = "/articles/{id}/auditArticle",
+    @RequestMapping(value = "/api/articles/{id}/auditArticle",
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
