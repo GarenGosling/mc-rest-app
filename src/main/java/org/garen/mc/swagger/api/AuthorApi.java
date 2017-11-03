@@ -7,6 +7,7 @@ package org.garen.mc.swagger.api;
 
 
 import io.swagger.annotations.*;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.swagger.model.Author;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.ResponseModel;
@@ -123,15 +124,17 @@ public interface AuthorApi {
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateAuthor(@ApiParam(value = "作者") @Valid @RequestBody Author author);
-    @ApiOperation(value = "审核作者", notes = "审核作者 ", response = ResponseModel.class, tags={ "author", })
+
+    @ApiOperation(value = "审核作者", notes = "审核作者 ", response = ResponseModel.class, tags={ "article", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
-    @RequestMapping(value = "/author/{id}/audit",
+    @RequestMapping(value = "/author/audit",
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "id",required=true ) @PathVariable("id") Long id, @ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status, @ApiParam(value = "驳回理由") @RequestParam(value = "rejectReason", required = false) String rejectReason);
+    ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "审核对象"  )  @Valid @RequestBody Audit audit);
+
 
 }

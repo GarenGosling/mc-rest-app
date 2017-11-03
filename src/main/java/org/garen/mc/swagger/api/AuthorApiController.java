@@ -4,7 +4,9 @@ package org.garen.mc.swagger.api;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.garen.mc.service.AuthorManage;
+import org.garen.mc.swagger.api.valid.AuditValid;
 import org.garen.mc.swagger.api.valid.AuthorValid;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.swagger.model.Author;
 import org.garen.mc.swagger.model.BaseModel;
 import org.garen.mc.swagger.model.ResponseModel;
@@ -30,6 +32,8 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
     private AuthorManage authorManage;
     @Autowired
     private AuthorValid authorValid;
+    @Autowired
+    private AuditValid auditValid;
 
     /**
      * 删除
@@ -187,13 +191,11 @@ public class AuthorApiController extends BaseModel implements AuthorApi {
      * @param rejectReason
      * @return
      */
-    public ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "id",required=true ) @PathVariable("id") Long id,
-                                                     @ApiParam(value = "审核状态") @RequestParam(value = "status", required = false) Integer status,
-                                                     @ApiParam(value = "驳回理由") @RequestParam(value = "rejectReason", required = false) String rejectReason) {
-        String msg=authorValid.auditAuthorValid(status,rejectReason);
-        if(StringUtils.isNotBlank(msg))
-            return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
-        int i=authorManage.auditAuthor(id,status,rejectReason);
+    public ResponseEntity<ResponseModel> auditAuthor(@ApiParam(value = "审核对象"  )  @Valid @RequestBody Audit audit) {
+        String msg=auditValid.auditValid(audit);
+        if(msg!=null)
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg),HttpStatus.OK);
+        int i=authorManage.auditAuthor(audit);
         return new ResponseEntity<ResponseModel>(successModel("修改成功，数量：" + i),HttpStatus.OK);
     }
 }

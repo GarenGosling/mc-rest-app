@@ -177,6 +177,60 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
+  /articles/queryByAuthor:
+    get:
+      tags:
+        - article
+      summary: 根据用户查询文章
+      operationId: findArticle2
+      description: |
+        根据用户查询文章（管理员查询和普通用户查看自己的文章）
+        普通用户只能查看自己发的文章，管理员可以查看别人的文章，通过前端你舒服
+      parameters:
+        - name: title
+          in: query
+          description: 文章标题
+          type: string
+        - name: menuCode
+          in: query
+          description: 菜单码，按照菜单码模糊查询文章菜单码全路径字段
+          type: string
+        - name: subjectName
+          in: query
+          type: string
+          description: 专题名称，按照专题名称查询
+        - name: orderBy
+          in: query
+          type: string
+          description: 排序字段
+        - name: start
+          in: query
+          description: 分页开始索引
+          type: integer
+          format: int32
+        - name: length
+          in: query
+          description: 每页数量
+          type: integer
+          format: int32
+        - name: authorName
+          in: query
+          description: 作者名称或者真实姓名
+          type: string
+        - name: status
+          in: query
+          type: integer
+          format: int32
+          description: 审核状态
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
   /articles/status:
     get:
       summary: 状态查询文章
@@ -197,8 +251,10 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
-  /articles/{id}/auditArticle:
+  /articles/audit:
     put:
+      tags:
+        - article
       summary: 审核文章
       description: |
         根据文章id修改文章
@@ -208,21 +264,11 @@ paths:
       consumes:
         - application/json
       parameters:
-        - name: id
-          in: path
-          description: 文章id
-          format: int64
-          type: integer
-          required: true
-        - name: status
-          in: query
-          type: integer
-          format: int32
-          description: 文章审核状态（1：审核通过，2：审核驳回）
-        - name: rejectReason
-          in: query
-          type: string
-          description: 驳回原因
+        - in: body
+          name: audit
+          description: 审核对象
+          schema:
+            $ref: '#/definitions/audit'
       responses:
         '200':
           description: Successful response
@@ -233,6 +279,21 @@ paths:
           schema:
             $ref: '#/definitions/errorModel'
 definitions:
+  audit:
+    description: 审核对象
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: id
+      status:
+        type: integer
+        format: int32
+        description: 审核状态
+      remark:
+        type: string
+        description: 驳回理由
   article:
     description: 文章对象
     type: object

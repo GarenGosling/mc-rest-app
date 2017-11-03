@@ -2,13 +2,13 @@ package org.garen.mc.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
-import org.garen.mc.mybatis.domain.Article;
 import org.garen.mc.mybatis.domain.Author;
 import org.garen.mc.mybatis.domain.AuthorExample;
 import org.garen.mc.mybatis.service.AuthorService;
 import org.garen.mc.remote.LoginManage;
 import org.garen.mc.remote.dto.CommonResponse;
 import org.garen.mc.remote.dto.LoginVo;
+import org.garen.mc.swagger.model.Audit;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
@@ -256,16 +256,14 @@ public class AuthorManage extends BaseManage<Long> {
 
     /**
      * 审核
-     * @param id
-     * @param status
-     * @param rejectReason
+     * @param audit
      * @return
      */
-    public int auditAuthor(Long id, Integer status, String rejectReason) {
+    public int auditAuthor(Audit audit) {
         Author author=new Author();
-        author.setId(id);
-        author.setStatus(status);
-        author.setRejectReason(rejectReason);
+        author.setId(audit.getId());
+        author.setStatus(audit.getStatus());
+        author.setRejectReason(audit.getRemark());
         return modify(author);
     }
 }
