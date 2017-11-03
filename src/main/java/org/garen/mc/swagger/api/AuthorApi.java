@@ -123,7 +123,7 @@ public interface AuthorApi {
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateAuthor(@ApiParam(value = "作者") @Valid @RequestBody Author author);
-    @ApiOperation(value = "审核作者", notes = "审核作者 ", response = ResponseModel.class, tags={  })
+    @ApiOperation(value = "审核作者", notes = "审核作者 ", response = ResponseModel.class, tags={ "author", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
             @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
