@@ -133,6 +133,7 @@ public class ArticleManage extends BaseManage<Long> {
         articleDetailManage.deleteByArticleCode(code);
         int i = articleDetailManage.saveArticleDetails(articleDetails, code);
         article1.setId(id);
+        article1.setStatus(0);
         return modify(article1);
     }
 
