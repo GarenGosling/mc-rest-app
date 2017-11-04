@@ -237,7 +237,49 @@ paths:
           description: unexpected error
           schema:
             $ref: '#/definitions/errorModel'
+  /author/audit:
+    put:
+      tags:
+        - article
+      summary: 审核作者
+      description: |
+        审核作者
+      operationId: auditAuthor
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: audit
+          description: 审核对象
+          schema:
+            $ref: '#/definitions/audit'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/responseModel'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
 definitions:
+  audit:
+    description: 审核对象
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: id
+      status:
+        type: integer
+        format: int32
+        description: 审核状态
+      remark:
+        type: string
+        description: 驳回理由
   author:
     type: object
     properties:
