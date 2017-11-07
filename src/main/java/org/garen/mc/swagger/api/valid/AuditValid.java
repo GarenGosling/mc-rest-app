@@ -23,7 +23,7 @@ public class AuditValid extends BaseValid{
             return emptyMsg("id");
         if(audit.getStatus()==null)
             return emptyMsg("status");
-        if(audit.getStatus()==2&& StringUtils.isBlank(audit.getRemark()))
+        if(audit.getStatus()==2 && StringUtils.isBlank(audit.getRemark()))
             return emptyMsg("remark");
         return null;
     }
