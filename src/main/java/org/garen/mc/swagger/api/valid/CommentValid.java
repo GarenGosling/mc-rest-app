@@ -21,10 +21,11 @@ public class CommentValid extends BaseValid {
     public String savePartnerLinkValid(Comment comment) {
         if(comment==null)
             return paramNullMsg();
-        if(StringUtils.isBlank(comment.getArticleCode()))
-            return  emptyMsg("文章编码");
+        if(StringUtils.isBlank(comment.getArticleCode())&&StringUtils.isBlank(comment.getParentCode()))
+            return  emptyMsg("文章编码和父级评论编码不能都为空");
         if(StringUtils.isBlank(comment.getContent()))
             return  emptyMsg("评论内容");
         return  null;
+
     }
 }

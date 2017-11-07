@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -57,14 +58,14 @@ public class CommentsApiController extends BaseModel implements CommentsApi {
      * @param comment
      * @return
      */
-    public ResponseEntity<ResponseModel> saveComment(@ApiParam(value = "文章评论"  )  @Valid @RequestBody Comment comment) {
+    public ResponseEntity<ResponseModel> saveComment(@ApiParam(value = "文章评论"  )  @Valid @RequestBody Comment comment, HttpServletRequest request) {
         //验证新增对象参数
         String msg = commentValid.savePartnerLinkValid(comment);
         if(StringUtils.isNotBlank(msg)){
             return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
         }
         //业务
-        int i=commentManage.saveComment(comment);
+        int i=commentManage.saveComment(comment,request);
         return new ResponseEntity<ResponseModel>(successModel("新增成功，数量：" + i),HttpStatus.OK);
     }
 

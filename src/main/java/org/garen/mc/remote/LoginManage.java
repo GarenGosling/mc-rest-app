@@ -87,6 +87,13 @@ public class LoginManage {
         return  null;
     }
 
+    public String getLoginName(HttpServletRequest request){
+        LoginVo loginVo=getLoginVo(request);
+        if(loginVo==null)
+            return null;
+        return loginVo.getLoginInfo().getLoginName();
+    }
+
 
 
 }

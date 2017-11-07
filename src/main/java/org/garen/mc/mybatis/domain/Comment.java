@@ -2,6 +2,7 @@ package org.garen.mc.mybatis.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 
@@ -11,6 +12,8 @@ public class Comment implements Serializable {
      * id
      */
     private Long id;
+
+    private String code;
 
     /**
      * 创建时间
@@ -37,6 +40,13 @@ public class Comment implements Serializable {
      */
     private String content;
 
+    /**
+     * 父级码
+     */
+    private String parentCode;
+
+    private List<Comment> children;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -45,6 +55,14 @@ public class Comment implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Date getCreateTime() {
@@ -85,5 +103,21 @@ public class Comment implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    public List<Comment> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Comment> children) {
+        this.children = children;
     }
 }

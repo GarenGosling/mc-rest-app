@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.garen.mc.mybatis.domain.Comment;
 import org.garen.mc.mybatis.domain.CommentExample;
 
-public interface CommentMapper<T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK> {
+public interface CommentMapper<T,Q,PK extends Serializable> extends CommonMapper<T, Q,PK>  {
     long countByExample(CommentExample example);
 
     int deleteByExample(CommentExample example);

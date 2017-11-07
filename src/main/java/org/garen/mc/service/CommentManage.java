@@ -6,11 +6,14 @@ import org.garen.mc.mybatis.domain.*;
 import org.garen.mc.mybatis.domain.Comment;
 import org.garen.mc.mybatis.service.CommentService;
 import org.garen.mc.mybatis.service.CommonsService;
+import org.garen.mc.remote.LoginManage;
+import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +33,8 @@ public class CommentManage extends BaseManage<Long> {
     public CommentService<Comment,CommentExample,Long> getService() {
         return commentService;
     }
-
+    @Autowired
+    private LoginManage loginManage;
     /**
      * 删除
      * @param id
@@ -56,8 +60,13 @@ public class CommentManage extends BaseManage<Long> {
         CommentExample.Criteria criteria=example.createCriteria();
         if(StringUtils.isNotBlank(articleCode))
             criteria.andArticleCodeEqualTo( EsapiUtil.sql(articleCode.trim()));
-        //查询
+        //查询主评论
         List<Comment> comments=getService().findBy(new RowBounds(start,length),example);
+        //查询回复评论
+        for(Comment comment:comments){
+            //根据parentCode查询
+            comment.setChildren(findByParentCode(comment.getCode()));
+        }
         //构造查询sql
         String sql = "select count(*) count from comment where 1=1 ";
         if(StringUtils.isNotBlank(articleCode)){
@@ -72,14 +81,22 @@ public class CommentManage extends BaseManage<Long> {
         return map;
     }
 
+    private List<Comment> findByParentCode(String parentCode){
+        CommentExample commentExample=new CommentExample();
+        CommentExample.Criteria criteria=commentExample.createCriteria();
+        criteria.andParentCodeEqualTo(parentCode);
+        return findListBy(commentExample);
+    }
+
     /**
      * 保存
      * @param comment
      * @return
      */
-    public int saveComment(org.garen.mc.swagger.model.Comment comment) {
+    public int saveComment(org.garen.mc.swagger.model.Comment comment, HttpServletRequest request) {
         Comment comment1=tranfer(comment);
-        // TODO 设置用户名
+        comment1.setCode(CodeGenerateUtils.getRandomCode());
+        comment1.setLoginName(loginManage.getLoginName(request));
         return create(comment1);
     }
 

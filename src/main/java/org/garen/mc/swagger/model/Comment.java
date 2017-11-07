@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * Comment
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-31T02:39:41.567Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-07T11:55:34.515Z")
 
 public class Comment   {
   @JsonProperty("content")
@@ -19,6 +19,9 @@ public class Comment   {
 
   @JsonProperty("articleCode")
   private String articleCode = null;
+
+  @JsonProperty("parentCode")
+  private String parentCode = null;
 
   public Comment content(String content) {
     this.content = content;
@@ -60,6 +63,26 @@ public class Comment   {
     this.articleCode = articleCode;
   }
 
+  public Comment parentCode(String parentCode) {
+    this.parentCode = parentCode;
+    return this;
+  }
+
+   /**
+   * 父级评论编码
+   * @return parentCode
+  **/
+  @ApiModelProperty(value = "父级评论编码")
+
+ @Size(max=64)
+  public String getParentCode() {
+    return parentCode;
+  }
+
+  public void setParentCode(String parentCode) {
+    this.parentCode = parentCode;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -71,12 +94,13 @@ public class Comment   {
     }
     Comment comment = (Comment) o;
     return Objects.equals(this.content, comment.content) &&
-        Objects.equals(this.articleCode, comment.articleCode);
+        Objects.equals(this.articleCode, comment.articleCode) &&
+        Objects.equals(this.parentCode, comment.parentCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, articleCode);
+    return Objects.hash(content, articleCode, parentCode);
   }
 
   @Override
@@ -86,6 +110,7 @@ public class Comment   {
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    articleCode: ").append(toIndentedString(articleCode)).append("\n");
+    sb.append("    parentCode: ").append(toIndentedString(parentCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

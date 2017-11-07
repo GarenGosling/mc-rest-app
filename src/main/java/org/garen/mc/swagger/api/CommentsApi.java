@@ -10,10 +10,20 @@ import org.garen.mc.swagger.model.Comment;
 import org.garen.mc.swagger.model.ErrorModel;
 import org.garen.mc.swagger.model.ResponseModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-10-31T02:32:35.317Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-07T11:55:34.515Z")
 
 @Api(value = "comments", description = "the comments API")
 public interface CommentsApi {
@@ -28,7 +38,7 @@ public interface CommentsApi {
     ResponseEntity<ResponseModel> deleteComment(@ApiParam(value = "id", required = true) @PathVariable("id") Long id);
 
 
-    @ApiOperation(value = "文章编码分页查询", notes = "根据文章编码分页查询文章评论 ", response = ResponseModel.class, tags={ "comment", })
+    @ApiOperation(value = "文章编码分页查询", notes = "根据文章编码分页查询文章评论（分页分的是主评论，每一个主评论的回复评论会全部查询出来，回复评论不算在分页的限制内） ", response = ResponseModel.class, tags={ "comment", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -38,7 +48,7 @@ public interface CommentsApi {
     ResponseEntity<ResponseModel> getByPage(@ApiParam(value = "文章编码") @RequestParam(value = "articleCode", required = false) String articleCode, @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length);
 
 
-    @ApiOperation(value = "新增文章评论", notes = "新增文章评论 ", response = ResponseModel.class, tags={ "comment", })
+    @ApiOperation(value = "新增文章评论", notes = "新增文章评论（如果是主评论，那么根据需要传递articleCode和content;如果是回复评论那么需要传递parentCode和content） ", response = ResponseModel.class, tags={ "comment", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
@@ -47,6 +57,6 @@ public interface CommentsApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<ResponseModel> saveComment(@ApiParam(value = "文章评论") @Valid @RequestBody Comment comment);
+    ResponseEntity<ResponseModel> saveComment(@ApiParam(value = "文章评论") @Valid @RequestBody Comment comment, HttpServletRequest request);
 
 }
