@@ -44,7 +44,9 @@ public class MoreAttentionManage extends BaseManage<Long> {
      */
     public List<MoreAttention> getAll() {
         //查询
-        return getService().findAll();
+        MoreAttentionExample example=new MoreAttentionExample();
+        example.setOrderByClause("id desc");
+        return findListBy(example);
     }
 
     /**
@@ -57,6 +59,7 @@ public class MoreAttentionManage extends BaseManage<Long> {
         MoreAttentionExample example=new MoreAttentionExample();
         MoreAttentionExample.Criteria criteria=example.createCriteria();
         criteria.andStatusEqualTo(status);
+        example.setOrderByClause("id desc");
         //查询
         return getService().findBy(example);
     }
