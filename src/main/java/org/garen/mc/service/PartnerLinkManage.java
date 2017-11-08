@@ -45,7 +45,9 @@ public class PartnerLinkManage extends BaseManage<Long>{
      */
     public List<PartnerLink> getAll() {
         //查询
-        return getService().findAll();
+        PartnerLinkExample example=new PartnerLinkExample();
+        example.setOrderByClause("id desc");
+        return findListBy(example);
     }
 
     /**
@@ -104,6 +106,7 @@ public class PartnerLinkManage extends BaseManage<Long>{
         PartnerLinkExample example=new PartnerLinkExample();
         PartnerLinkExample.Criteria criteria=example.createCriteria();
         criteria.andNameLike("%"+EsapiUtil.sql(name.trim())+"%");
+        example.setOrderByClause("id desc");
         //查询
         return getService().findBy(example);
     }
@@ -151,6 +154,7 @@ public class PartnerLinkManage extends BaseManage<Long>{
         PartnerLinkExample example=new PartnerLinkExample();
         PartnerLinkExample.Criteria criteria=example.createCriteria();
         criteria.andStatusEqualTo(status);
+        example.setOrderByClause("id desc");
         //查询
         return getService().findBy(example);
     }
