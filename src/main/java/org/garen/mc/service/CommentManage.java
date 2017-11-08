@@ -61,6 +61,7 @@ public class CommentManage extends BaseManage<Long> {
         if(StringUtils.isNotBlank(articleCode))
             criteria.andArticleCodeEqualTo( EsapiUtil.sql(articleCode.trim()));
         //查询主评论
+        example.setOrderByClause("id desc");
         List<Comment> comments=getService().findBy(new RowBounds(start,length),example);
         //查询回复评论
         for(Comment comment:comments){
@@ -85,6 +86,7 @@ public class CommentManage extends BaseManage<Long> {
         CommentExample commentExample=new CommentExample();
         CommentExample.Criteria criteria=commentExample.createCriteria();
         criteria.andParentCodeEqualTo(parentCode);
+        commentExample.setOrderByClause("id desc");
         return findListBy(commentExample);
     }
 
