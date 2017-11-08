@@ -61,7 +61,9 @@ public class ArticleManage extends BaseManage<Long> {
      * @return
      */
     public List<Article> getAll() {
-        return findAll();
+        ArticleExample articleExample=new ArticleExample();
+        articleExample.setOrderByClause("id desc");
+        return findListBy(articleExample);
     }
 
     /**
