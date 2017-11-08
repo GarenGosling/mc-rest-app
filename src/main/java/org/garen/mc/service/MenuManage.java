@@ -40,10 +40,10 @@ public class MenuManage extends BaseManage<Long> {
      * @return
      */
     public int deletePartnerLink(Long id) {
-        Menu menu=getMenu(id);
-        MenuExample example=new MenuExample();
-        MenuExample.Criteria criteria=example.createCriteria();
-        criteria.andFullCodeLike("%"+menu.getCode()+"%");
+        Menu menu = getMenu(id);
+        MenuExample example = new MenuExample();
+        MenuExample.Criteria criteria = example.createCriteria();
+        criteria.andFullCodeLike("%" + menu.getCode() + "%");
         return remove(example);
     }
 
@@ -53,7 +53,7 @@ public class MenuManage extends BaseManage<Long> {
      * @return
      */
     public List<Menu> getAll() {
-        return getService().findAll();
+        return findListBy(null);
     }
 
     /**
@@ -82,6 +82,7 @@ public class MenuManage extends BaseManage<Long> {
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();
         criteria.andLevelEqualTo(level);
+        menuExample.setOrderByClause("order_by,id desc");
         //查询
         return getService().findBy(menuExample);
     }
@@ -97,6 +98,7 @@ public class MenuManage extends BaseManage<Long> {
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();
         criteria.andNameLike(EsapiUtil.sql("%" + name.trim() + "%"));
+        menuExample.setOrderByClause("id desc");
         //查询
         return getService().findBy(menuExample);
     }
@@ -114,7 +116,7 @@ public class MenuManage extends BaseManage<Long> {
         criteria.andParentCodeEqualTo(EsapiUtil.sql(pCode));
         if (status != null)
             criteria.andStatusEqualTo(status);
-        menuExample.setOrderByClause("order_by asc");
+        menuExample.setOrderByClause("order_by,id desc");
         //查询
         return getService().findBy(menuExample);
     }
@@ -136,7 +138,7 @@ public class MenuManage extends BaseManage<Long> {
         MenuExample.Criteria criteria = menuExample.createCriteria();
         if (StringUtils.isNotBlank(name))
             criteria.andNameLike("%" + EsapiUtil.sql(name.trim()) + "%");
-        menuExample.setOrderByClause("id desc");
+        menuExample.setOrderByClause("order_by,id desc");
         //查询
         List<Menu> menus = getService().findBy(new RowBounds(start, length), menuExample);
         //构造查询sql
@@ -178,13 +180,13 @@ public class MenuManage extends BaseManage<Long> {
         //保存
         menu1.setCode(CodeGenerateUtils.getRandomCode());
         menu1.setCreateTime(new Date());
-        if(menu1.getParentCode().equals("0")){
-            menu1.setFullCode("/"+menu1.getCode());
-            menu1.setFullName("/"+menu1.getName());
-        }else{
-            Menu parentMenu=getByCode(menu1.getParentCode());
-            menu1.setFullCode(parentMenu.getFullCode()+"/"+menu1.getCode());
-            menu1.setFullName(parentMenu.getFullName()+"/"+menu1.getName());
+        if (menu1.getParentCode().equals("0")) {
+            menu1.setFullCode("/" + menu1.getCode());
+            menu1.setFullName("/" + menu1.getName());
+        } else {
+            Menu parentMenu = getByCode(menu1.getParentCode());
+            menu1.setFullCode(parentMenu.getFullCode() + "/" + menu1.getCode());
+            menu1.setFullName(parentMenu.getFullName() + "/" + menu1.getName());
         }
         return create(menu1);
     }
@@ -198,7 +200,6 @@ public class MenuManage extends BaseManage<Long> {
      * 3、level
      * 4、
      *
-     *
      * @param menu
      * @return
      */
@@ -210,16 +211,16 @@ public class MenuManage extends BaseManage<Long> {
         //类型转换
         Menu menu1 = tranfer(menu);
         //数据库对象
-        Menu menu2=getMenu(menu1.getId());
+        Menu menu2 = getMenu(menu1.getId());
         //如果修改了菜单名子菜单也得修改
-        if(StringUtils.isNotBlank(menu1.getName())&&!menu1.getName().equals(menu2.getName())){
+        if (StringUtils.isNotBlank(menu1.getName()) && !menu1.getName().equals(menu2.getName())) {
             //递归修改菜单名
-            MenuExample example=new MenuExample();
-            MenuExample.Criteria criteria=example.createCriteria();
-            criteria.andFullCodeLike("%"+menu2.getCode()+"%");
-            List<Menu> menus=findListBy(example);
-            for(Menu menu3:menus){
-                menu3.setFullName(menu3.getFullName().replace(menu2.getName(),menu1.getName()));
+            MenuExample example = new MenuExample();
+            MenuExample.Criteria criteria = example.createCriteria();
+            criteria.andFullCodeLike("%" + menu2.getCode() + "%");
+            List<Menu> menus = findListBy(example);
+            for (Menu menu3 : menus) {
+                menu3.setFullName(menu3.getFullName().replace(menu2.getName(), menu1.getName()));
                 modify(menu3);
             }
         }
@@ -242,15 +243,16 @@ public class MenuManage extends BaseManage<Long> {
     /**
      * 通过父菜单编码查询，返回Tree格式
      * 此处的实现方式不是特别优秀，因为查数据库特别频繁，而且是多次调用。但是如果加上了缓存就不存在这样的问题了。
+     *
      * @param parentCode
      * @return
      */
     public List<Menu> getTreeByParentCode(String parentCode) {
-        List<Menu> menus= getByParentCode(parentCode,null);
-        for(Menu menu:menus){
+        List<Menu> menus = getByParentCode(parentCode, null);
+        for (Menu menu : menus) {
 //            if (menu.getLevel()!=3){
-                List<Menu> menus1= getTreeByParentCode(menu.getCode());
-                menu.setChildren(menus1);
+            List<Menu> menus1 = getTreeByParentCode(menu.getCode());
+            menu.setChildren(menus1);
 //            }
         }
         return menus;
@@ -258,6 +260,7 @@ public class MenuManage extends BaseManage<Long> {
 
     /**
      * 状态查询
+     *
      * @param status
      * @return
      */
@@ -265,9 +268,8 @@ public class MenuManage extends BaseManage<Long> {
         //构造查询条件
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();
-            criteria.andStatusEqualTo(status);
-            //TODO 暂时没有考虑排序
-//        menuExample.setOrderByClause("order_by asc");
+        criteria.andStatusEqualTo(status);
+        menuExample.setOrderByClause("order_by,id desc");
         //查询
         return getService().findBy(menuExample);
     }

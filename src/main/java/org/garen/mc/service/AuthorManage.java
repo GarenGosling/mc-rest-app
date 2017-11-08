@@ -88,9 +88,10 @@ public class AuthorManage extends BaseManage<Long> {
      * @return
      */
     public List<Author> getAll() {
-
+        AuthorExample example=new AuthorExample();
+        example.setOrderByClause("id desc");
         //查询
-        return getService().findAll();
+        return findListBy(example);
     }
 
     /**
@@ -163,6 +164,7 @@ public class AuthorManage extends BaseManage<Long> {
         AuthorExample example = new AuthorExample();
         AuthorExample.Criteria criteria = example.createCriteria();
         criteria.andPenNameLike("%" + EsapiUtil.sql(penName.trim()) + "%");
+        example.setOrderByClause("id desc");
         //查询
         return getService().findBy(example);
     }
@@ -178,6 +180,7 @@ public class AuthorManage extends BaseManage<Long> {
         AuthorExample example = new AuthorExample();
         AuthorExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo(status);
+        example.setOrderByClause("id desc");
         //查询
         return getService().findBy(example);
     }

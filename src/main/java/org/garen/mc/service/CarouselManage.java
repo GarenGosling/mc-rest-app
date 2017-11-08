@@ -48,6 +48,8 @@ public class CarouselManage extends BaseManage<Long> {
      * @return
      */
     public List<Carousel> getAll() {
+        CarouselExample example=new CarouselExample();
+        example.setOrderByClause("id desc");
         return findAll();
     }
 
@@ -61,6 +63,7 @@ public class CarouselManage extends BaseManage<Long> {
             CarouselExample example = new CarouselExample();
             CarouselExample.Criteria criteria = example.createCriteria();
             criteria.andDescriptionLike("%"+ EsapiUtil.sql(description.trim())+"%");
+            example.setOrderByClause("id desc");
             return findListBy(example);
         }
         return getAll();

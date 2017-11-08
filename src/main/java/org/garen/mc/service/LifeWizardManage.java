@@ -46,6 +46,8 @@ public class LifeWizardManage extends BaseManage<Long> {
      * @return
      */
     public List<LifeWizard> getAll() {
+        LifeWizardExample example=new LifeWizardExample();
+        example.setOrderByClause("id desc");
         return findAll();
     }
 
@@ -58,6 +60,7 @@ public class LifeWizardManage extends BaseManage<Long> {
         LifeWizardExample lifeWizardExample=new LifeWizardExample();
         LifeWizardExample.Criteria criteria=lifeWizardExample.createCriteria();
         criteria.andNameLike("%"+ EsapiUtil.sql(name.trim())+"%");
+        lifeWizardExample.setOrderByClause("id desc");
         return findListBy(lifeWizardExample);
     }
 
@@ -103,6 +106,7 @@ public class LifeWizardManage extends BaseManage<Long> {
         LifeWizardExample lifeWizardExample=new LifeWizardExample();
         LifeWizardExample.Criteria criteria=lifeWizardExample.createCriteria();
         criteria.andStatusEqualTo(status);
+        lifeWizardExample.setOrderByClause("id desc");
         return findListBy(lifeWizardExample);
     }
 
