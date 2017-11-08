@@ -55,7 +55,14 @@ public interface ArticlesApi {
 
     @RequestMapping(value = "/articles/query",
             method = RequestMethod.GET)
-    ResponseEntity<ResponseModel> findArticle(@ApiParam(value = "文章标题") @RequestParam(value = "title", required = false) String title, @ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode, @ApiParam(value = "专题名称，按照专题名称查询") @RequestParam(value = "subjectName", required = false) String subjectName, @ApiParam(value = "是否显示文章详情，1显示，0不显示") @RequestParam(value = "showDetail", required = false) Integer showDetail, @ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy, @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start, @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length);
+    ResponseEntity<ResponseModel> findArticle(@ApiParam(value = "文章标题") @RequestParam(value = "title", required = false) String title,
+                                              @ApiParam(value = "菜单码，按照菜单码模糊查询文章菜单码全路径字段") @RequestParam(value = "menuCode", required = false) String menuCode,
+                                              @ApiParam(value = "专题名称，按照专题名称查询") @RequestParam(value = "subjectName", required = false) String subjectName,
+                                              @ApiParam(value = "是否显示文章详情，1显示，0不显示") @RequestParam(value = "showDetail", required = false) Integer showDetail,
+                                              @ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy,
+                                              @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
+                                              @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
+                                              @ApiParam(value = "文章状态") @RequestParam(value = "status", required = false) Integer status);
 
 
 
