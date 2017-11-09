@@ -216,4 +216,28 @@ public class MenuApiController extends BaseModel implements MenuApi {
         return new ResponseEntity<ResponseModel>(successModel("状态查询", menus), HttpStatus.OK);
     }
 
+    /**
+     * 缓存查询
+     * @param parentCode
+     * @return
+     */
+    public ResponseEntity<ResponseModel> getTreeByParentCodeCache(@ApiParam(value = "父菜单编码") @RequestParam(value = "parentCode", required = false) String parentCode) {
+        // 验证
+        String msg = menuValid.parentCodeValid(parentCode);
+        if (StringUtils.isNotBlank(msg))
+            return new ResponseEntity<ResponseModel>(badRequestModel(msg), HttpStatus.OK);
+        //业务
+        Object o = menuManage.getTreeByParentCodeCache(parentCode);
+        return new ResponseEntity<ResponseModel>(successModel("父菜单编码返回树状图查询", o), HttpStatus.OK);
+    }
+
+    /**
+     * 刷新缓存
+     * @return
+     */
+    public ResponseEntity<ResponseModel> freshCache() {
+        menuManage.getAndAddCacheByParencCode("0");
+        return new ResponseEntity<ResponseModel>(successModel("更新缓存成功"), HttpStatus.OK);
+    }
+
 }

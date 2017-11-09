@@ -22,6 +22,8 @@ spring:
       port: 6379
       password:
       timeout: 6000
+      key:
+        menu: menuCache_parentCode_0
   rabbitmq:
       host: localhost
       port: 5672
@@ -32,3 +34,4 @@ server:
   tomcat:
     max-threads: 1024
     uri-encoding: utf-8
+

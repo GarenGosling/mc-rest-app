@@ -5,10 +5,12 @@ import org.apache.ibatis.session.RowBounds;
 import org.garen.mc.mybatis.domain.Menu;
 import org.garen.mc.mybatis.domain.MenuExample;
 import org.garen.mc.mybatis.service.MenuService;
+import org.garen.mc.redis.RedisService;
 import org.garen.mc.util.CodeGenerateUtils;
 import org.garen.mc.util.EsapiUtil;
 import org.garen.mc.util.TransferUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -32,6 +34,11 @@ public class MenuManage extends BaseManage<Long> {
     public MenuService<Menu, MenuExample, Long> getService() {
         return menuService;
     }
+
+    @Autowired
+    private RedisService redisTemplateService;
+    @Value("${spring.redis.key.menu}")
+    private String spring_redis_key_menu;
 
     /**
      * 递归删除
@@ -272,5 +279,32 @@ public class MenuManage extends BaseManage<Long> {
         menuExample.setOrderByClause("order_by,id desc");
         //查询
         return getService().findBy(menuExample);
+    }
+
+    /**
+     * 查询缓存
+     * 目前只有0加入缓存
+     * @param parentCode
+     * @return
+     */
+    public Object getTreeByParentCodeCache(String parentCode) {
+        if("0".equals(parentCode)){
+            Object object=redisTemplateService.get(spring_redis_key_menu);
+            if(object!=null)
+                return object;
+        }
+        return getAndAddCacheByParencCode(parentCode);
+    }
+
+    /**
+     * 从数据库查询，并加入缓存
+     * 目前只有0加入缓存
+     * @return
+     */
+    public List<Menu> getAndAddCacheByParencCode(String parentCode){
+        List<Menu> menus=getTreeByParentCode(parentCode);
+        if("0".equals(parentCode))
+            redisTemplateService.set(spring_redis_key_menu,menus);
+        return menus;
     }
 }

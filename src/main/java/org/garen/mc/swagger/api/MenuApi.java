@@ -152,5 +152,20 @@ public interface MenuApi {
             method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getByStatus(@ApiParam(value = "状态（0，不显示，1，显示，2，显示热门）") @RequestParam(value = "status", required = false) Integer status);
 
+    @ApiOperation(value = "通过父菜单编码查询，返回Tree格式(缓存)", notes = "通过父菜单编码查询，返回Tree格式(缓存) ", response = ResponseModel.class, tags={"menu",  })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
 
+    @RequestMapping(value = "/menu/tree/parentCode/cache",
+            method = RequestMethod.GET)
+    ResponseEntity<ResponseModel> getTreeByParentCodeCache(@ApiParam(value = "父菜单编码") @RequestParam(value = "parentCode", required = false) String parentCode);
+    @ApiOperation(value = "刷新缓存", notes = "刷新父菜单码为0的菜单的redis缓存 ", response = ResponseModel.class, tags={ "menu", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
+            @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
+
+    @RequestMapping(value = "/menu/freshCache",
+            method = RequestMethod.PUT)
+    ResponseEntity<ResponseModel> freshCache();
 }
