@@ -22,20 +22,20 @@ import javax.validation.Valid;
 public interface ArticlesApi {
 
     @ApiOperation(value = "id删除", notes = "根据文章id删除文章和文章详情 ", response = ResponseModel.class, tags={ "article", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+
     @RequestMapping(value = "/api/articles/{id}",
         method = RequestMethod.DELETE)
     ResponseEntity<ResponseModel> deleteArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id,HttpServletRequest request);
 
 
     @ApiOperation(value = "查询全部", notes = "查询全部文章 ", response = ResponseModel.class, tags={ "article", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+
     @RequestMapping(value = "/articles",
         method = RequestMethod.GET)
     ResponseEntity<ResponseModel> findALL();
@@ -62,39 +62,40 @@ public interface ArticlesApi {
                                               @ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy,
                                               @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
                                               @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
-                                              @ApiParam(value = "文章状态") @RequestParam(value = "status", required = false) Integer status);
+                                              @ApiParam(value = "文章状态") @RequestParam(value = "status", required = false) Integer status,
+                                              @ApiParam(value = "（0:等于菜单码查询，1:不等于菜单码查询）") @RequestParam(value = "notMenuCode", required = false) Integer notMenuCode);
 
 
 
     @ApiOperation(value = "id查询", notes = "根据文章id查询文章和文章的详情 ", response = ResponseModel.class, tags={ "article", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+
     @RequestMapping(value = "/articles/{id}",
         method = RequestMethod.GET)
     ResponseEntity<ResponseModel> getArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id);
 
 
     @ApiOperation(value = "发布文章", notes = "发布文章 ", response = ResponseModel.class, tags={ "article", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+
     @RequestMapping(value = "/api/articles",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<ResponseModel> saveArticle(@ApiParam(value = "文章") @Valid @RequestBody Article article, HttpServletRequest request);
 
 
     @ApiOperation(value = "修改文章", notes = "根据文章id修改文章 ", response = ResponseModel.class, tags={ "article", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successful response", response = ResponseModel.class),
         @ApiResponse(code = 200, message = "unexpected error", response = ErrorModel.class) })
-    
+
     @RequestMapping(value = "/api/articles/{id}",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity<ResponseModel> updateArticle(@ApiParam(value = "文章id", required = true) @PathVariable("id") Long id, @ApiParam(value = "文章") @Valid @RequestBody Article article,HttpServletRequest request);

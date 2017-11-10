@@ -163,17 +163,22 @@ public class ArticleManage extends BaseManage<Long> {
      * @param length
      * @return
      */
-    public Map findArticle(String title, String menuCode, String subjectName, Integer showDetail, String orderBy, Integer start, Integer length,Integer status) {
+    public Map findArticle(String title, String menuCode, String subjectName, Integer showDetail, String orderBy, Integer start, Integer length,Integer status,Integer notMenuCode) {
         //初始化参数
         if (start == null) start = 0;
         if (length == null) length = 10;
+        if(notMenuCode==null) notMenuCode=0;
         //构造查询条件
         ArticleExample articleExample = new ArticleExample();
         ArticleExample.Criteria criteria = articleExample.createCriteria();
         if (StringUtils.isNotBlank(title))
             criteria.andTitleLike("%" + EsapiUtil.sql(title.trim()) + "%");
-        if (StringUtils.isNotBlank(menuCode))
-            criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+        if (StringUtils.isNotBlank(menuCode)){
+            if(notMenuCode==0)
+                criteria.andMenuFullCodeLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+            else
+                criteria.andMenuFullCodeNotLike("%" + EsapiUtil.sql(menuCode.trim()) + "%");
+        }
         if (StringUtils.isNotBlank(subjectName))
             criteria.andSubjectNameLike("%" + EsapiUtil.sql(subjectName.trim()) + "%");
         if (status != null)

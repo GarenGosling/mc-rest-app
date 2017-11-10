@@ -105,8 +105,9 @@ public class ArticlesApiController extends BaseModel implements ArticlesApi {
                                                      @ApiParam(value = "排序字段") @RequestParam(value = "orderBy", required = false) String orderBy,
                                                      @ApiParam(value = "分页开始索引") @RequestParam(value = "start", required = false) Integer start,
                                                      @ApiParam(value = "每页数量") @RequestParam(value = "length", required = false) Integer length,
-                                                     @ApiParam(value = "文章状态") @RequestParam(value = "status", required = false) Integer status) {
-        Map map=articleManage.findArticle(title,menuCode,subjectName,showDetail,orderBy,start,length,status);
+                                                     @ApiParam(value = "文章状态") @RequestParam(value = "status", required = false) Integer status,
+                                                     @ApiParam(value = "（0:等于菜单码查询，1:不等于菜单码查询）") @RequestParam(value = "notMenuCode", required = false) Integer notMenuCode) {
+        Map map=articleManage.findArticle(title,menuCode,subjectName,showDetail,orderBy,start,length,status,notMenuCode);
         return new ResponseEntity<ResponseModel>(successModel("查询",map),HttpStatus.OK);
     }
 
