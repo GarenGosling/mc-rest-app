@@ -49,7 +49,7 @@ public class CarouselManage extends BaseManage<Long> {
      */
     public List<Carousel> getAll() {
         CarouselExample example=new CarouselExample();
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("order_by,id desc");
         return findAll();
     }
 
@@ -63,7 +63,7 @@ public class CarouselManage extends BaseManage<Long> {
             CarouselExample example = new CarouselExample();
             CarouselExample.Criteria criteria = example.createCriteria();
             criteria.andDescriptionLike("%"+ EsapiUtil.sql(description.trim())+"%");
-            example.setOrderByClause("id desc");
+            example.setOrderByClause("order_by,id desc");
             return findListBy(example);
         }
         return getAll();
@@ -85,7 +85,7 @@ public class CarouselManage extends BaseManage<Long> {
         CarouselExample.Criteria criteria = example.createCriteria();
         if(StringUtils.isNotBlank(description))
             criteria.andDescriptionLike("%"+ EsapiUtil.sql(description.trim())+"%");
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("order_by,id desc");
         //查询
         List<Carousel> carousels= getService().findBy(new RowBounds(start, length), example);
         //构造查询sql
