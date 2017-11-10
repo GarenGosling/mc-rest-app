@@ -47,7 +47,7 @@ public class LifeWizardManage extends BaseManage<Long> {
      */
     public List<LifeWizard> getAll() {
         LifeWizardExample example=new LifeWizardExample();
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("order_by,id desc");
         return findAll();
     }
 
@@ -60,7 +60,7 @@ public class LifeWizardManage extends BaseManage<Long> {
         LifeWizardExample lifeWizardExample=new LifeWizardExample();
         LifeWizardExample.Criteria criteria=lifeWizardExample.createCriteria();
         criteria.andNameLike("%"+ EsapiUtil.sql(name.trim())+"%");
-        lifeWizardExample.setOrderByClause("id desc");
+        lifeWizardExample.setOrderByClause("order_by,id desc");
         return findListBy(lifeWizardExample);
     }
 
@@ -80,7 +80,7 @@ public class LifeWizardManage extends BaseManage<Long> {
         LifeWizardExample.Criteria criteria=lifeWizardExample.createCriteria();
         if (StringUtils.isNotBlank(name))
             criteria.andNameLike("%" + EsapiUtil.sql(name.trim()) + "%");
-        lifeWizardExample.setOrderByClause("id desc");
+        lifeWizardExample.setOrderByClause("order_by,id desc");
         //查询
         List<LifeWizard> menus = getService().findBy(new RowBounds(start, length), lifeWizardExample);
         //构造查询sql
@@ -106,7 +106,7 @@ public class LifeWizardManage extends BaseManage<Long> {
         LifeWizardExample lifeWizardExample=new LifeWizardExample();
         LifeWizardExample.Criteria criteria=lifeWizardExample.createCriteria();
         criteria.andStatusEqualTo(status);
-        lifeWizardExample.setOrderByClause("id desc");
+        lifeWizardExample.setOrderByClause("order_by,id desc");
         return findListBy(lifeWizardExample);
     }
 
