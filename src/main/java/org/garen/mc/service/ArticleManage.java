@@ -227,7 +227,7 @@ public class ArticleManage extends BaseManage<Long> {
         if (length == null) length = 10;
 
         //查询作者码
-        String sql="select author_code from article where 1=1";
+        String sql="select author_code from article where status=1";
         if(StringUtils.isNotBlank(menuCode))
             sql+=" and menu_full_code like '%"+EsapiUtil.sql(menuCode.trim())+"%'";
         sql+=" GROUP BY author_code ORDER BY sum(view_num) desc limit "+start+","+length;
