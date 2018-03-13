@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
 			}else{
 				MultiValueMap<String, Object> param = new LinkedMultiValueMap();
 				param.add("ticket", ticket);
-				LoginDTO loginDTO = restTemplateUtil.post("http://120.27.22.41:9090/isLogin", param, LoginDTO.class);
+				LoginDTO loginDTO = restTemplateUtil.post("http://47.104.170.186:9090/isLogin", param, LoginDTO.class);
 				if("200".equals(loginDTO.getCode())){
 					chain.doFilter(request, response);
 				}else{

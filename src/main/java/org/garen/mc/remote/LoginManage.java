@@ -41,7 +41,7 @@ public class LoginManage {
             commonResponse.setData(null);
             return commonResponse;
         }
-        String url = "http://120.27.22.41:9090/loginVo2?ticket="+ticket;
+        String url = "http://47.104.170.186:9090/loginVo2?ticket="+ticket;
         String loginVoJson = restTemplateUtil.get(url, String.class, new HashMap<>());
         CommonResponse commonResponse = new JsonMapper().fromJson(loginVoJson, CommonResponse.class);
         return commonResponse;
@@ -65,7 +65,7 @@ public class LoginManage {
             loginDTO.setMessage("未登录");
             return loginDTO;
         }
-        String url = "http://120.27.22.41:9090/isLogin";
+        String url = "http://47.104.170.186:9090/isLogin";
         org.springframework.util.MultiValueMap<String, Object> param = new LinkedMultiValueMap();
         param.add("ticket", ticket);
         return restTemplateUtil.post(url, param, LoginDTO.class);
